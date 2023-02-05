@@ -8,11 +8,22 @@
     grid-template-columns: 33% 30% 37%;
     height: 100vh;
   }
+  /* Temp style */
+  #center{
+    border-left: solid 2px;
+    border-right: solid 2px;
+  }
 
 </style>
 <div class="main">
-  <div class="column" id="left" style="background-color:#404040;">Content of the column</div>
-  <div class="column" id="center" style="background-color:#a0a0a0;">Content of the column</div>
-  <div class="column" id="right" Style="background-color:#dcdcdc;">Content of the column</div>
+  <div class="column" id="left">
+    <app-navigation></app-navigation>
+  </div>
+  <div class="column" id="center">
+    <app-feed></app-feed>
+  </div>
+  <div class="column" id="right">
+    <app-profile></app-profile>
+  </div>
 </div>
 
