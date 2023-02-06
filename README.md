@@ -5,8 +5,7 @@ Clone repo in VS Code
 Select local directory for clone 
 
 Open terminal in VS Code
-npm install
-ng serve --open
+Run `npm install` to install Angular then run `ng serve --open` to run.
 
 ## Development server
 
