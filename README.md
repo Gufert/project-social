@@ -1,6 +1,12 @@
 # ProjectSocial
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+Clone repo in VS Code
+
+Select local directory for clone 
+
+Open terminal in VS Code
+npm install
+ng serve --open
 
 ## Development server
 
