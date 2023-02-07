@@ -1,22 +1,47 @@
 [
     {
         "id": 1,
-        "content": "Hello World"
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "Hello World",
+        "likes": 0,
+        "dislikes": 0
     },
     {
         "id": 2,
-        "content": "Woah this social media site is kinda awesome. Gonna be the next big thing 100%"
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "Woah this social media site is kinda awesome. Gonna be the next big thing 100%",
+        "likes": 0,
+        "dislikes": 0
     },
     {
         "id": 3,
-        "content": "As a boy, I had a dog named Bill"
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "As a boy, I had a dog named Bill",
+        "likes": 0,
+        "dislikes": 0
     },
     {
         "id": 4,
-        "content": ""
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "I saw a stop sign today!",
+        "likes": 0,
+        "dislikes": 0
     },
     {
         "id": 5,
-        "content": ""
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "post",
+        "likes": 0,
+        "dislikes": 0
     }
 ]

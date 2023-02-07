@@ -1,7 +1,6 @@
 <style>
     .profile-banner{
         height: 180px;
-        background-color: blue;
     }
     .profile-user{
         display: flex;
@@ -22,7 +21,7 @@
 
 </style>
 <div class="profile-banner">
-
+    <img src={{profile.background}}>
 </div>
 <div class="profile-user">
     <div class="profile-picture">
@@ -41,8 +40,8 @@
     {{profile.bio}}
 </div>
 <div class="profile-info">
-    {{profile.location}} <a href={{profile.link}}>{{profile.link}}</a> Joined {{profile.joinDate}}
+    📍{{profile.location}} 🔗<a href={{profile.link}}>{{profile.link}}</a> 📅Joined {{profile.joinDate}}
 </div>
 <div class="profile-relations">
-    {{profile.followingCount}} Following {{profile.followerCount}} Followers
+    <b>{{profile.followingCount}}</b> Following <b>{{profile.followerCount}}</b> Followers
 </div>

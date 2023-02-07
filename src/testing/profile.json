@@ -1,7 +1,8 @@
 {
     "name": "Test",
     "username": "TheTest",
-    "pfp": "http://ultrasoniccomposites.com/apple-touch-icon-120x120.png",
+    "pfp": "./assets/images/profilepicture.png",
+    "background": "./assets/images/background.png",
     "bio": "I am the test account.",
     "location": "The Source Code",
     "link": "localhost:4200",

@@ -5,6 +5,7 @@ interface Profile {
   name: String;
   username: String;
   pfp: String;
+  background: String;
   bio: String;
   location: String,
   link: String,

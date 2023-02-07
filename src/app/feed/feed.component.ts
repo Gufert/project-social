@@ -1,4 +1,14 @@
 import { Component } from '@angular/core';
+import posts from "../../testing/posts.json";
+
+interface Posts{
+  name: String;
+  username: String;
+  pfp: String;
+  content: String;
+  likes: Number;
+  dislikes: Number;
+}
 
 @Component({
   selector: 'app-feed',
@@ -6,5 +16,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent {
-
+  posts: Posts[] = posts
 }
