@@ -1,0 +1,11 @@
+{
+    "name": "Test",
+    "username": "TheTest",
+    "pfp": "http://ultrasoniccomposites.com/apple-touch-icon-120x120.png",
+    "bio": "I am the test account.",
+    "location": "The Source Code",
+    "link": "localhost:4200",
+    "joinDate": "2/7/2023",
+    "followingCount": 0,
+    "followerCount": 0
+}

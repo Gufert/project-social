@@ -1,1 +1,48 @@
-<p>profile works!</p>
+<style>
+    .profile-banner{
+        height: 180px;
+        background-color: blue;
+    }
+    .profile-user{
+        display: flex;
+    }
+    .profile-picture{
+        width: 120px;
+        height: 120px;
+    }
+    .profile-name{
+        padding-left: 10px;
+    }
+    .display-name{
+        font-size: 50px;
+    }
+    .user-name{
+        font-size: 20px;
+    }
+
+</style>
+<div class="profile-banner">
+
+</div>
+<div class="profile-user">
+    <div class="profile-picture">
+        <img src={{profile.pfp}} alt="">
+    </div>
+    <div class="profile-name">
+        <div class="display-name">
+            {{profile.name}}
+        </div>
+        <div class="user-name">
+            @{{profile.username}}
+        </div>
+    </div>
+</div>
+<div class="profile-bio">
+    {{profile.bio}}
+</div>
+<div class="profile-info">
+    {{profile.location}} <a href={{profile.link}}>{{profile.link}}</a> Joined {{profile.joinDate}}
+</div>
+<div class="profile-relations">
+    {{profile.followingCount}} Following {{profile.followerCount}} Followers
+</div>
