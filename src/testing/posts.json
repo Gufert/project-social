@@ -43,5 +43,86 @@
         "content": "post",
         "likes": 0,
         "dislikes": 0
+    },
+    {
+        "id": 6,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "This post is gonna be so long I don't even know what I will say but I do know that I will say a lot and never end this run on sentance that goes on and on and on forever and ever omg how long can a single post be I mean wow there should really be a limit on how long a post can be like this is just crazy wow absolutely crazy omg omg when will it end because I can do this all day and keep typing things that make sense but also don't make sense at the same time idk if that even made any sense but if it made sense to you then that mean you think like I think okay well anyways maybe I should end this post and I will do that by saying",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 7,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "My favorite number is 1110",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 8,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "H",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 9,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "Like this post if you are my friend",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 10,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "Live everyday like it's 5:42pm",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 11,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "List of fruits: Apple, Orange, Peach, Kiwi, Strawberry, Lemon, Lime, Blackberry, Grapefruit, Banana, Blueberry",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 12,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 13,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "Just got second place in a game of Rock Paper Scissors. Feeling like a true winner right now",
+        "likes": 0,
+        "dislikes": 0
+    },
+    {
+        "id": 14,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp": "./assets/images/profilepicture.png",
+        "content": "I have ran out of things to say",
+        "likes": 0,
+        "dislikes": 0
     }
 ]
