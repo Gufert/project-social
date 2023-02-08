@@ -2,6 +2,10 @@
     .feed-container{
         height: 100vh;
         overflow-y: scroll;
+        scrollbar-width: none;  /* Firefox */
+    }
+    .feed-container::-webkit-scrollbar {
+        display: none;
     }
     .post{
         height: auto;
