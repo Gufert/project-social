@@ -1,16 +1,26 @@
 <style>
-    .profile-banner{
+    .profile{
+        padding: 5px;
+        border: 1px solid;
+        background-color: whitesmoke;
+    }
+    .profile-banner img{
+        width: 588px;
         height: 180px;
+        object-fit: cover;
     }
     .profile-user{
         display: flex;
     }
-    .profile-picture{
+    .profile-picture img{
         width: 120px;
         height: 120px;
+        border-radius: 50%;
+        border: 1px solid;
     }
     .profile-name{
         padding-left: 10px;
+        width: 100%;
     }
     .display-name{
         font-size: 50px;
@@ -18,30 +28,58 @@
     .user-name{
         font-size: 20px;
     }
+    .join-date{
+        bottom: 0;
+    }
+    .follow{
+        width: auto;
+        height: 30px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        border: solid 1px;
+        border-radius: 9999px;
+        font-size: 20px;
+    }
+    .follow:hover{
+        background-color: aliceblue;
+        cursor: pointer;
+    }
+    .follow span{
+        padding: 0 15px;
+    }
 
 </style>
-<div class="profile-banner">
-    <img src={{profile.background}}>
-</div>
-<div class="profile-user">
-    <div class="profile-picture">
-        <img src={{profile.pfp}} alt="">
+<div class="profile">
+    <div class="profile-banner">
+        <img src={{profile.background}}>
     </div>
-    <div class="profile-name">
-        <div class="display-name">
-            {{profile.name}}
+    <div class="profile-user">
+        <div class="profile-picture">
+            <img src={{profile.pfp}} alt="">
         </div>
-        <div class="user-name">
-            @{{profile.username}}
+        <div class="profile-name">
+            <div class="display-name">
+                {{profile.name}}
+            </div>
+            <div class="user-name">
+                @{{profile.username}}
+            </div>
+            <div class="join-date">
+                📅Joined {{profile.joinDate}}
+            </div>
+        </div>
+        <div class="follow">
+            <span>Follow</span>
         </div>
     </div>
-</div>
-<div class="profile-bio">
-    {{profile.bio}}
-</div>
-<div class="profile-info">
-    📍{{profile.location}} 🔗<a href={{profile.link}}>{{profile.link}}</a> 📅Joined {{profile.joinDate}}
-</div>
-<div class="profile-relations">
-    <b>{{profile.followingCount}}</b> Following <b>{{profile.followerCount}}</b> Followers
+    <div class="profile-bio">
+        {{profile.bio}}
+    </div>
+    <div class="profile-info">
+        📍{{profile.location}} 🔗<a href={{profile.link}}>{{profile.link}}</a> 
+    </div>
+    <div class="profile-relations">
+        <b>{{profile.followingCount}}</b> Following <b>{{profile.followerCount}}</b> Followers
+    </div>
 </div>

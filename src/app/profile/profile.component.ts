@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Profile from '../../testing/profile.json';
+import Profile from '../../testing/testprofile.json';
 
 interface Profile {
   name: String;

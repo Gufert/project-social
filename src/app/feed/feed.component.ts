@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import posts from "../../testing/posts.json";
+import posts from "../../testing/testposts.json";
 
 interface Posts{
   name: String;

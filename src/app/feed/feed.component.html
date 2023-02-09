@@ -1,8 +1,17 @@
 <style>
+    .feed-header{
+        height: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-bottom: 1px solid;
+        position: sticky;
+    }
     .feed-container{
-        height: 100vh;
-        overflow-y: scroll;
-        scrollbar-width: none;  /* Firefox */
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+        position: relative;
+        scrollbar-width: none;
     }
     .feed-container::-webkit-scrollbar {
         display: none;
@@ -13,15 +22,32 @@
     }
     .post-container{
         display: flex;
+        padding-top: 5px;
+    }
+    .post-container:hover{
+        background-color: aliceblue;
+        cursor: pointer;
     }
     .post-pfp img{
-        height: 60px;
+        height: 50px;
+        margin: 0 10px;
+        border-radius: 50%;
+        border: 1px solid;
     }
     .post-content{
         margin-right: 10px;
+        padding: 1px 0;
+    }
+    .post-interactions{
+        padding-bottom: 5px;
     }
 
 </style>
+<div class="feed-header">
+    <div>Posts</div>
+    <div>Replies</div>
+    <div>Top</div>
+</div>
 <div class="feed-container">
     <div class="post" *ngFor="let post of posts">
         <div class="post-container">
@@ -30,7 +56,7 @@
             </div>
             <div>
                 <div class="post-user">
-                    <b>{{post.name}}</b> @{{post.username}}
+                    <b>{{post.name}}</b> @{{post.username}} • Date
                 </div>
                 <div class="post-content">
                     {{post.content}}

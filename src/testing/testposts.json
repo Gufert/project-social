@@ -4,7 +4,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "Hello World",
+        "content": "0001",
         "likes": 0,
         "dislikes": 0
     },
@@ -13,7 +13,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "Woah this social media site is kinda awesome. Gonna be the next big thing 100%",
+        "content": "0010",
         "likes": 0,
         "dislikes": 0
     },
@@ -22,7 +22,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "As a boy, I had a dog named Bill",
+        "content": "0011",
         "likes": 0,
         "dislikes": 0
     },
@@ -31,7 +31,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "I saw a stop sign today!",
+        "content": "0100",
         "likes": 0,
         "dislikes": 0
     },
@@ -40,7 +40,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "post",
+        "content": "0101",
         "likes": 0,
         "dislikes": 0
     },
@@ -49,7 +49,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "This post is gonna be so long I don't even know what I will say but I do know that I will say a lot and never end this run on sentance that goes on and on and on forever and ever omg how long can a single post be I mean wow there should really be a limit on how long a post can be like this is just crazy wow absolutely crazy omg omg when will it end because I can do this all day and keep typing things that make sense but also don't make sense at the same time idk if that even made any sense but if it made sense to you then that mean you think like I think okay well anyways maybe I should end this post and I will do that by saying",
+        "content": "0110",
         "likes": 0,
         "dislikes": 0
     },
@@ -58,7 +58,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "My favorite number is 1110",
+        "content": "0111",
         "likes": 0,
         "dislikes": 0
     },
@@ -67,7 +67,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "H",
+        "content": "1000",
         "likes": 0,
         "dislikes": 0
     },
@@ -76,7 +76,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "Like this post if you are my friend",
+        "content": "1001",
         "likes": 0,
         "dislikes": 0
     },
@@ -85,7 +85,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "Live everyday like it's 5:42pm",
+        "content": "1010",
         "likes": 0,
         "dislikes": 0
     },
@@ -94,7 +94,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "List of fruits: Apple, Orange, Peach, Kiwi, Strawberry, Lemon, Lime, Blackberry, Grapefruit, Banana, Blueberry",
+        "content": "1011",
         "likes": 0,
         "dislikes": 0
     },
@@ -103,7 +103,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+        "content": "1100",
         "likes": 0,
         "dislikes": 0
     },
@@ -112,7 +112,7 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "Just got second place in a game of Rock Paper Scissors. Feeling like a true winner right now",
+        "content": "1101",
         "likes": 0,
         "dislikes": 0
     },
@@ -121,8 +121,17 @@
         "name": "Test",
         "username": "TheTest",
         "pfp": "./assets/images/profilepicture.png",
-        "content": "I have ran out of things to say",
+        "content": "1110",
         "likes": 0,
         "dislikes": 0
+    },
+    {
+        "id": 15,
+        "name": "Test",
+        "username": "TheTest",
+        "pfp":"./assets/images/profilepicture.png",
+        "content":"1111",
+        "likes":0,
+        "dislikes":0
     }
 ]
