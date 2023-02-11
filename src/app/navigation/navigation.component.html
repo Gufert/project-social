@@ -19,6 +19,10 @@
         list-style: none;
         margin: 10px 0;
     }
+    .site-nav ul li a{
+        text-decoration: none;
+        color: inherit;
+    }
     nav{
         font-size: 35px;
     }
@@ -30,16 +34,16 @@
     <nav class="site-nav">
         <ul>
             <li>
-                Home
+                <a [routerLink]="['']">Home</a>
             </li>
             <li>
                 Profile
             </li>
             <li>
-                Search
+                <a [routerLink]="['search']">Search</a>
             </li>
             <li>
-                Settings
+                <a [routerLink]="['settings']">Settings</a>
             </li>
         </ul>
     </nav>

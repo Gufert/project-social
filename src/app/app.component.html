@@ -15,6 +15,7 @@
   .center{
     border-left: 2px solid black;
     border-right: 2px solid black;
+    height: 100vh;
   }
 </style>
 <div class="main">
@@ -22,7 +23,7 @@
     <app-navigation></app-navigation>
   </div>
   <div class="center">
-    <app-feed></app-feed>
+    <router-outlet></router-outlet>
   </div>
   <div class="right">
     <app-profile></app-profile>

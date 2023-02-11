@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FeedComponent } from './feed/feed.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PostComponent } from './post/post.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +16,17 @@ import { PostComponent } from './post/post.component';
     ProfileComponent,
     FeedComponent,
     NavigationComponent,
-    PostComponent
+    PostComponent,
+    SettingsComponent,
+    SearchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: '', component: FeedComponent},
+      {path: 'search', component: SearchComponent},
+      {path: 'settings', component: SettingsComponent},
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
