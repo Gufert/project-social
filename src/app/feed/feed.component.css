@@ -1,0 +1,42 @@
+.feed-header{
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid;
+    position: sticky;
+}
+.feed-container{
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    position: relative;
+    scrollbar-width: none;
+}
+.feed-container::-webkit-scrollbar {
+    display: none;
+}
+.post{
+    height: auto;
+    border-bottom: 1px solid;
+}
+.post-container{
+    display: flex;
+    padding-top: 5px;
+}
+.post-container:hover{
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.post-pfp img{
+    height: 50px;
+    margin: 0 10px;
+    border-radius: 50%;
+    border: 1px solid;
+}
+.post-content{
+    margin-right: 10px;
+    padding: 1px 0;
+}
+.post-interactions{
+    padding-bottom: 5px;
+}

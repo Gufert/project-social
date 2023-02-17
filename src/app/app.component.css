@@ -1,0 +1,27 @@
+.main{
+    display: flex;
+    margin: auto;
+}
+.main div{
+    width: 600px;
+}
+.left{
+    margin: 0 20px;
+}
+.right{
+    margin: 20px;
+}
+.center{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    height: 100vh;
+}
+.popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    background-color: whitesmoke;
+}
