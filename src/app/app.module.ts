@@ -9,6 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PostComponent } from './post/post.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchComponent } from './search/search.component';
     NavigationComponent,
     PostComponent,
     SettingsComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
