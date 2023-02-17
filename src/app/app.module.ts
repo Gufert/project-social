@@ -1,3 +1,8 @@
+import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -9,6 +14,22 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PostComponent } from './post/post.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+      {
+          requireDisplayName: false,
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+      },
+  ],
+  //term of service
+  tosUrl: '<your-tos-link>',
+  //privacy url
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  //credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
+};
 
 @NgModule({
   declarations: [
@@ -22,6 +43,8 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     BrowserModule,
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     RouterModule.forRoot([
       {path: '', component: FeedComponent},
       {path: 'search', component: SearchComponent},
@@ -32,3 +55,5 @@ import { SearchComponent } from './search/search.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
