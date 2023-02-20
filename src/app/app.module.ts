@@ -15,6 +15,7 @@ import { PostComponent } from './post/post.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
+import { PopupComponent } from './popup/popup.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -41,7 +42,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     PostComponent,
     SettingsComponent,
     SearchComponent,
-    LoginComponent
+    LoginComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: '', component: FeedComponent},
       {path: 'search', component: SearchComponent},
       {path: 'settings', component: SettingsComponent},
+      {path: '**', component: ProfileComponent}
     ]),
   ],
   providers: [],

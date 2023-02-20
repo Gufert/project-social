@@ -1,4 +1,7 @@
 .post-popup{
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 650px;
+}
+.close{
+    cursor: pointer;
 }

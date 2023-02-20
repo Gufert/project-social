@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent {
   onPost(){
-    console.log("test")
+    var pop = document.querySelector<HTMLElement>(".popup-container");
+    if(pop){
+      pop.style.display = "block";
+      var main = document.querySelector<HTMLElement>(".main");
+      if(main){
+        main.style.opacity = ".5";
+        main.style.pointerEvents = "none";
+      }
+    }
   }
 }
 

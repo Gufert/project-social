@@ -1,0 +1,7 @@
+.login-popup{
+    width: 600px;
+    height: 650px;
+}
+.close{
+    cursor: pointer;
+}

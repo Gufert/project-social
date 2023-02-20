@@ -1,6 +1,6 @@
 .main{
     display: flex;
-    margin: auto;
+    margin: 0 auto;
 }
 .main div{
     width: 600px;
@@ -16,7 +16,7 @@
     border-right: 2px solid black;
     height: 100vh;
 }
-.popup{
+.popup-container{
     display: none;
     position: fixed;
     top: 50%;

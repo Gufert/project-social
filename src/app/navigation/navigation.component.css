@@ -17,6 +17,7 @@
 .site-nav ul li{
     list-style: none;
     margin: 10px 0;
+    cursor: pointer;
 }
 .site-nav ul li a{
     text-decoration: none;
