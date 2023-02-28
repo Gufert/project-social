@@ -26,3 +26,11 @@
 nav{
     font-size: 35px;
 }
+.post-button{
+    width: 100px;
+    border: 1px solid;
+    border-radius: 9999px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+}

@@ -6,14 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  onClose(){
-    var pop = document.querySelector<HTMLElement>(".popup");
-    if(pop){
-      pop.style.display = "";
-      var main = document.querySelector<HTMLElement>(".main");
-      if(main){
-        main.style.pointerEvents = "auto";
-      }
-    }
-  }
+
 }

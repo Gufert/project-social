@@ -1,4 +1,7 @@
 <div class="popup"[ngSwitch]="currPop">
+    <div class="close" (click)="onClose()">
+        X
+    </div>
     <app-login *ngSwitchCase="''"></app-login>
     <app-post *ngSwitchCase="'post'"></app-post>
 </div>
