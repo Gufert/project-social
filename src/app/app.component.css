@@ -1,6 +1,10 @@
+.main-container{
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+}
 .main{
     display: flex;
-    margin: 0 auto;
 }
 .main div{
     width: 600px;
