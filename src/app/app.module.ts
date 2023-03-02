@@ -19,6 +19,11 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { PopupComponent } from './popup/popup.component';
 import { PromptComponent } from './prompt/prompt.component';
+import { ThreadComponent } from './thread/thread.component';
+import { SignupComponent } from './signup/signup.component';
+import { PostsComponent } from './posts/posts.component';
+import { EditComponent } from './edit/edit.component';
+import { RelationsComponent } from './relations/relations.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -47,14 +52,20 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     SearchComponent,
     LoginComponent,
     PopupComponent,
-    PromptComponent
+    PromptComponent,
+    ThreadComponent,
+    SignupComponent,
+    PostsComponent,
+    EditComponent,
+    RelationsComponent
   ],
   imports: [
     BrowserModule,
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     RouterModule.forRoot([
-      {path: '', component: FeedComponent},
+      {path: '', component: SearchComponent},
+      {path: 'feed', component: FeedComponent},
       {path: 'search', component: SearchComponent},
       {path: 'settings', component: SettingsComponent},
       {path: '**', component: ProfileComponent}

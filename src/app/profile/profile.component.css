@@ -47,3 +47,6 @@
 .follow span{
     padding: 0 15px;
 }
+.profile{
+    display: none;
+}

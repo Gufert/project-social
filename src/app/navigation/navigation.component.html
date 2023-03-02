@@ -3,19 +3,27 @@
         Project Social
     </div>
     <nav class="site-nav">
-        <ul>
-            <li>
-                <a [routerLink]="['']">Home</a>
-            </li>
-            <li>
-                Profile
-            </li>
-            <li>
-                <a [routerLink]="['search']">Search</a>
-            </li>
-            <li>
-                <a [routerLink]="['settings']">Settings</a>
-            </li>
+        <ul class="nav-ul">
+            <div class="li-container">
+                <li class="nav-li">
+                    <a class="nav-a" [routerLink]="['feed']">Home</a>
+                </li>
+            </div>
+            <div class="li-container">
+                <li class="nav-li">
+                    <a class="nav-a" [routerLink]="['search']">Search</a>
+                </li>
+            </div>
+            <div class="li-container">
+                <li class="nav-li">
+                    <a class="nav-a" [routerLink]="['**']">Profile</a>
+                </li>
+            </div>
+            <div class="li-container">
+                <li class="nav-li">
+                    <a  class="nav-a" [routerLink]="['settings']">Settings</a>
+                </li>
+            </div>
         </ul>
     </nav>
     <div class="post-button" (click)="onPost()">
