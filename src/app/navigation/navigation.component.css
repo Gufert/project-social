@@ -3,6 +3,7 @@
     display: block;
     float: right;
     margin-right: 50px;
+    font-weight: bold;
 }
 .site-header{
     height: 50px;

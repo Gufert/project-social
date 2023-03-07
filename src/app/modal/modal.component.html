@@ -1,0 +1,15 @@
+<div class="modal">
+    <div class="modal-header">
+        <div class="close" (click)="close()">X</div>
+    </div>
+    <div class="modal-content">
+        <ng-container  [ngSwitch]="(modalService.comp)">
+            <app-login *ngSwitchCase="'login'"></app-login>
+            <app-signup *ngSwitchCase="'signup'"></app-signup>
+            <app-post *ngSwitchCase="'post'"></app-post>
+            <div *ngSwitchDefault="">
+                Something should be here. But it broke
+            </div>
+        </ng-container>
+    </div>
+</div>

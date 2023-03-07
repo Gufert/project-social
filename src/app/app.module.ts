@@ -24,6 +24,9 @@ import { SignupComponent } from './signup/signup.component';
 import { PostsComponent } from './posts/posts.component';
 import { EditComponent } from './edit/edit.component';
 import { RelationsComponent } from './relations/relations.component';
+import { ModalComponent } from './modal/modal.component';
+import { AccountComponent } from './account/account.component';
+import { ModalService } from './modal.service';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -57,7 +60,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     SignupComponent,
     PostsComponent,
     EditComponent,
-    RelationsComponent
+    RelationsComponent,
+    ModalComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: '**', component: ProfileComponent}
     ]),
   ],
-  providers: [],
+  providers: [
+    ModalService,
+    ModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

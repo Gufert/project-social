@@ -3,12 +3,12 @@
         Have an account?
     </div>
     <div class="button-container">
-        <div class="buttons">
+        <div class="buttons" (click)="modalService.open('login')">
             <div class="login">
                 Login
             </div>
         </div>
-        <div class="buttons">
+        <div class="buttons" (click)="modalService.open('signup')">
             <div class="create">
                 Create Account
             </div>

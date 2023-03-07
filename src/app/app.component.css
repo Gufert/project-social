@@ -20,7 +20,7 @@
     border-right: 2px solid black;
     height: 100vh;
 }
-.popup-container{
+/* .modal-container{
     display: none;
     position: fixed;
     top: 50%;
@@ -28,4 +28,4 @@
     transform: translate(-50%, -50%);
     z-index: 99;
     background-color: whitesmoke;
-}
+} */
