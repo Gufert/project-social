@@ -27,6 +27,7 @@ import { RelationsComponent } from './relations/relations.component';
 import { ModalComponent } from './modal/modal.component';
 import { AccountComponent } from './account/account.component';
 import { ModalService } from './modal.service';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -62,7 +63,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     EditComponent,
     RelationsComponent,
     ModalComponent,
-    AccountComponent
+    AccountComponent,
+    ProfilesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,19 @@
-<div class="post-popup">
-    <input>
+<div class="post-container">
+    <div class="top">
+        <div class="profilePicture">
+
+        </div>
+        <span class="content" role="textbox" contenteditable (input)="charCount()"></span>
+    </div>
+    <div class="bottom">
+        <div class="progress">
+            <div class="barOverflow">
+              <div class="bar"></div>
+            </div>
+            <span>{{(remaining)}}</span>
+          </div>
+        <div class="postButton">
+            Post
+        </div>
+    </div>
 </div>

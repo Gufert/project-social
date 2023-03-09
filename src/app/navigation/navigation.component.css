@@ -1,4 +1,5 @@
 .nav-container{
+    height: 100vh;
     width: fit-content;
     display: block;
     float: right;
@@ -27,7 +28,7 @@
     border-radius: 9999px;
 }
 .nav-li:hover{
-    background-color: gainsboro;
+    background-color: var(--psGrey);
 }
 .nav-a{
     text-decoration: none;
@@ -49,4 +50,9 @@ nav{
     font-weight: bolder;
     font-size: 25px;
     cursor: pointer;
+}
+.account{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
 }

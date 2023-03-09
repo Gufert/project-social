@@ -1,0 +1,30 @@
+.signup-container{
+    width: fit-content;
+    margin: 0 auto;
+}
+.show{
+    width: fit-content;
+    cursor: pointer;
+}
+.signupButton{
+    width: 450px;
+    height: 55px;
+    background-color: black;
+    color: white;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.emailInput, .passwordInput, .usernameInput{
+    width: 450px;
+    height: 45px;
+    font-size: 17px;
+    outline: none;
+}
+.email, .password, .username{
+    padding-bottom: 15px;
+}

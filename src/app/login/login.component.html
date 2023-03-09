@@ -1,3 +1,18 @@
-<div class="login-popup">
-    <p>add login form here</p>
+<div class="login-container">
+    <div class="username">
+        <label>Email</label>
+        <div class="input">
+            <input class="usernameInput" #userName>
+        </div>
+    </div>
+    <div class="password">
+        <label>Password</label>
+        <div class="input">
+            <input class ="passwordInput" #userPassword type="{{(showPassword === false)?'password':'text'}}">
+            <div class="show" (click)="toggle()">Show</div>
+        </div>
+    </div>
+    <div class="loginButton">
+        Log in
+    </div>
 </div>

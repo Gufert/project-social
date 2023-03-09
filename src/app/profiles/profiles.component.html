@@ -1,0 +1,33 @@
+<div class="profile">
+    <div class="profile-banner">
+        <img src={{profile.background}}>
+    </div>
+    <div class="profile-user">
+        <div class="profile-picture">
+            <img src={{profile.pfp}} alt="">
+        </div>
+        <div class="profile-name">
+            <div class="display-name">
+                {{profile.name}}
+            </div>
+            <div class="user-name">
+                @{{profile.username}}
+            </div>
+            <div class="join-date">
+                📅Joined {{profile.joinDate}}
+            </div>
+        </div>
+        <div class="follow">
+            <span>Follow</span>
+        </div>
+    </div>
+    <div class="profile-bio">
+        {{profile.bio}}
+    </div>
+    <div class="profile-info">
+        📍{{profile.location}} 🔗<a href={{profile.link}}>{{profile.link}}</a> 
+    </div>
+    <div class="profile-relations">
+        <b>{{profile.followingCount}}</b> Following <b>{{profile.followerCount}}</b> Followers
+    </div>
+</div>

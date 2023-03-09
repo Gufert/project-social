@@ -1,1 +1,24 @@
-<p>signup works!</p>
+<div class="signup-container">
+    <div class="email">
+        <label>Email</label>
+        <div class="input">
+            <input class="emailInput" #userName>
+        </div>
+    </div>
+    <div class="password">
+        <label>Password</label>
+        <div class="input">
+            <input class ="passwordInput" #userPassword type="{{(showPassword === false)?'password':'text'}}">
+            <div class="show" (click)="toggle()">Show</div>
+        </div>
+    </div>
+    <div class="username">
+        <label>Username</label>
+        <div class="input">
+            <input class="usernameInput" #userName>
+        </div>
+    </div>
+    <div class="signupButton">
+        Sign Up
+    </div>
+</div>

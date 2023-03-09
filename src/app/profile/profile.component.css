@@ -1,52 +1,25 @@
-.profile{
-    padding: 5px;
-    border: 1px solid;
-    background-color: whitesmoke;
-}
-.profile-banner img{
-    width: 588px;
-    height: 180px;
-    object-fit: cover;
-}
-.profile-user{
+.profile-header{
+    height: 50px;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid;
+    position: sticky;
 }
-.profile-picture img{
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 1px solid;
-}
-.profile-name{
-    padding-left: 10px;
+.button{
     width: 100%;
-}
-.display-name{
-    font-size: 50px;
-}
-.user-name{
-    font-size: 20px;
-}
-.join-date{
-    bottom: 0;
-}
-.follow{
-    width: auto;
-    height: 30px;
-    float: right;
+    height: 100%;
     display: flex;
     justify-content: center;
-    border: solid 1px;
-    border-radius: 9999px;
-    font-size: 20px;
+    align-items: center;
 }
-.follow:hover{
-    background-color: aliceblue;
+.button:hover{
     cursor: pointer;
+    background-color: var(--psGrey);
 }
-.follow span{
-    padding: 0 15px;
-}
-.profile{
-    display: none;
+.buttonText{
+    display: flex;
+    height: 100%;
+    width: fit-content;
+    align-items: center;
 }

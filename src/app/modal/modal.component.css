@@ -1,15 +1,33 @@
+.modal-backdrop{
+    display: none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.5);
+}
+.modal-header{
+    height: fit-content;
+}
 .close{
     cursor: pointer;
     width: fit-content;
+    padding-left: 10px;
+}
+.close:after{
+    content: "\d7";
+    font-size: 35px; 
+    color: black;
 }
 .modal{
     display: none;
+    background: white;
     position: fixed;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 99;
-    background-color: whitesmoke;
     border-radius: 5px;
 }
 .modal-content{

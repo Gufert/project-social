@@ -10,4 +10,6 @@ body,html{
 
 :root{
     --psTeal: #009990;
+    --psGrey: #dedede;
+    --psRadius: 15px;
 }

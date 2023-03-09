@@ -1,13 +1,5 @@
-.feed-header{
-    height: 50px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border-bottom: 1px solid;
-    position: sticky;
-}
 .feed-container{
-    height: calc(100vh - 50px);
+    height: 100vh;
     overflow-y: auto;
     position: relative;
     scrollbar-width: none;

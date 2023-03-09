@@ -1,12 +1,14 @@
+<div class="modal-backdrop"></div>
 <div class="modal">
     <div class="modal-header">
-        <div class="close" (click)="close()">X</div>
+        <div class="close" (click)="close()"></div>
     </div>
     <div class="modal-content">
         <ng-container  [ngSwitch]="(modalService.comp)">
             <app-login *ngSwitchCase="'login'"></app-login>
             <app-signup *ngSwitchCase="'signup'"></app-signup>
             <app-post *ngSwitchCase="'post'"></app-post>
+            <app-edit *ngSwitchCase="'edit'"></app-edit>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>
