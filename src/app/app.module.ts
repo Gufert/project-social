@@ -9,6 +9,12 @@ import { RouterModule } from '@angular/router';
 
 import { environment } from '../environments/environment';
 
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from "./shared/services/auth.service";
+
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FeedComponent } from './feed/feed.component';
@@ -28,6 +34,7 @@ import { ModalComponent } from './modal/modal.component';
 import { AccountComponent } from './account/account.component';
 import { ModalService } from './modal.service';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { UpdateComponent } from './update/update.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -64,12 +71,18 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     RelationsComponent,
     ModalComponent,
     AccountComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    AppRoutingModule,
     RouterModule.forRoot([
       {path: '', component: SearchComponent},
       {path: 'feed', component: FeedComponent},
@@ -79,6 +92,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ]),
   ],
   providers: [
+    AuthService,
     ModalService,
     ModalComponent
   ],

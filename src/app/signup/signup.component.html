@@ -2,7 +2,7 @@
     <div class="email">
         <label>Email</label>
         <div class="input">
-            <input class="emailInput" #userName>
+            <input class="emailInput" #userEmail>
         </div>
     </div>
     <div class="password">
@@ -18,7 +18,7 @@
             <input class="usernameInput" #userName>
         </div>
     </div>
-    <div class="signupButton">
-        Sign Up
+    <div>
+        <input class="signupButton" type="button" value="Create Account" (click)="authService.SignUp(userEmail.value, userPassword.value)">
     </div>
 </div>

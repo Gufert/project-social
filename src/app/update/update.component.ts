@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../shared/services/auth.service";
 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class LoginComponent implements OnInit{
+export class UpdateComponent implements OnInit{
   showPassword = false;
 
   toggle(){//now this is something else

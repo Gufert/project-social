@@ -2,7 +2,7 @@
     <div class="username">
         <label>Email</label>
         <div class="input">
-            <input class="usernameInput" #userName>
+            <input class="usernameInput" #userEmail>
         </div>
     </div>
     <div class="password">
@@ -12,7 +12,7 @@
             <div class="show" (click)="toggle()">Show</div>
         </div>
     </div>
-    <div class="loginButton">
-        Log in
+    <div>
+        <input class="loginButton" type="button" value="Log In" (click)="authService.SignIn(userEmail.value, userPassword.value)">
     </div>
 </div>
