@@ -6,7 +6,7 @@
         <div class="displayName">{{user.displayName ? user.displayName : "User"}}</div>
         <div class="username">{{ user.email }}</div>
     </div>
-    <div>
-        <input class="logout" type="button" value="Sign Out" (click)="authService.SignOut()">
+    <div class="logout" (click)="authService.SignOut()">
+        Logout
     </div>
 </div>

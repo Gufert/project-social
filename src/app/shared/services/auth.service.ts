@@ -7,6 +7,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { ModalComponent } from 'src/app/modal/modal.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +17,8 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public modal: ModalComponent
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -39,6 +41,7 @@ export class AuthService {
           this.SetUserData(result.user);
         });
         this.SetUserData(result.user);
+        this.modal.close();
         this.router.navigate(['feed']);
       })
       .catch((error) => {
@@ -53,6 +56,7 @@ export class AuthService {
         /* After a new user signs up, call the SendVerificaitonMail() function and get a promise */
         /*this.SendVerificationMail();*/
         this.SetUserData(result.user);
+        this.modal.close();
       })
       .catch((error) => {
         window.alert(error.message);
@@ -134,7 +138,10 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['feed']);
+      this.router.navigate([''])
+        .then(() => {
+        window.location.reload();
+      });
     });
   }
 }

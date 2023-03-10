@@ -8,7 +8,7 @@
     </div>
     <div class="right">
       <app-profiles></app-profiles>
-      <app-prompt></app-prompt>
+      <app-prompt *ngIf="authService.userData == null"></app-prompt>
     </div>
   </div>
 </div>

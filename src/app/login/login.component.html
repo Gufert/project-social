@@ -12,7 +12,7 @@
             <div class="show" (click)="toggle()">Show</div>
         </div>
     </div>
-    <div>
-        <input class="loginButton" type="button" value="Log In" (click)="authService.SignIn(userEmail.value, userPassword.value)">
+    <div class="loginButton" (click)="authService.SignIn(userEmail.value, userPassword.value)">
+        Log in
     </div>
 </div>
