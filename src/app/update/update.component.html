@@ -1,0 +1,11 @@
+<div class="login-container">
+    <div class="username">
+        <label>Name</label>
+        <div class="input">
+            <input class="usernameInput" #userName>
+        </div>
+    </div>
+    <div>
+        <input class="loginButton" type="button" value="Update Username" (click)="authService.UpdateUserName(userName.value)">
+    </div>
+</div>

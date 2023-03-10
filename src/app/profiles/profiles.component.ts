@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 import Profile from '../../testing/testprofile.json';
 
@@ -19,6 +20,8 @@ interface Profile {
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.css']
 })
-export class ProfilesComponent {
+export class ProfilesComponent implements OnInit {
   profile: Profile = Profile;
+  constructor(public authService: AuthService) {}
+  ngOnInit(): void {}
 }
