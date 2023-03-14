@@ -9,7 +9,7 @@
 }
 .post{
     height: auto;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid var(--psBorderColor);
 }
 .post-container{
     display: flex;

@@ -44,6 +44,7 @@
 }
 .progress{
     position: relative;
+    padding-left: 56px;
     margin: 4px;
     float:left;
     text-align: center;
