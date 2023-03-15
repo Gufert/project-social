@@ -1,1 +1,24 @@
-<p>posts works!</p>
+<div class="post-container" (click)="openThread()">
+    <div class="post-pfp">
+        <img src={{post.pfp}}>
+    </div>
+    <div>
+        <div class="post-user">
+            <b>{{post.name}}</b> @{{post.username}} • Date
+        </div>
+        <div class="post-content">
+            {{post.content}}
+        </div>
+        <div class="post-interactions">
+            <div class="post-button" (click)="postClick($event, 'like')">
+                <img src="assets/icons/like.png" alt="like icon" class="post-icons">{{post.likes}}
+            </div>
+            <div class="post-button" (click)="postClick($event, 'dislike')">
+                <img src="assets/icons/dislike.png" alt="dislike icon" class="post-icons">{{post.dislikes}}
+            </div>
+            <div class="post-button" (click)="postClick($event, 'reply')">
+                <img src="assets/icons/reply.png" alt="reply icon" class="post-icons">
+            </div>
+        </div>
+    </div>
+</div>

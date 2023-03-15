@@ -1,21 +1,3 @@
 <div class="feed-container">
-    <div class="post" *ngFor="let post of posts">
-        <div class="post-container">
-            <div class="post-pfp">
-                <img src={{post.pfp}}>
-            </div>
-            <div>
-                <div class="post-user">
-                    <b>{{post.name}}</b> @{{post.username}} • Date
-                </div>
-                <div class="post-content">
-                    {{post.content}}
-                </div>
-                <div class="post-interactions">
-                    👍{{post.likes}} 👎{{post.dislikes}}
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-posts *ngFor="let post of posts" [post]="post"></app-posts>
 </div>
-
