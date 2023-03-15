@@ -6,22 +6,22 @@
         <ul class="nav-ul">
             <div class="li-container" *ngIf="authService.userData as user">
                 <li class="nav-li">
-                    <a class="nav-a" [routerLink]="['feed']">Home</a>
+                    <img src="assets/icons/home.png" alt="home icon" class="nav-icons"><a class="nav-a" [routerLink]="['feed']">Home</a>
                 </li>
             </div>
             <div class="li-container">
                 <li class="nav-li">
-                    <a class="nav-a" [routerLink]="['search']">Search</a>
+                    <img src="assets/icons/search.png" alt="search icon" class="nav-icons"><a class="nav-a" [routerLink]="['search']">Search</a>
                 </li>
             </div>
             <div class="li-container" *ngIf="authService.userData as user">
                 <li class="nav-li">
-                    <a class="nav-a" [routerLink]="['**']">Profile</a>
+                    <img src="assets/icons/user.png" alt="user icon" class="nav-icons"><a class="nav-a" [routerLink]="['**']">Profile</a>
                 </li>
             </div>
             <div class="li-container">
                 <li class="nav-li">
-                    <a  class="nav-a" [routerLink]="['settings']">Settings</a>
+                    <img src="assets/icons/gear.png" alt="gear icon" class="nav-icons"><a  class="nav-a" [routerLink]="['settings']">Settings</a>
                 </li>
             </div>
         </ul>

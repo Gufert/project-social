@@ -8,7 +8,7 @@
     <div class="password">
         <label>Password</label>
         <div class="input">
-            <input class ="passwordInput" #userPassword type="{{(showPassword === false)?'password':'text'}}">
+            <input class ="passwordInput" #userPassword type="{{(showPassword === false)?'password':'text'}}" (keyup.enter)="authService.SignIn(userEmail.value, userPassword.value)">
             <div class="show" (click)="toggle()">Show</div>
         </div>
     </div>

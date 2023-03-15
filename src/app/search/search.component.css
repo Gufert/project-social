@@ -11,14 +11,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 30px;
+    width: 550px;
+    height: 40px;
     background-color: var(--psGrey);
     border-radius: 9999px;
 }
 .search-input{
     width: 450px;
-    height: 25px;
+    height: 35px;
+    font-size: 15px;
     outline: none;
     border: none;
     background-color: var(--psGrey)

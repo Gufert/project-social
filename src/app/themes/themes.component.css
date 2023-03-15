@@ -1,0 +1,7 @@
+.themes-container{
+    background-color: var(--psGrey);
+}
+.themes-header{
+    font-size: 25px;
+    font-weight: bold;
+}

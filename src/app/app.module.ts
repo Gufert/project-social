@@ -4,7 +4,7 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -36,6 +36,8 @@ import { AccountComponent } from './account/account.component';
 import { ModalService } from './modal.service';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { UpdateComponent } from './update/update.component';
+import { ThemesComponent } from './themes/themes.component';
+import { CrudComponent } from './crud/crud.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -73,7 +75,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ModalComponent,
     AccountComponent,
     ProfilesComponent,
-    UpdateComponent
+    UpdateComponent,
+    ThemesComponent,
+    CrudComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: 'feed', component: FeedComponent},
       {path: 'search', component: SearchComponent},
       {path: 'settings', component: SettingsComponent},
-      {path: '**', component: ProfileComponent}
+      {path: ':user', component: ProfileComponent}
     ]),
   ],
   providers: [
