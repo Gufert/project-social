@@ -1,9 +1,9 @@
 export interface Post {
     pid?: string | null;
-    displayName?: string;
-    content?: string;
-    name?: string;
-    photoURL?: string;
-    likes?: string;
-    dislikes?: string;
+    displayName?: string | null;
+    content?: string | null;
+    name?: string | null;
+    photoURL?: string | null;
+    likes?: string | null;
+    dislikes?: string | null;
  }
