@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
+import { Post } from '../shared/services/post'
+import { PostsService } from '../shared/services/post.service';
+
 
 @Component({
   selector: 'app-post',
@@ -7,13 +10,31 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+
+  
+  constructor(
+    public authService: AuthService,
+    public postService: PostsService
+    ) {}
+    
   count: Number = 0;
   remaining: Number = 256;
+  post: Post = new Post();
+  submitted = false; 
 
 
   ngOnInit(){
     this.transform();
+  }
+   savePost(): void {
+      this.postService.create(this.post).then(() => {
+      console.log('Created new post successfully!');
+      this.submitted = true;
+    });
+  }
+  newPost(): void {
+    this.submitted = false;
+    this.post = new Post();
   }
 
   transform(){

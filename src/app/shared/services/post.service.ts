@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Post } from './post'
+import { Post } from '../services/post'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  private dbPath = '/posts';
+  public dbPath = '/posts';
   postsRef: AngularFireList<Post>;
 
-  constructor(private db: AngularFireDatabase){ 
+  constructor(
+    public db: AngularFireDatabase){ 
     this.postsRef = db.list(this.dbPath);
   }
+  
   getAll(): AngularFireList<Post> {
     return this.postsRef;
   }
