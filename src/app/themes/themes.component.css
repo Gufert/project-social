@@ -1,7 +1,37 @@
-.themes-container{
-    background-color: var(--psGrey);
-}
 .themes-header{
     font-size: 25px;
     font-weight: bold;
+}
+.color{
+    display: block;
+}
+.colors{
+    display: flex;
+    justify-content: space-evenly;
+}
+.colors div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid;
+}
+.background{
+    display: block;
+    height: 50px;
+}
+.backgrounds{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.light{
+    background-color: white;
+}
+.dim{
+    color: white;
+    background-color: #202634;
+}
+.dark{
+    color: white;
+    background-color: black;
 }

@@ -1,7 +1,6 @@
-.profilePicture{
+.profilePicture img{
     width: 45px;
     height: 45px;
-    border: 1px solid;
     border-radius: 50%;
     margin-left: 5px;
 }

@@ -1,7 +1,7 @@
 <div class="post-container">
     <div class="top">
         <div class="profilePicture">
-
+            <img *ngIf="authService.userData as user" src="{{user.photoURL}}">
         </div>
         <span class="content" role="textbox" contenteditable (input)="charCount()"></span>
     </div>

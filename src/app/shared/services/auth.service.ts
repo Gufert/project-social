@@ -49,13 +49,19 @@ export class AuthService {
       });
   }
   // Sign up with email/password
-  SignUp(email: string, password: string) {
+  async SignUp(email: string, password: string, username: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* After a new user signs up, call the SendVerificaitonMail() function and get a promise */
         /*this.SendVerificationMail();*/
         this.SetUserData(result.user);
+        if(result.user){
+          result.user.updateProfile({
+            displayName: username,
+            photoURL: "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/profile-pictures%2Fdefault-pfp.jpg?alt=media&token=008d33ee-4bb3-4b01-b227-c8d1eee67d6d" //sets as default pfp on creation
+          })
+        }
         this.modal.close();
       })
       .catch((error) => {

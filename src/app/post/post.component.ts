@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  constructor(public authService: AuthService) {}
   count: Number = 0;
   remaining: Number = 256;
 
@@ -29,5 +31,14 @@ export class PostComponent implements OnInit {
     this.transform();
 
     this.remaining = 256 - Number(this.count);
+    var progress = document.querySelector<HTMLElement>(".progress");
+    if(progress){
+      if(this.remaining < 0){
+        progress.style.color = "red";
+      }
+      else{
+        progress.style.color = "";
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
 <div class="account-container" *ngIf="authService.userData as user">
     <div class="profilePicture">
-        <img src="{{(user.photoURL) ? user.photoURL : '../assets/images/profilepicture.png'}}" alt="{{user.displayName}}">
+        <img src="{{user.photoURL}}">
     </div>
     <div class="accountName">
-        <div class="displayName">{{user.displayName ? user.displayName : "User"}}</div>
-        <div class="username">{{ user.email }}</div>
+        <div class="displayName">{{user.displayName}}</div>
+        <div class="username">@{{user.displayName}}</div>
     </div>
     <div class="logout" (click)="authService.SignOut()">
         <img src="assets/icons/logout.png" alt="logout icon" class="logout-icon">
