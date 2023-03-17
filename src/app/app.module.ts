@@ -38,6 +38,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { UpdateComponent } from './update/update.component';
 import { ThemesComponent } from './themes/themes.component';
 import { CrudComponent } from './crud/crud.component';
+import {ToastrModule} from 'ngx-toastr';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -97,6 +98,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: 'settings', component: SettingsComponent},
       {path: ':user', component: ProfileComponent}
     ]),
+    ToastrModule.forRoot({
+     
+    })
   ],
   providers: [
     AuthService,
