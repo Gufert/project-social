@@ -19,15 +19,7 @@ export class PostComponent implements OnInit {
     
   count: Number = 0;
   remaining: Number = 256;
-  post = (): Post => ({
-    pid: null,
-    displayName: null,
-    content: null,
-    name: null,
-    photoURL: null,
-    likes: null,
-    dislikes: null
-  });
+  post: Post = new Post();
   submitted = false; 
 
 
@@ -42,16 +34,8 @@ export class PostComponent implements OnInit {
   }
   newPost(): void {
     this.submitted = false;
-    this.post = (): Post => ({
-      pid: null,
-      displayName: null,
-      content: null,
-      name: null,
-      photoURL: null,
-      likes: null,
-      dislikes: null
-    });
-  }
+    this.post = new Post();
+    };
 
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");
