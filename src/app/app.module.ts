@@ -39,6 +39,8 @@ import { UpdateComponent } from './update/update.component';
 import { ThemesComponent } from './themes/themes.component';
 import { CrudComponent } from './crud/crud.component';
 import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { animationFrames } from 'rxjs';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -98,9 +100,13 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: 'settings', component: SettingsComponent},
       {path: ':user', component: ProfileComponent}
     ]),
-    ToastrModule.forRoot({
-     
-    })
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(
+      {
+        progressBar:true
+        
+      }
+    )
   ],
   providers: [
     AuthService,

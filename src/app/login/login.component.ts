@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
     public authService: AuthService,
     private toastr: ToastrService 
   ) { }
-  ngOnInit() { }
+  ngOnInit(){}
   ShowSuccess(){
     this.toastr.success('Success login ')
   }
