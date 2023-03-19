@@ -1,5 +1,7 @@
 export interface Post {
+    pid: String;
     uid: String;
+    date: Date;
     name: String;
     username: String;
     pfp: String;

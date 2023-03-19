@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Post } from '../services/post'
 import { getDatabase, ref, set } from "firebase/database";
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-
-
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +10,38 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 export class PostService {
   public dbPath = '/posts';
   arrayOfPosts: any[] = []
-
-  constructor(public firestore: AngularFirestore){ 
+  postsRef: AngularFirestoreCollection<Post>;
+  
+  constructor(public afs: AngularFirestore){ 
+    this.postsRef = afs.collection(this.dbPath);
     const database = getDatabase();
   }
 
+  getAll(): AngularFirestoreCollection<Post> {
+    return this.postsRef;
+  }
+
   getPosts(){
-    this.firestore
+    this.afs
     .collection(this.dbPath)
     .get()
-    .subscribe((ss) => {
-      ss.docs.forEach((doc) => {
+    .subscribe((snapShot) => {
+      snapShot.docs.forEach((doc) => {
         this.arrayOfPosts.push(doc.data());
       });
     });
+  }
+  submitPost(post: Post): any{
+    return this.afs.collection(this.dbPath).add({
+      pid: String,
+      uid: String,
+      date: Date,
+      name: String,
+      username: String,
+      pfp: String,
+      content: String,
+      likes: Number,
+      dislikes: Number,
+    })
   }
 }

@@ -10,7 +10,7 @@ import { PostService } from '../shared/services/post.service';
 export class PostsComponent implements OnInit{
   
   @Input() post?: any;
-  constructor(public router: Router, postService: PostService) { }
+  constructor(public router: Router, public postService: PostService) { }
 
   ngOnInit(): void {}
   

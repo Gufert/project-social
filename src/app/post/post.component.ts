@@ -19,23 +19,23 @@ export class PostComponent implements OnInit {
     
   count: Number = 0;
   remaining: Number = 256;
-/*   post: Post = new Post(null);
-  submitted = false;  */
+  post: Post = new Post();
+  submitted = false; 
 
 
   ngOnInit(){
     this.transform();
   }
- /*   savePost(): void {
-      this.postService.create(this.post).then(() => {
+   savePost(): void {
+      this.postService.submitPost(this.post).then(() => {
       console.log('Created new post successfully!');
       this.submitted = true;
     });
-  } */
-/*   newPost(): void {
+  }
+  newPost(): void {
     this.submitted = false;
     this.post = new Post();
-    }; */
+    };
 
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");
