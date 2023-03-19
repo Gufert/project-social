@@ -29,12 +29,14 @@ export class PostComponent implements OnInit {
   ngOnInit(){
     this.transform();
   }
-   makePost(): void {
-      this.postService.submitPost(this.post).then(() => {
-      console.log('Created new post successfully!');
-      this.submitted = true;
+
+  makePost(): void {
+    this.postService.submitPost(this.post).then(() => {
+    console.log('Created new post successfully!');
+    this.submitted = true;
     });
   }
+
   newPost(): void {
     this.submitted = false;
     this.post = new Post();

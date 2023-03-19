@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Post } from '../services/post'
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase} from "firebase/database";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
 
 @Injectable({
