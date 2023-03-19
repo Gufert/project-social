@@ -1,4 +1,4 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="profileService.userData as user">
     <div class="profile-header">
         <div class="button">
             <span class="buttonText">
@@ -21,4 +21,7 @@
             </span>
         </div>
     </div>
+</div>
+<div class="no-profile" *ngIf="profileService.noProfile">
+    This profile does not exist
 </div>

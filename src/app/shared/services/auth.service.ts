@@ -64,6 +64,15 @@ export class AuthService {
           result.user.updateProfile({
             displayName: username,
             photoURL: "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/profile-pictures%2Fdefault-pfp.jpg?alt=media&token=008d33ee-4bb3-4b01-b227-c8d1eee67d6d" //sets as default pfp on creation
+          }).then(() => {
+            this.afs.collection('profiles').doc(result.user?.uid).set({
+              profileName: result.user?.displayName,
+              joinDate: Date().toString(),
+              bannerURL: null,
+              bio: null,
+              location: null,
+              link: null
+            })
           })
         }
         this.modal.close();

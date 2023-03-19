@@ -33,6 +33,9 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+.profile-info{
+    display: flex;
+}
 .follow{
     width: auto;
     height: 30px;
@@ -54,7 +57,4 @@
 }
 .profile-relations{
     cursor: pointer;
-}
-.profile{
-    display: none;
 }

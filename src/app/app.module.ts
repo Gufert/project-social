@@ -41,6 +41,7 @@ import { CrudComponent } from './crud/crud.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { animationFrames } from 'rxjs';
+import { ProfileService } from './profile.service';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -111,7 +112,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     AuthService,
     ModalService,
-    ModalComponent
+    ModalComponent,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

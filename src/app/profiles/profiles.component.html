@@ -1,5 +1,5 @@
-<div class="profile">
-    <div class="profile-banner">
+<div class="profile" *ngIf="profileService.userData as user">
+    <div class="profile-banner" *ngIf="profile.background">
         <img src={{profile.background}}>
     </div>
     <div class="profile-user">
@@ -23,11 +23,16 @@
             <span>Follow</span>
         </div>
     </div>
-    <div class="profile-bio">
+    <div class="profile-bio" *ngIf="profile.bio">
         {{profile.bio}}
     </div>
     <div class="profile-info">
-        📍{{profile.location}} 🔗<a href={{profile.link}}>{{profile.link}}</a> 
+        <div class="location" *ngIf="profile.location">
+            📍{{profile.location}}
+        </div>
+        <div class="link" *ngIf="profile.link">
+            🔗<a href="https://{{profile.link}}" target="_blank">{{profile.link}}</a> 
+        </div>
     </div>
     <div class="profile-relations">
         <b>{{profile.followingCount}}</b> Following <b>{{profile.followerCount}}</b> Followers
