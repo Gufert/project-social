@@ -13,7 +13,6 @@ export class PostService {
   
   constructor(public afs: AngularFirestore){ 
     this.postsRef = afs.collection(this.dbPath);
-    const database = getDatabase();
   }
 
   getAll(): AngularFirestoreCollection<Post> {
@@ -30,6 +29,7 @@ export class PostService {
       });
     });
   }
+
   submitPost(post: Post): any{
     return this.afs.collection(this.dbPath).add({
       ...post

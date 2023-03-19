@@ -3,7 +3,7 @@ export class Post {
     uid?: String;
     displayName?: String;
     date?: Date;
-    pfp?: String;
+    photoURL?: String;
     content?: String;
     likes?: Number;
     dislikes?: Number;

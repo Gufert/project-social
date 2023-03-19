@@ -1,10 +1,10 @@
 <div class="post-container" (click)="openThread()">
     <div class="post-pfp">
-        <img src={{post.pfp}}>
+        <img src={{post.photoURL}}>
     </div>
     <div>
         <div class="post-user">
-            <b>{{post.name}}</b> @{{post.username}} • {{post.date}}
+            <b>{{post.displayName}}</b> @{{post.displayName}} • {{post.date}}
         </div>
         <div class="post-content">
             {{post.content}}

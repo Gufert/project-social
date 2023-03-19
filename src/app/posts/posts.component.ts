@@ -11,8 +11,13 @@ export class PostsComponent implements OnInit{
   @Input() post?: any;
   constructor(public router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.post.date = new Date(this.post.date.seconds * 1000);
+    console.log("post from input", this.post);
+  }
   
+
+
   openThread(){
     //this.router.navigate(['']);
   }
