@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
   dateTime = new Date()
 
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.transform();
   }
 

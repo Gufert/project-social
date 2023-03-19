@@ -4,27 +4,31 @@
             <div class="profilePicture">
                 <img #photo src="{{user.photoURL}}">
             </div>
+<!--             <div class="form-group">
+                <label for="content">Content</label>
+                <span class="content" id="content" role="textbox" contenteditable ngDefaultControl [(ngModel)]="post.content" (input)="charCount()"></span>
+            </div> -->
             <div class="form-group">
                 <label for="content">Content</label>
-                <span class="content" id="content" role="textbox" contenteditable [(ngModel)]="post.content" (input)="charCount()"></span>
+                <input class="content form-control" id="content" role="textbox" contenteditable ngDefaultControl [(ngModel)]="post.content">
             </div>
             <div class="form-group">
-                <input type="hidden"  class="form-control" value="{{user.uid}}" id="userID" [(ngModel)]="post.uid" name="userID"/>
+                <input type="hidden"  class="form-control" value="{{user.uid}}" id="userID" ngDefaultControl [(ngModel)]="post.uid" name="userID"/>
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" value="{{user.displayName}}" id="displayName" [(ngModel)]="post.displayName" name="displayName"/>
+                <input type="hidden" class="form-control" value="{{user.displayName}}" id="displayName" ngDefaultControl [(ngModel)]="post.displayName" name="displayName"/>
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" value="{{user.photoURL}}" id="pfp" [(ngModel)]="post.pfp" name="pfp"/>
+                <input type="hidden" class="form-control" value="{{user.photoURL}}" id="pfp" ngDefaultControl [(ngModel)]="post.pfp" name="pfp"/>
             </div>
             <div class="form-group">
-                <input type="hidden"  class="form-control" value=0 id="likes" [(ngModel)]="post.likes" name="likes"/>
+                <input type="hidden"  class="form-control" value="0" id="likes" ngDefaultControl [(ngModel)]="post.likes" name="likes"/>
             </div>
             <div class="form-group">
-                <input type="hidden"  class="form-control" value=0 id="dislikes" [(ngModel)]="post.dislikes" name="dislikes"/>
+                <input type="hidden"  class="form-control" value="0" id="dislikes" ngDefaultControl [(ngModel)]="post.dislikes" name="dislikes"/>
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" value="{{dateTime}}" id="date" [(ngModel)]="post.date" name="date"/>
+                <input type="hidden" class="form-control" value="{{dateTime}}" id="date" ngDefaultControl [(ngModel)]="post.date" name="date"/>
             </div>
         </div>
         <div class="bottom">
