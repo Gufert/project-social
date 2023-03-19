@@ -8,6 +8,7 @@
                 <label for="content">Content</label>
                 <input class="content" id="content" role="textbox" #content="ngModel" contenteditable ngDefaultControl
                     maxlength="256" [(ngModel)]="post.content" />
+                    {{256-content?.value?.length}}
                 <!-- <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert">
                     <div *ngIf="content.errors?.['required']">
                         Content is required to make a post
@@ -19,12 +20,12 @@
             </div>
         </div>
         <div class="bottom">
-            <div class="progress">
+            <!-- <div class="progress">
                 <div class="barOverflow">
                     <div class="bar"></div>
                 </div>
                 <span>{{(remaining)}}</span>
-            </div>
+            </div> -->
             <div class="postButton" (click)="makePost()">
                 Post
             </div>
