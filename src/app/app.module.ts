@@ -3,6 +3,7 @@ import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -85,6 +86,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   ],
   imports: [
     BrowserModule,
+    MatProgressBarModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
