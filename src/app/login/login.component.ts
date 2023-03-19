@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../shared/services/auth.service";
-import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +13,7 @@ export class LoginComponent implements OnInit{
     this.showPassword = !this.showPassword;
   }
   constructor(
-    public authService: AuthService,
-    private toastr: ToastrService 
+    public authService: AuthService
   ) { }
   ngOnInit(){}
-  ShowSuccess(){
-    this.toastr.success('Success login ')
-  }
 }

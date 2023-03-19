@@ -8,6 +8,8 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
+import {ToastrService} from 'ngx-toastr';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +20,8 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public modal: ModalComponent
+    public modal: ModalComponent,
+    private toastr: ToastrService 
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -33,7 +36,7 @@ export class AuthService {
     });
   }
   // Sign in with email/password
-  SignIn(email: string, password: string) {
+  async SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -43,6 +46,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.modal.close();
         this.router.navigate(['feed']);
+        this.toastr.success('Login Successful');
       })
       .catch((error) => {
         window.alert(error.message);
@@ -63,6 +67,7 @@ export class AuthService {
           })
         }
         this.modal.close();
+        this.toastr.success('Sign Up Successful');
       })
       .catch((error) => {
         window.alert(error.message);
