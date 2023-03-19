@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { Post } from '../shared/services/post'
+import { Post }  from '../shared/services/post'
 import { PostService } from '../shared/services/post.service';
 
 
@@ -15,18 +15,21 @@ export class PostComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public postService: PostService
-    ) {}
-    
+    ) {
+      
+    }
+
   count: Number = 0;
   remaining: Number = 256;
   post: Post = new Post();
-  submitted = false; 
+  submitted = false;
+  dateTime = new Date()
 
 
   ngOnInit(){
     this.transform();
   }
-   savePost(): void {
+   submitPost(): void {
       this.postService.submitPost(this.post).then(() => {
       console.log('Created new post successfully!');
       this.submitted = true;

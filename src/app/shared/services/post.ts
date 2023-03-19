@@ -1,11 +1,10 @@
-export interface Post {
-    pid: String;
-    uid: String;
-    date: Date;
-    name: String;
-    username: String;
-    pfp: String;
-    content: String;
-    likes: Number;
-    dislikes: Number;
+export class Post {
+    pid?: String;
+    uid?: String;
+    displayName?: String;
+    date?: Date;
+    pfp?: String;
+    content?: String;
+    likes?: Number;
+    dislikes?: Number;
  }

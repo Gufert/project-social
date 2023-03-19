@@ -33,15 +33,7 @@ export class PostService {
   }
   submitPost(post: Post): any{
     return this.afs.collection(this.dbPath).add({
-      pid: String,
-      uid: String,
-      date: Date,
-      name: String,
-      username: String,
-      pfp: String,
-      content: String,
-      likes: Number,
-      dislikes: Number,
+      ...post
     })
   }
 }

@@ -1,10 +1,18 @@
 <div class="post-container">
+    <div *ngIf="!submitted" >
         <div class="top">
             <div class="profilePicture">
                 <img *ngIf="authService.userData as user" #photo src="{{user.photoURL}}">
             </div>
             <label for="content">Content</label>
-            <span class="content" role="textbox" contenteditable (input)="charCount()"></span>
+            
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.uid}}" id="userID" required [(ngModel)]="post.uid" name="userID" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.displayName}}" id="displayName" required [(ngModel)]="post.displayName" name="displayName" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.photoURL}}" id="pfp" required [(ngModel)]="post.pfp" name="pfp" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="likes" required [(ngModel)]="post.likes" name="likes" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="dislikes" required [(ngModel)]="post.dislikes" name="dislikes" />
+            <input type="hidden" class="form-control" value="{{dateTime}}" id="date" required [(ngModel)]="post.date" name="date" />
+            <span class="content" id="content" role="textbox" contenteditable required [(ngModel)]="post.content" (input)="charCount()"></span>
         </div>
         <div class="bottom">
             <div class="progress">
@@ -13,8 +21,15 @@
                 </div>
                 <span>{{(remaining)}}</span>
             </div>
-            <div class="postButton">
-                <button class="btn btn-post">Post</button>
+            <div class="postButton" (click)="submitPost()">
+                Post
             </div>
         </div>
+    </div>
+    <div *ngIf="submitted">
+        <div>
+            <h4>You submitted successfully!</h4>
+            <button class="newButton" (click)="newPost()">Add</button>
+        </div>
+    </div>
 </div>
