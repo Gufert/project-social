@@ -1,18 +1,31 @@
 <div class="post-container">
     <div *ngIf="!submitted" >
-        <div class="top">
+        <div class="top submit-form">
             <div class="profilePicture">
                 <img *ngIf="authService.userData as user" #photo src="{{user.photoURL}}">
             </div>
-            <label for="content">Content</label>
-            
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.uid}}" id="userID" [(ngModel)]="post.uid" name="userID" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.displayName}}" id="displayName" [(ngModel)]="post.displayName" name="displayName" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.photoURL}}" id="pfp" [(ngModel)]="post.pfp" name="pfp" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="likes" [(ngModel)]="post.likes" name="likes" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="dislikes" [(ngModel)]="post.dislikes" name="dislikes" />
-            <input type="hidden" class="form-control" value="{{dateTime}}" id="date" [(ngModel)]="post.date" name="date" />
-            <span class="content" id="content" role="textbox" contenteditable [(ngModel)]="post.content" (input)="charCount()"></span>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <span class="content" id="content" role="textbox" contenteditable [(ngModel)]="post.content" (input)="charCount()"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.uid}}" id="userID" [(ngModel)]="post.uid" name="userID"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.displayName}}" id="displayName" [(ngModel)]="post.displayName" name="displayName"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.photoURL}}" id="pfp" [(ngModel)]="post.pfp" name="pfp"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="likes" [(ngModel)]="post.likes" name="likes"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="dislikes" [(ngModel)]="post.dislikes" name="dislikes"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" value="{{dateTime}}" id="date" [(ngModel)]="post.date" name="date"/>
+            </div>
         </div>
         <div class="bottom">
             <div class="progress">
@@ -29,7 +42,7 @@
     <div *ngIf="submitted">
         <div>
             <h4>You submitted successfully!</h4>
-            <button class="newButton" (click)="newPost()">Add</button>
+            <button class="postButton" (click)="newPost()">New</button>
         </div>
     </div>
 </div>
