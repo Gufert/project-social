@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
+import { Post }  from '../shared/services/post'
+import { PostService } from '../shared/services/post.service';
+import { User } from '../shared/services/user';
+
 
 @Component({
   selector: 'app-post',
@@ -7,14 +11,55 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+
+  
+  constructor(
+    public authService: AuthService,
+    public postService: PostService
+    ) {
+      this.user = JSON.parse(localStorage.getItem('user')!);
+    }
+
   count: Number = 0;
   remaining: Number = 256;
+  post: Post = new Post();
+  submitted = false;
+  user: User;
 
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.transform();
+    this.builInitPost();
   }
+
+  builInitPost(): void{
+    //this.post.uid = this.user.uid;
+    this.post = {
+      uid: this.user.uid,
+      displayName: this.user.displayName,
+      photoURL: this.user.photoURL,
+    };
+    console.log(this.post)
+  }
+
+  makePost(): void {
+    this.post =  {
+      likes: 0,
+      dislikes: 0,
+      date: new Date(),
+      ...this.post,
+    }
+    this.postService.submitPost(this.post).then(() => {
+    console.log(this.post);
+    console.log('Created new post successfully!');
+    this.submitted = true;
+    });
+  }
+
+  newPost(): void {
+    this.submitted = false;
+    this.post = new Post();
+    };
 
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");

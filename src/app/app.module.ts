@@ -2,7 +2,7 @@ import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -90,6 +90,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
