@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { Post } from '../shared/services/post'
-import { PostsService } from '../shared/services/post.service';
+import { PostService } from '../shared/services/post.service';
 
 
 @Component({
@@ -14,28 +14,28 @@ export class PostComponent implements OnInit {
   
   constructor(
     public authService: AuthService,
-    public postService: PostsService
+    public postService: PostService
     ) {}
     
   count: Number = 0;
   remaining: Number = 256;
-  post: Post = new Post();
-  submitted = false; 
+/*   post: Post = new Post(null);
+  submitted = false;  */
 
 
   ngOnInit(){
     this.transform();
   }
-   savePost(): void {
+ /*   savePost(): void {
       this.postService.create(this.post).then(() => {
       console.log('Created new post successfully!');
       this.submitted = true;
     });
-  }
-  newPost(): void {
+  } */
+/*   newPost(): void {
     this.submitted = false;
     this.post = new Post();
-    };
+    }; */
 
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");

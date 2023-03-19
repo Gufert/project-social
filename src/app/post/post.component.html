@@ -1,18 +1,9 @@
 <div class="post-container">
-    <div *ngIf="!submitted">
         <div class="top">
             <div class="profilePicture">
                 <img *ngIf="authService.userData as user" #photo src="{{user.photoURL}}">
             </div>
             <label for="content">Content</label>
-            <input
-            type="text"
-            class="form-control"
-            id="content"
-            required
-            [(ngModel)]="post.content"
-            name="content"
-            />
             <span class="content" role="textbox" contenteditable (input)="charCount()"></span>
         </div>
         <div class="bottom">
@@ -23,12 +14,7 @@
                 <span>{{(remaining)}}</span>
             </div>
             <div class="postButton">
-                <button (click)="savePost()" class="btn btn-post">Post</button>
+                <button class="btn btn-post">Post</button>
             </div>
         </div>
-    </div>
-    <div *ngIf="submitted">
-        <h4>You submitted successfully!</h4>
-        <button class="btn btn-success" (click)="newPost()">Add</button>
-    </div>
 </div>
