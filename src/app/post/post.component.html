@@ -6,13 +6,13 @@
             </div>
             <label for="content">Content</label>
             
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.uid}}" id="userID" required [(ngModel)]="post.uid" name="userID" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.displayName}}" id="displayName" required [(ngModel)]="post.displayName" name="displayName" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.photoURL}}" id="pfp" required [(ngModel)]="post.pfp" name="pfp" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="likes" required [(ngModel)]="post.likes" name="likes" />
-            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="dislikes" required [(ngModel)]="post.dislikes" name="dislikes" />
-            <input type="hidden" class="form-control" value="{{dateTime}}" id="date" required [(ngModel)]="post.date" name="date" />
-            <span class="content" id="content" role="textbox" contenteditable required [(ngModel)]="post.content" (input)="charCount()"></span>
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.uid}}" id="userID" [(ngModel)]="post.uid" name="userID" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.displayName}}" id="displayName" [(ngModel)]="post.displayName" name="displayName" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value="{{user.photoURL}}" id="pfp" [(ngModel)]="post.pfp" name="pfp" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="likes" [(ngModel)]="post.likes" name="likes" />
+            <input type="hidden" *ngIf="authService.userData as user" class="form-control" value=0 id="dislikes" [(ngModel)]="post.dislikes" name="dislikes" />
+            <input type="hidden" class="form-control" value="{{dateTime}}" id="date" [(ngModel)]="post.date" name="date" />
+            <span class="content" id="content" role="textbox" contenteditable [(ngModel)]="post.content" (input)="charCount()"></span>
         </div>
         <div class="bottom">
             <div class="progress">
@@ -21,7 +21,7 @@
                 </div>
                 <span>{{(remaining)}}</span>
             </div>
-            <div class="postButton" (click)="submitPost()">
+            <div class="postButton" (click)="makePost()">
                 Post
             </div>
         </div>

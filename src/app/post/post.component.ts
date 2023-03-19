@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
     public authService: AuthService,
     public postService: PostService
     ) {
-      
+
     }
 
   count: Number = 0;
@@ -29,7 +29,7 @@ export class PostComponent implements OnInit {
   ngOnInit(){
     this.transform();
   }
-   submitPost(): void {
+   makePost(): void {
       this.postService.submitPost(this.post).then(() => {
       console.log('Created new post successfully!');
       this.submitted = true;
