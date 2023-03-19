@@ -49,7 +49,7 @@ export class AuthService {
         this.toastr.success('Login Successful');
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.toastr.error('Oops Incorrect password')
       });
   }
   // Sign up with email/password
