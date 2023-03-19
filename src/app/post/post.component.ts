@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
     }
 
   count: Number = 0;
-  remaining: Number = 256;
+  remaining: number = 256;
   post: Post = new Post();
   submitted = false;
   user: User;

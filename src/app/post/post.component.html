@@ -8,7 +8,7 @@
                 <label for="content">Content</label>
                 <input class="content" id="content" role="textbox" #content="ngModel" contenteditable ngDefaultControl
                     maxlength="256" [(ngModel)]="post.content" />
-                    {{256-content?.value?.length}}
+                    <mat-progress-bar mode="determinate" [value]="remaining"></mat-progress-bar>
                 <!-- <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert">
                     <div *ngIf="content.errors?.['required']">
                         Content is required to make a post
