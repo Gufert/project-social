@@ -32,7 +32,6 @@ export class PostComponent implements OnInit {
   submitted = false;
   user: User;
 
-
   ngOnInit(): void{
     this.transform();
     //this.builInitPost();
@@ -50,14 +49,17 @@ export class PostComponent implements OnInit {
   }
 
   makePost(): void {
+    //let cont:String = document.getElementById(".content")?.innerText.valueOf as unknown as String;
     this.post =  {
       likes: 0,
       dislikes: 0,
+      //content: cont,
       date: new Date(),
       ...this.post,
     }
     this.postService.submitPost(this.post).then(() => {
     console.log(this.post);
+    console.log(this.post.content)
     console.log('Created new post successfully!');
     this.submitted = true;
     });
