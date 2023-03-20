@@ -3,9 +3,9 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 interface Profile {
-  name: String;
-  username: String;
-  pfp: String;
+  profileName: String;
+  displayName: String;
+  photoURL: String;
   banner: String;
   bio: String;
   location: String,
@@ -36,9 +36,9 @@ export class ProfileService {
       if(this.userData != null){
         this.afs.collection("profiles").doc(this.userData.uid).ref.get().then((doc) => {
           this.profileData = doc.data();
-          this.profile.name = this.profileData.profileName;
-          this.profile.username = this.userData.displayName;
-          this.profile.pfp = this.userData.photoURL;
+          this.profile.profileName = this.profileData.profileName;
+          this.profile.displayName = this.userData.displayName;
+          this.profile.photoURL = this.userData.photoURL;
           this.profile.banner = this.profileData.bannerURL;
           this.profile.bio = this.profileData.bio;
           this.profile.location = this.profileData.location;

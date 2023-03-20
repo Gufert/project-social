@@ -26,6 +26,11 @@
     content: "Write something...";
     color: gray;
 }
+input[type=text] {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 80px;
+}
 .postButton{
     height: 35px;
     cursor: pointer;
