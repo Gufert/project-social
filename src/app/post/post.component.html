@@ -8,6 +8,7 @@
                 <label for="content">Content</label>
                 <input class="content" id="content" role="textbox" #content="ngModel" contenteditable ngDefaultControl
                     maxlength="256" [(ngModel)]="post.content" />
+                    <mat-progress-bar mode="determinate" [value]="(content?.value?.length / 256) * 100"></mat-progress-bar>
                     {{256-content?.value?.length}}
                 <!-- <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert">
                     <div *ngIf="content.errors?.['required']">

@@ -18,10 +18,16 @@ export class PostComponent implements OnInit {
     public postService: PostService
     ) {
       this.user = JSON.parse(localStorage.getItem('user')!);
+      this.post = {
+        uid: this.user.uid,
+        displayName: this.user.displayName,
+        photoURL: this.user.photoURL,
+        content: '',
+      };
     }
 
   count: Number = 0;
-  remaining: Number = 256;
+  remaining: number = 256;
   post: Post = new Post();
   submitted = false;
   user: User;
@@ -29,7 +35,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void{
     this.transform();
-    this.builInitPost();
+    //this.builInitPost();
   }
 
   builInitPost(): void{
@@ -38,6 +44,7 @@ export class PostComponent implements OnInit {
       uid: this.user.uid,
       displayName: this.user.displayName,
       photoURL: this.user.photoURL,
+      content: '',
     };
     console.log(this.post)
   }
