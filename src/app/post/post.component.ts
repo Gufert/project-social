@@ -49,11 +49,11 @@ export class PostComponent implements OnInit {
   }
 
   makePost(): void {
-    //let cont:String = document.getElementById(".content")?.innerText.valueOf as unknown as String;
+    let cont:String = document.getElementById(".content")?.innerText.valueOf as unknown as String;
     this.post =  {
       likes: 0,
       dislikes: 0,
-      //content: cont,
+      content: cont,
       date: new Date(),
       ...this.post,
     }
@@ -94,5 +94,6 @@ export class PostComponent implements OnInit {
         progress.style.color = "";
       }
     }
+    return text
   }
 }
