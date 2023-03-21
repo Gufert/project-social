@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 //import posts from "../../testing/testposts.json";
 import { PostService } from '../shared/services/post.service';
 import { Post } from '../shared/services/post';
@@ -8,7 +8,7 @@ import { Post } from '../shared/services/post';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
-export class FeedComponent implements OnInit{
+export class FeedComponent implements OnInit, OnDestroy{
   
   constructor(public postService: PostService) {
     postService.getPosts()
@@ -16,4 +16,9 @@ export class FeedComponent implements OnInit{
 
   posts: Post[] = this.postService.arrayOfPosts
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.posts = [];
+    this.postService.arrayOfPosts = [];
+  }
 }
