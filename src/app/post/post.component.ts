@@ -11,8 +11,6 @@ import { User } from '../shared/services/user';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
-  
   constructor(
     public authService: AuthService,
     public postService: PostService
@@ -21,19 +19,18 @@ export class PostComponent implements OnInit {
       this.post = {
         uid: this.user.uid,
         displayName: this.user.displayName,
-        photoURL: this.user.photoURL,
-        content: '',
+        photoURL: this.user.photoURL//,
+        //content: '',
       };
     }
 
   count: Number = 0;
-  remaining: number = 256;
+  remaining: number = 255;
   post: Post = new Post();
   submitted = false;
   user: User;
 
-
-  ngOnInit(): void{
+  ngOnInit() {
     this.transform();
     //this.builInitPost();
   }
@@ -43,21 +40,23 @@ export class PostComponent implements OnInit {
     this.post = {
       uid: this.user.uid,
       displayName: this.user.displayName,
-      photoURL: this.user.photoURL,
-      content: '',
+      photoURL: this.user.photoURL
     };
     console.log(this.post)
   }
 
   makePost(): void {
+    //let cont:String = document.getElementById(".content")?.innerText.valueOf as unknown as String;
     this.post =  {
       likes: 0,
       dislikes: 0,
+      content: String(document.querySelector<HTMLElement>(".content")?.innerText),
       date: new Date(),
-      ...this.post,
+      ...this.post
     }
     this.postService.submitPost(this.post).then(() => {
     console.log(this.post);
+    console.log(this.post.content)
     console.log('Created new post successfully!');
     this.submitted = true;
     });
@@ -92,5 +91,6 @@ export class PostComponent implements OnInit {
         progress.style.color = "";
       }
     }
+    return text
   }
 }
