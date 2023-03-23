@@ -13,7 +13,7 @@ export class PostsComponent implements OnInit{
 
   ngOnInit(): void {
     this.post.date = new Date(this.post.date.seconds * 1000);
-    console.log("post from input", this.post);
+    //console.log("post from input", this.post);
   }
   
 

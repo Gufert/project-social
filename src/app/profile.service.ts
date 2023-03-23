@@ -11,8 +11,8 @@ interface Profile {
   location: String,
   link: String,
   joinDate: String,
-  followingCount: Number,
-  followerCount: Number
+  following: Number,
+  followers: Number
 }
 
 @Injectable({
@@ -29,7 +29,7 @@ export class ProfileService {
 
   getProfile(user: String){
     this.afs
-    .collection("users",ref=>ref.where("displayName","==",user))
+    .collection("users",ref=>ref.where("lowerDN","==",user.toLocaleLowerCase()))
     .get()
     .subscribe(data => {
       data.forEach(el => this.userData = el.data());
@@ -44,6 +44,8 @@ export class ProfileService {
           this.profile.location = this.profileData.location;
           this.profile.link = this.profileData.link;
           this.profile.joinDate = new Date(this.profileData.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
+          this.profile.following = this.profile.following;
+          this.profile.followers = this.profile.followers;
         })
       }
       else{

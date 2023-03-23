@@ -24,3 +24,12 @@
     border: none;
     background-color: var(--psGrey)
 }
+
+.results{
+    height: 50px;
+    border-bottom: 1px solid var(--psBorderColor);
+}
+
+.result-username{
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../services/user';
+import { Profile } from '../services/profile';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
@@ -8,6 +9,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
+import { ModalService } from 'src/app/modal.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
@@ -21,7 +23,8 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public modal: ModalComponent,
-    private toastr: ToastrService 
+    private toastr: ToastrService,
+    public modalService: ModalService
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -59,24 +62,21 @@ export class AuthService {
       .then((result) => {
         /* After a new user signs up, call the SendVerificaitonMail() function and get a promise */
         /*this.SendVerificationMail();*/
-        this.SetUserData(result.user);
         if(result.user){
+          // const toLow = username.toLocaleUpperCase();
+          // result.user.lowerDN = toLow;
           result.user.updateProfile({
             displayName: username,
             photoURL: "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/profile-pictures%2Fdefault-pfp.jpg?alt=media&token=008d33ee-4bb3-4b01-b227-c8d1eee67d6d" //sets as default pfp on creation
           }).then(() => {
-            this.afs.collection('profiles').doc(result.user?.uid).set({
-              profileName: result.user?.displayName,
-              joinDate: Date().toString(),
-              bannerURL: null,
-              bio: null,
-              location: null,
-              link: null
+            this.SetUserProfile(result.user)
+            .then(() => {
+              this.modal.close();
+              this.SignIn(email, password);
+              this.toastr.success('Sign Up Successful');
             })
           })
         }
-        this.modal.close();
-        this.toastr.success('Sign Up Successful');
       })
       .catch((error) => {
         window.alert(error.message);
@@ -100,7 +100,7 @@ export class AuthService {
   });
 }
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
+  async SendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
@@ -108,7 +108,7 @@ export class AuthService {
       });
   }
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail: string) {
+  async ForgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -125,7 +125,7 @@ export class AuthService {
   }
   // Sign in with Google
   // Auth logic to run auth providers
-  AuthLogin(provider: any) {
+  async AuthLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
@@ -149,13 +149,33 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      lowerDN: user.displayName.toLocaleLowerCase()
     };
     return userRef.set(userData, {
       merge: true,
     });
   }
+  SetUserProfile(user: any){
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `profiles/${user.uid}`
+    )
+    const profileData: Profile = {
+      profileName: user.displayName,
+      joinDate: Date().toString(),
+      bio: "",
+      bannerURL: "",
+      location: "",
+      link: "",
+      posts: [],
+      followers: 0,
+      following: 0
+    }
+    return userRef.set(profileData, {
+      merge: true,
+    });
+  }
   // Sign out
-  SignOut() {
+  async SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate([''])
