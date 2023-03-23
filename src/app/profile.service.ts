@@ -6,7 +6,7 @@ interface Profile {
   profileName: String;
   displayName: String;
   photoURL: String;
-  banner: String;
+  bannerURL: String;
   bio: String;
   location: String,
   link: String,
@@ -39,13 +39,13 @@ export class ProfileService {
           this.profile.profileName = this.profileData.profileName;
           this.profile.displayName = this.userData.displayName;
           this.profile.photoURL = this.userData.photoURL;
-          this.profile.banner = this.profileData.bannerURL;
+          this.profile.bannerURL = this.profileData.bannerURL;
           this.profile.bio = this.profileData.bio;
           this.profile.location = this.profileData.location;
           this.profile.link = this.profileData.link;
           this.profile.joinDate = new Date(this.profileData.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
-          this.profile.following = this.profile.following;
-          this.profile.followers = this.profile.followers;
+          this.profile.following = this.profileData.following;
+          this.profile.followers = this.profileData.followers;
         })
       }
       else{

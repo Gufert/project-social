@@ -1,6 +1,6 @@
 <div class="profile" *ngIf="profileService.userData as user">
-    <div class="profile-banner" *ngIf="profile.background">
-        <img src={{profile.background}}>
+    <div class="profile-banner" *ngIf="profile.bannerURL">
+        <img src={{profile.bannerURL}}>
     </div>
     <div class="profile-user">
         <div class="profile-picture">

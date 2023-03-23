@@ -22,7 +22,9 @@ export class SearchComponent {
       this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
       .where('lowerDN', '<=', query+ '~'))
       .get()
-      .subscribe(data => data.forEach(el => this.results.push(el.data())));
+      .subscribe(data => data.forEach(el => {this.results.push(el.data())
+      
+      }));
       console.log(this.results);
     }
   }

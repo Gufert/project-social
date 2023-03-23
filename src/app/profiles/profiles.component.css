@@ -4,9 +4,10 @@
     border-radius: var(--psRadius);
 }
 .profile-banner img{
-    width: 588px;
+    width: 590px;
     height: 180px;
     object-fit: cover;
+    border-radius: var(--psRadius);
 }
 .profile-user{
     display: flex;

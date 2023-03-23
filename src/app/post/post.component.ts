@@ -3,6 +3,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { Post }  from '../shared/services/post'
 import { PostService } from '../shared/services/post.service';
 import { User } from '../shared/services/user';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { User } from '../shared/services/user';
 })
 export class PostComponent implements OnInit {
   constructor(
+    public modal: ModalComponent,
     public authService: AuthService,
     public postService: PostService
     ) {
@@ -55,10 +57,11 @@ export class PostComponent implements OnInit {
       ...this.post
     }
     this.postService.submitPost(this.post).then(() => {
-    console.log(this.post);
-    console.log(this.post.content)
-    console.log('Created new post successfully!');
-    this.submitted = true;
+      console.log(this.post);
+      console.log(this.post.content)
+      console.log('Created new post successfully!');
+      this.submitted = true;
+      this.modal.close();
     });
   }
 
@@ -70,7 +73,7 @@ export class PostComponent implements OnInit {
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");
     if(bar){
-      if(this.count <= 256){
+      if(this.count <= 255){
         bar.style.transform = "rotate("+ (45+(Number(this.count)*0.7)) +"deg)"
       }
     }
@@ -81,7 +84,7 @@ export class PostComponent implements OnInit {
     this.count = text;
     this.transform();
 
-    this.remaining = 256 - Number(this.count);
+    this.remaining = 255 - Number(this.count);
     var progress = document.querySelector<HTMLElement>(".progress");
     if(progress){
       if(this.remaining < 0){
