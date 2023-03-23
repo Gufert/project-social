@@ -5,7 +5,7 @@
 </div>
 <div class="results-container">
     <div class="results" *ngFor="let result of results">
-        {{result.displayName}}
+        <div class="result-username" [routerLink]="[result.displayName]">{{result.displayName}}</div>
     </div>
 </div>
 

@@ -15,14 +15,15 @@ export class SearchComponent {
   results: any[] = [];
 
   search(){
-    var query = this.searchText.replace(/\W/g, '')
+    var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
 
     if(query){
-      this.afs.collection("users",ref=>ref.where('displayName', '>=', query)
-      .where('displayName', '<=', query+ '~'))
+      this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
+      .where('lowerDN', '<=', query+ '~'))
       .get()
       .subscribe(data => data.forEach(el => this.results.push(el.data())));
+      console.log(this.results);
     }
   }
 }
