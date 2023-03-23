@@ -3,4 +3,9 @@
         <input class="search-input" [(ngModel)]="searchText" placeholder="Search Profiles" (keyup.enter)="search()">
     </div>
 </div>
+<div class="results-container">
+    <div class="results" *ngFor="let result of results">
+        {{result.displayName}}
+    </div>
+</div>
 

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-search',
@@ -6,9 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  constructor(public db: AngularFireDatabase, public afs: AngularFirestore) { }
+
   searchText: string = "";
+  results: any[] = [];
 
   search(){
-    console.log(this.searchText);
+    var query = this.searchText.replace(/\W/g, '')
+    this.results = [];
+
+    if(query){
+      this.afs.collection("users",ref=>ref.where('displayName', '>=', query)
+      .where('displayName', '<=', query+ '~'))
+      .get()
+      .subscribe(data => data.forEach(el => this.results.push(el.data())));
+    }
   }
 }

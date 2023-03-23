@@ -3,7 +3,7 @@
         <div class="profilePicture">
             <img *ngIf="authService.userData as user" src="{{user.photoURL}}">
         </div>
-        <span id="content" class="content" role="textbox" #content="ngModel" [(ngModel)]="post.content" contenteditable="true" (input)="charCount()"></span>
+        <span class="content" role="textbox" contenteditable="true" (input)="charCount()"></span>
     </div>
     <div class="bottom">
         <div class="progress">
