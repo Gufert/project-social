@@ -91,7 +91,7 @@ export class AuthService {
           }).then(function(){
             //Profile Updated
             //newDisplayName
-            user.displayName = displayName
+            displayName = displayName
           }
       ).catch((error)=>{
         window.alert(error.message);
