@@ -42,6 +42,7 @@ export class PostComponent implements OnInit {
     this.post = {
       uid: this.user.uid,
       displayName: this.user.displayName,
+      // photoURL: this.getPhot(uid)
       photoURL: this.user.photoURL
     };
     console.log(this.post)

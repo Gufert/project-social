@@ -19,6 +19,10 @@ export class PostService {
     return this.postsRef;
   }
 
+/*   getURL(){
+    return
+  }
+ */
   getPosts(){
     this.afs
     .collection(this.dbPath)
