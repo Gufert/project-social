@@ -101,6 +101,7 @@ export class AuthService {
       });
   }
   //Update user's current Photo
+  //TODO: Upload Photp automatically to firestore
   UpdatePFP(photoURL: string) {
     return this.afAuth
       .onAuthStateChanged(function (user) {
