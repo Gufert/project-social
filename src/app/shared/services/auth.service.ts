@@ -82,6 +82,7 @@ export class AuthService {
         window.alert(error.message);
       });
   }
+  //Update user's current username
   UpdateUserName(displayName: string) {
     return this.afAuth
       .onAuthStateChanged(function (user) {
@@ -90,7 +91,7 @@ export class AuthService {
             displayName: displayName
           }).then(function () {
             //Profile Updated
-            //newDisplayName
+            //new display name
             displayName = displayName
           }
           ).catch((error) => {
@@ -99,7 +100,7 @@ export class AuthService {
         }
       });
   }
-
+  //Update user's current Photo
   UpdatePFP(photoURL: string) {
     return this.afAuth
       .onAuthStateChanged(function (user) {
@@ -108,7 +109,7 @@ export class AuthService {
             photoURL: photoURL
           }).then(function () {
             //Profile Updated
-            //newDisplayName
+            //new photo URL
             photoURL = photoURL
           }
           ).catch((error) => {
