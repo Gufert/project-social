@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { ModalService } from 'src/app/modal.service';
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +62,7 @@ export class AuthService {
       .then((result) => {
         /* After a new user signs up, call the SendVerificaitonMail() function and get a promise */
         /*this.SendVerificationMail();*/
-        if(result.user){
+        if (result.user) {
           // const toLow = username.toLocaleUpperCase();
           // result.user.lowerDN = toLow;
           result.user.updateProfile({
@@ -70,11 +70,11 @@ export class AuthService {
             photoURL: "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/profile-pictures%2Fdefault-pfp.jpg?alt=media&token=008d33ee-4bb3-4b01-b227-c8d1eee67d6d" //sets as default pfp on creation
           }).then(() => {
             this.SetUserProfile(result.user)
-            .then(() => {
-              this.modal.close();
-              this.SignIn(email, password);
-              this.toastr.success('Sign Up Successful');
-            })
+              .then(() => {
+                this.modal.close();
+                this.SignIn(email, password);
+                this.toastr.success('Sign Up Successful');
+              })
           })
         }
       })
@@ -82,23 +82,41 @@ export class AuthService {
         window.alert(error.message);
       });
   }
-  UpdateUserName(displayName: string){
+  UpdateUserName(displayName: string) {
     return this.afAuth
-      .onAuthStateChanged(function(user){
-        if(user){
+      .onAuthStateChanged(function (user) {
+        if (user) {
           user.updateProfile({
             displayName: displayName
-          }).then(function(){
+          }).then(function () {
             //Profile Updated
             //newDisplayName
             displayName = displayName
           }
-      ).catch((error)=>{
-        window.alert(error.message);
+          ).catch((error) => {
+            window.alert(error.message);
+          });
+        }
       });
-    }
-  });
-}
+  }
+
+  UpdatePFP(photoURL: string) {
+    return this.afAuth
+      .onAuthStateChanged(function (user) {
+        if (user) {
+          user.updateProfile({
+            photoURL: photoURL
+          }).then(function () {
+            //Profile Updated
+            //newDisplayName
+            photoURL = photoURL
+          }
+          ).catch((error) => {
+            window.alert(error.message);
+          });
+        }
+      });
+  }
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
@@ -155,7 +173,7 @@ export class AuthService {
       merge: true,
     });
   }
-  SetUserProfile(user: any){
+  SetUserProfile(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `profiles/${user.uid}`
     )
@@ -180,8 +198,8 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate([''])
         .then(() => {
-        window.location.reload();
-      });
+          window.location.reload();
+        });
     });
   }
 }
