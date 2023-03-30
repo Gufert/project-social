@@ -12,7 +12,8 @@ interface Profile {
   link: String,
   joinDate: String,
   following: Number,
-  followers: Number
+  followers: Number,
+  uid: String
 }
 
 @Injectable({
@@ -46,6 +47,7 @@ export class ProfileService {
           this.profile.joinDate = new Date(this.profileData.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
           this.profile.following = this.profileData.following;
           this.profile.followers = this.profileData.followers;
+          this.profile.uid = this.profileData.uid;
         })
       }
       else{

@@ -4,9 +4,16 @@
     </div>
 </div>
 <div class="results-container">
-    <div class="results" *ngFor="let result of results">
-        <div class="result-username">
-            <a class="profile-link" [routerLink]="['/', result.displayName]">{{result.displayName}}</a>
+    <div class="results" *ngFor="let result of results" [routerLink]="['/', result.displayName]">
+        <div class="left-side">
+            <div class="result-pfp">
+                <img src="{{result.photoURL}}">
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="result-username">
+                <b>{{result.displayName}}</b> @{{result.displayName}}
+            </div>
         </div>
     </div>
 </div>

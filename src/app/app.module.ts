@@ -43,6 +43,8 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { animationFrames } from 'rxjs';
 import { ProfileService } from './profile.service';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { ImageComponent } from './image/image.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -82,7 +84,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ProfilesComponent,
     UpdateComponent,
     ThemesComponent,
-    CrudComponent
+    CrudComponent,
+    BookmarksComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +105,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: '', component: SearchComponent},
       {path: 'feed', component: FeedComponent},
       {path: 'search', component: SearchComponent},
+      {path: 'bookmarks', component: BookmarksComponent},
       {path: 'settings', component: SettingsComponent},
       {path: ':user', component: ProfileComponent}
     ]),

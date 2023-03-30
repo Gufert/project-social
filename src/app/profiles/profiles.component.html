@@ -19,8 +19,11 @@
                 📅Joined {{profile.joinDate}}
             </div>
         </div>
-        <div class="follow">
+        <div class="follow" *ngIf="authService.userData.uid != user.uid">
             <span>Follow</span>
+        </div>
+        <div class="profile-edit" (click)="modalService.open('edit')" *ngIf="authService.userData.uid == user.uid">
+            <span>Edit</span>
         </div>
     </div>
     <div class="profile-bio" *ngIf="profile.bio">
