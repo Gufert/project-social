@@ -46,7 +46,6 @@ export class AuthService {
         this.ngZone.run(() => {
           this.SetUserData(result.user);
         });
-        this.SetUserData(result.user);
         this.modal.close();
         this.router.navigate(['feed']);
         this.toastr.success('Login Successful');
