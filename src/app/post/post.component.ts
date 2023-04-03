@@ -74,7 +74,7 @@ export class PostComponent implements OnInit {
   transform(){
     var bar = document.querySelector<HTMLElement>(".bar");
     if(bar){
-      if(this.count <= 255){
+      if(Number(this.count) <= 255){
         bar.style.transform = "rotate("+ (45+(Number(this.count)*0.7)) +"deg)"
       }
     }
