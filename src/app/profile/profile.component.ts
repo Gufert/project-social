@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.userPath = params['user']
     })
     //this.profileService.getProfile(this.user);
-    console.log("yeah")
     this.profileService.noUser = false;
     this.profileService.user = {} as UserData;
     this.profileService.getProfile(this.userPath);

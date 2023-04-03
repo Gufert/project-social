@@ -45,6 +45,7 @@ import { animationFrames } from 'rxjs';
 import { ProfileService } from './profile.service';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ImageComponent } from './image/image.component';
+import { AlertComponent } from './alert/alert.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -86,7 +87,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ThemesComponent,
     CrudComponent,
     BookmarksComponent,
-    ImageComponent
+    ImageComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

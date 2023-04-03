@@ -15,7 +15,6 @@ export class SettingsComponent {
 
   async test(){
     this.user = await this.getUserService.UserFromUID("rjYDxcOiKlU65kXtDYYEK0VQq7y1");
-    console.log(this.user);
     //this.getUserService.UserFromLDN("Luigi");
   }
 }

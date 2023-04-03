@@ -18,7 +18,7 @@
             <input class="usernameInput" #userName>
         </div>
     </div>
-    <div>
-        <input class="signupButton" type="button" value="Create Account" (click)="authService.SignUp(userEmail.value, userPassword.value, userName.value)">
+    <div class="signupButton" (click)="authService.SignUp(userEmail.value, userPassword.value, userName.value)">
+       Create Account
     </div>
 </div>

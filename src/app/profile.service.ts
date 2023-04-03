@@ -34,37 +34,5 @@ export class ProfileService {
   async getProfile(user: String){
     this.user = await this.getUserService.UserFromLDN(user);
     this.user.joinDate = new Date(this.user.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
-
-    // });
-    // this.afs
-    // .collection("users",ref=>ref.where("lowerDN","==",user.toLocaleLowerCase()))
-    // .get()
-    // .subscribe(data => {
-    //   data.forEach(el => this.userData = el.data());
-    //   if(this.userData != null){
-    //     this.afs.collection("profiles").doc(this.userData.uid).ref.get().then((doc) => {
-    //       this.profileData = doc.data();
-    //       this.user = {...this.userData, ...this.profileData};
-    //       this.user.joinDate = new Date(this.profileData.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
-    //       console.log(this.user);
-    //     })
-    //   }
-    //   else{
-    //     this.noUser = true;
-    //   }
-    // })
   }
 }
-
-// this.profileData = doc.data();
-// this.profile.profileName = this.profileData.profileName;
-// this.profile.displayName = this.userData.displayName;
-// this.profile.photoURL = this.userData.photoURL;
-// this.profile.bannerURL = this.profileData.bannerURL;
-// this.profile.bio = this.profileData.bio;
-// this.profile.location = this.profileData.location;
-// this.profile.link = this.profileData.link;
-// this.profile.joinDate = new Date(this.profileData.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
-// this.profile.following = this.profileData.following;
-// this.profile.followers = this.profileData.followers;
-// this.profile.uid = this.profileData.uid;
