@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GetUserService } from '../shared/services/get-user.service';
 import { UserData } from '../shared/services/user-data';
 
@@ -11,7 +10,7 @@ import { UserData } from '../shared/services/user-data';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  constructor(public db: AngularFireDatabase, public afs: AngularFirestore, private getUserService: GetUserService) { }
+  constructor(public afs: AngularFirestore, private getUserService: GetUserService) { }
 
   searchText: string = "";
   results: any[] = [];
@@ -21,6 +20,8 @@ export class SearchComponent {
   search(){
     var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
+    this.user = {} as UserData;
+    this.res = null;
 
     if(query){
       this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)

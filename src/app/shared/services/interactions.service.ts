@@ -8,6 +8,6 @@ export class InteractionsService {
   constructor() { }
 
   follow(){
-    console.log("follow called");
+    
   }
 }

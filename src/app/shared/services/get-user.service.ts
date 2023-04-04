@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { UserData } from './user-data';
-import { retry } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +7,8 @@ import { retry } from 'rxjs';
 export class GetUserService {
   userData: any;
   profileData: any;
-  user: UserData = {} as UserData;
 
-  constructor(public db: AngularFireDatabase, public afs: AngularFirestore) { }
+  constructor(public afs: AngularFirestore) { }
 
   async UserFromUID(uid: string){
     await Promise.all([
@@ -22,28 +18,27 @@ export class GetUserService {
       this.afs.collection("profiles").doc(uid).ref.get().then((doc) => {
         this.profileData = doc.data();
       })
-    ]).then(() => {
-        this.user = {...this.userData, ...this.profileData};
-    })
-    return this.user;
+    ])
+    return {...this.userData, ...this.profileData};
   }
 
   async UserFromLDN(lowerDN: String){
-    await Promise.all([
-      this.afs
-      .collection("users",ref=>ref.where("lowerDN","==",lowerDN.toLocaleLowerCase()))
-      .get()
-      .subscribe(data => {
-        data.forEach(el => this.userData = el.data());
-        if(this.userData != null){
-          this.afs.collection("profiles").doc(this.userData.uid).ref.get().then((doc) => {
-            this.profileData = doc.data();
-          }).then(() => {
-            this.user = {...this.userData, ...this.profileData};
-          })
-        }
-      })
-    ])
-    return this.user
+    // await Promise.all([
+    //   this.afs
+    //   .collection("users",ref=>ref.where("lowerDN","==",lowerDN.toLocaleLowerCase()))
+    //   .get()
+    //   .subscribe(data => {
+    //     data.forEach(el => this.userData = el.data());
+    //     if(this.userData != null){
+    //       this.afs.collection("profiles").doc(this.userData.uid).ref.get().then((doc) => {
+    //         this.profileData = doc.data();
+    //         console.log({...this.userData, ...this.profileData});
+    //       })
+    //     }
+    //   })
+    // ])
+    
+    // console.log({...this.userData, ...this.profileData});
+    // return {...this.userData, ...this.profileData};
   }
 }

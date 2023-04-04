@@ -23,3 +23,15 @@
     width: fit-content;
     align-items: center;
 }
+.no-profile{
+    margin-top: 50px;
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.np-top{
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 3px;
+}

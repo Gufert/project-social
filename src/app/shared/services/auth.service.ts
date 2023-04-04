@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
-import { ModalService } from 'src/app/modal.service';
+import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({

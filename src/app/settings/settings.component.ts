@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalService } from '../modal.service';
+import { ModalService } from '../shared/services/modal.service';
 import { AuthService } from '../shared/services/auth.service';
 import { UserData } from '../shared/services/user-data';
 import { GetUserService } from '../shared/services/get-user.service';
@@ -11,10 +11,5 @@ import { GetUserService } from '../shared/services/get-user.service';
 })
 export class SettingsComponent {
   constructor(public authService: AuthService, public modalService: ModalService, public getUserService: GetUserService) {}
-  user: UserData = {} as UserData
-
-  async test(){
-    this.user = await this.getUserService.UserFromUID("rjYDxcOiKlU65kXtDYYEK0VQq7y1");
-    //this.getUserService.UserFromLDN("Luigi");
-  }
+  user: UserData = {} as UserData;
 }

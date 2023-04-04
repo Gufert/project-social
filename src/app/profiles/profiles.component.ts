@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { ProfileService } from '../profile.service';
-import { ModalService } from '../modal.service';
+import { ProfileService } from '../shared/services/profile.service';
+import { ModalService } from '../shared/services/modal.service';
 import { InteractionsService } from '../shared/services/interactions.service';
 
 @Component({
@@ -11,6 +11,5 @@ import { InteractionsService } from '../shared/services/interactions.service';
 })
 export class ProfilesComponent implements OnInit {
   constructor(public authService: AuthService, public profileService: ProfileService, public modalService: ModalService, public interactionsService: InteractionsService) {}
-  //profile = this.profileService.profile;
   ngOnInit(): void {}
 }

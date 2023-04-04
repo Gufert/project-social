@@ -23,5 +23,10 @@
     </div>
 </div>
 <div class="no-profile" *ngIf="(profileService.noUser)">
-    This profile does not exist
+    <div class="np-top">
+        There is no user by the name of {{userPath}}.
+    </div>
+    <div class="np-bottom">
+        The user may have changed thier name. Or perhaps they never existed. Maybe your spelling is wrong. 
+    </div>
 </div>
