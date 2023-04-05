@@ -16,22 +16,44 @@ export class SearchComponent {
   results: any[] = [];
   res: any;
   user: UserData = {} as UserData
+  noResults: boolean = false;
 
   search(){
     var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
     this.user = {} as UserData;
     this.res = null;
+    this.noResults = false;
 
     if(query){
       this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
       .where('lowerDN', '<=', query+ '~'))
       .get()
-      .subscribe(data => data.forEach(async (el) => {
-          this.res = el.data();
-          this.user = await this.getUserService.UserFromUID(this.res.uid);
-          this.results.push(this.user);
-      }));
+      .subscribe((data) => {
+        if(data.size > 0){
+          data.forEach(async (el) => {
+            this.res = el.data();
+            this.user = await this.getUserService.UserFromUID(this.res.uid);
+            this.results.push(this.user);
+          })
+        }
+        else{
+          this.noResults = true;
+        }
+      });
     }
   }
 }
+
+// if(query){
+//   this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
+//   .where('lowerDN', '<=', query+ '~'))
+//   .get()
+//   .subscribe((data) => {
+//     data.forEach(async (el) => {
+//       this.res = el.data();
+//       this.user = await this.getUserService.UserFromUID(this.res.uid);
+//       this.results.push(this.user);
+//     })
+//   });
+// }

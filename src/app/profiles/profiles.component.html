@@ -31,10 +31,10 @@
     </div>
     <div class="profile-info">
         <div class="location" *ngIf="profileService.user.location">
-            📍{{profileService.user.location}}
+            <img src="assets/icons/location.png" alt="location icon" class="profiles-icons">{{profileService.user.location}}
         </div>
         <div class="link" *ngIf="profileService.user.link">
-            🔗<a href="https://{{profileService.user.link}}" target="_blank">{{profileService.user.link}}</a> 
+            <img src="assets/icons/link.png" alt="link icon" class="profiles-icons"><a href="https://{{profileService.user.link}}" target="_blank">{{profileService.user.link}}</a> 
         </div>
     </div>
     <div class="profile-relations">

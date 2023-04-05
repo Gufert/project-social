@@ -4,6 +4,7 @@
 .edit-top{
     display: flex;
     height: 130px;
+    margin-bottom: 3px;
 }
 .edit-banner{
     width: 425px;
@@ -30,6 +31,9 @@
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+}
+.edit-bottom div{
+    margin-bottom: 3px;
 }
 .edit-input{
     width: 98%;

@@ -58,3 +58,14 @@
 .profile-relations{
     cursor: pointer;
 }
+.profile-info{
+    display: flex;
+    align-items: center;
+}
+.profile-info div{
+    margin-right: 7px;
+}
+.profiles-icons{
+    height: 15px;
+    padding-right: 2px;
+}

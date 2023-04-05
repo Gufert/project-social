@@ -1,5 +1,5 @@
 <div class="settings-container">
     <app-themes></app-themes>
-    <app-crud></app-crud>
+    <app-crud *ngIf="authService.userData as user"></app-crud>
 </div>
 

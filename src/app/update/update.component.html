@@ -1,12 +1,3 @@
-<div class="login-container">
-    <div class="username">
-        <label>Name</label>
-        <div class="input">
-            <input class="usernameInput" #userName>
-        </div>
-    </div>
-    <div>
-        <!-- <input class="loginButton" type="button" value="Update Username" (click)="authService.UpdateUserName(userName.value)"> -->
-        <input class="loginButton" type="button" value="Update Username" (click)="authService.UpdatePFP(userName.value)">
-    </div>
+<div class="update-container">
+    {{updateSender}}
 </div>
