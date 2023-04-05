@@ -11,15 +11,13 @@ import { UserData } from '../shared/services/user-data';
 export class ProfileComponent implements OnInit, OnDestroy {
   userPath: String = '';
 
-  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService){
-    activatedRoute.params.subscribe(params => {
-      this.userPath = params['user']
-    })
-    this.profileService.getProfile(this.userPath);
-  } 
+  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService){} 
 
   ngOnInit(): void {
-    
+    this.activatedRoute.params.subscribe(params => {
+      this.userPath = params['user']
+      this.profileService.getProfile(this.userPath);
+    })
   }
   ngOnDestroy(): void {
     this.profileService.noUser = false;

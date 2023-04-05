@@ -1,28 +1,32 @@
 <div class="edit-container">
     <div class="edit-top">
+        <div class="edit-pfp">
+            <img src={{user.photoURL}} *ngIf="user.photoURL">
+        </div>
         <div class="edit-banner">
-            
+            <img src={{user.bannerURL}}>
         </div>
     </div>
     <div class="edit-bottom">
-        <div class="edit-pfp">
-
-        </div>
         <div class="edit-name">
-            <input class="edit-input">
+            <label>Name</label>
+            <input class="edit-input" [(ngModel)]="profileName">
         </div>
         <div class="edit-bio">
-            <input class="edit-input">
+            <label>Bio</label>
+            <input class="edit-input" [(ngModel)]="bio">
         </div>
         <div class="edit-location">
-            <input class="edit-input">
+            <label>Location</label>
+            <input class="edit-input" [(ngModel)]="location">
         </div>
         <div class="edit-link">
-            <input class="edit-input">
+            <label>Link</label>
+            <input class="edit-input" [(ngModel)]="link">
         </div>
     </div>
     <div class="edit-footer">
-        <div class="edit-save">
+        <div class="edit-save" (click)="save()">
             Save
         </div>
     </div>

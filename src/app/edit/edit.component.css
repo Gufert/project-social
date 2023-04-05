@@ -1,14 +1,29 @@
 .edit-container{
     width: 100%;
 }
-.edit-banner{
-    background-color: var(--psGrey);
+.edit-top{
+    display: flex;
     height: 130px;
 }
+.edit-banner{
+    width: 425px;
+    background-color: var(--psGrey);
+}
+.edit-banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 .edit-pfp{
+    width: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit-pfp img{
     width: 100px;
     height: 100px;
-    border: solid 1px;
+    object-fit: contain;
     border-radius: 50%;
 }
 .edit-bottom{
@@ -19,6 +34,7 @@
 .edit-input{
     width: 98%;
     height: 50px;
+    font-size: 15px;
     outline: none;
 }
 .edit-save{
