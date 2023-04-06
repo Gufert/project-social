@@ -123,18 +123,18 @@ export class AuthService {
       });
   }
   // fetch email 
-  GetUserEmail(email:string){
+  GetUserEmail(){
     return this.afs
     .collection('users')
-    .doc(email)
+    .doc(this.userData.uid)
     .valueChanges
     
   }
   //update email
-  UpdateEmail(email:string){
+  UpdateEmail(email:string,){
    return this.afs
    .collection('users')
-   .doc(email)
+   .doc(this.userData.uid)
    .update({
     email:email
    })
