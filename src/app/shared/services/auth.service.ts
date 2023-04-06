@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: any; // Save logged in user data
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -24,7 +26,8 @@ export class AuthService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public modal: ModalComponent,
     private toastr: ToastrService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private db: AngularFireDatabase
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -118,6 +121,24 @@ export class AuthService {
           });
         }
       });
+  }
+  // fetch email 
+  GetUserEmail(email:string){
+    return this.afs
+    .collection('users')
+    .doc(email)
+    .valueChanges
+    
+  }
+  //update email
+  UpdateEmail(email:string){
+   return this.afs
+   .collection('users')
+   .doc(email)
+   .update({
+    email:email
+   })
+
   }
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
