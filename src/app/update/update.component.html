@@ -3,7 +3,7 @@
         <div *ngSwitchCase="'email'" class="update-form" id="email-form">
             <label>Update Email</label>
             <input>
-            <div class="updateButton" (click)="UpdateEmail()">
+            <div class="updateButton"  (click)="authService.UpdateEmail(userEmail.value)">
                 Save Email
             </div>
         </div>
