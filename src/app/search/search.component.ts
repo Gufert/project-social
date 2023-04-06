@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { GetUserService } from '../shared/services/get-user.service';
+import { UserData } from '../shared/services/user-data';
 
 
 @Component({
@@ -9,23 +10,52 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  constructor(public db: AngularFireDatabase, public afs: AngularFirestore) { }
+  constructor(public afs: AngularFirestore, private getUserService: GetUserService) { }
 
   searchText: string = "";
   results: any[] = [];
+  res: any;
+  user: UserData = {} as UserData
+  noResults: boolean = false;
+  input: string = "";
 
   search(){
+    this.input = this.searchText;
     var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
+    this.user = {} as UserData;
+    this.res = null;
+    this.noResults = false;
 
     if(query){
       this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
       .where('lowerDN', '<=', query+ '~'))
       .get()
-      .subscribe(data => data.forEach(el => {this.results.push(el.data())
-      
-      }));
-      console.log(this.results);
+      .subscribe((data) => {
+        if(data.size > 0){
+          data.forEach(async (el) => {
+            this.res = el.data();
+            this.user = await this.getUserService.UserFromUID(this.res.uid);
+            this.results.push(this.user);
+          })
+        }
+        else{
+          this.noResults = true;
+        }
+      });
     }
   }
 }
+
+// if(query){
+//   this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
+//   .where('lowerDN', '<=', query+ '~'))
+//   .get()
+//   .subscribe((data) => {
+//     data.forEach(async (el) => {
+//       this.res = el.data();
+//       this.user = await this.getUserService.UserFromUID(this.res.uid);
+//       this.results.push(this.user);
+//     })
+//   });
+// }

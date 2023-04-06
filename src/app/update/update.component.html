@@ -1,11 +1,29 @@
-<div class="login-container">
-    <div class="username">
-        <label>Name</label>
-        <div class="input">
-            <input class="usernameInput" #userName>
+<div class="update-container">
+    <ng-container  [ngSwitch]="updateSender">
+        <div *ngSwitchCase="'email'" class="update-form" id="email-form">
+            <label>Update Email</label>
+            <input>
+            <div class="updateButton" (click)="updateEmail()">
+                Save Email
+            </div>
         </div>
-    </div>
-    <div>
-        <input class="loginButton" type="button" value="Update Username" (click)="authService.UpdateUserName(userName.value)">
-    </div>
+        <div *ngSwitchCase="'password'" class="update-form" id="password-form">
+            <label>Current Password</label>
+            <input>
+            <label>New Password</label>
+            <input>
+            <div class="updateButton" (click)="updatePassword()">
+                Save Password
+            </div>
+        </div>
+        <div *ngSwitchCase="'username'" class="update-form" id="username-form">
+            <label>Update Username</label>
+            <input>
+            <label>Password</label>
+            <input>
+            <div class="updateButton" (click)="updateUsername()">
+                Save Username
+            </div>
+        </div>
+    </ng-container>
 </div>

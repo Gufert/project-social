@@ -16,6 +16,11 @@
             </div>
             <div class="li-container" *ngIf="authService.userData as user">
                 <li class="nav-li">
+                    <img src="assets/icons/bookmark.png" alt="bookmark icon" class="nav-icons"><a class="nav-a" [routerLink]="['bookmarks']">Bookmarks</a>
+                </li>
+            </div>
+            <div class="li-container" *ngIf="authService.userData as user">
+                <li class="nav-li">
                     <img src="assets/icons/user.png" alt="user icon" class="nav-icons"><a class="nav-a" [routerLink]="[user.displayName]">Profile</a>
                 </li>
             </div>

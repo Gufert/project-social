@@ -25,7 +25,6 @@ import { PostComponent } from './post/post.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
-import { PopupComponent } from './popup/popup.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { ThreadComponent } from './thread/thread.component';
 import { SignupComponent } from './signup/signup.component';
@@ -34,7 +33,7 @@ import { EditComponent } from './edit/edit.component';
 import { RelationsComponent } from './relations/relations.component';
 import { ModalComponent } from './modal/modal.component';
 import { AccountComponent } from './account/account.component';
-import { ModalService } from './modal.service';
+import { ModalService } from './shared/services/modal.service';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { UpdateComponent } from './update/update.component';
 import { ThemesComponent } from './themes/themes.component';
@@ -42,7 +41,10 @@ import { CrudComponent } from './crud/crud.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { animationFrames } from 'rxjs';
-import { ProfileService } from './profile.service';
+import { ProfileService } from './shared/services/profile.service';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { ImageComponent } from './image/image.component';
+import { AlertComponent } from './alert/alert.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -70,7 +72,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     SettingsComponent,
     SearchComponent,
     LoginComponent,
-    PopupComponent,
     PromptComponent,
     ThreadComponent,
     SignupComponent,
@@ -82,7 +83,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ProfilesComponent,
     UpdateComponent,
     ThemesComponent,
-    CrudComponent
+    CrudComponent,
+    BookmarksComponent,
+    ImageComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -101,8 +105,16 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: '', component: SearchComponent},
       {path: 'feed', component: FeedComponent},
       {path: 'search', component: SearchComponent},
+      {path: 'bookmarks', component: BookmarksComponent},
       {path: 'settings', component: SettingsComponent},
-      {path: ':user', component: ProfileComponent}
+      {path: ':user', component: ProfileComponent, children: [
+        {path: 'replies', component: ProfileComponent},
+        {path: 'top', component: ProfileComponent},
+        {path: 'likes', component: ProfileComponent},
+        {path: 'following', component: ProfileComponent},
+        {path: 'followers', component: ProfileComponent}
+      ]},
+      {path: 'post/:postid', component: ThreadComponent}
     ]),
     BrowserAnimationsModule,
     ToastrModule.forRoot(

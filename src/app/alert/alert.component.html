@@ -1,0 +1,17 @@
+<div class="alert-container">
+    <div class="alert-message">
+        You need an account do that.
+    </div>
+    <div class="button-container">
+        <div class="buttons" (click)="modalService.open('login')">
+            <div class="login">
+                Login
+            </div>
+        </div>
+        <div class="buttons" (click)="modalService.open('signup')">
+            <div class="create">
+                Create Account
+            </div>
+        </div>
+    </div>
+</div>

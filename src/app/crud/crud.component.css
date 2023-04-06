@@ -1,0 +1,18 @@
+.crud-header{
+    font-size: 25px;
+    font-weight: bold;
+}
+.crud-update div{
+    height: 50px;
+    border-bottom: solid 1px var(--psBorderColor);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.crud-update div:hover{
+    background-color: var(--psHover);
+}
+.update-email{
+    border-top: solid 1px var(--psBorderColor);
+}

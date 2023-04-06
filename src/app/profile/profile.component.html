@@ -1,27 +1,32 @@
-<div class="profile-container" *ngIf="profileService.userData as user">
+<div class="profile-container" *ngIf="profileService.user.uid != null">
     <div class="profile-header">
-        <div class="button">
-            <span class="buttonText">
+        <div class="button" [routerLink]="['/',profileService.user.displayName]">
+            <span class="buttonText" [ngStyle]="!router.url.split('/')[2] ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Posts
             </span>
         </div>
-        <div class="button">
-            <span class="buttonText">
+        <div class="button" [routerLink]="['replies']">
+            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'replies' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Replies
             </span>
         </div>
-        <div class="button">
-            <span class="buttonText">
+        <div class="button" [routerLink]="['top']">
+            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'top' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Top
             </span>
         </div>
-        <div class="button">
-            <span class="buttonText">
+        <div class="button" [routerLink]="['likes']">
+            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'likes' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Likes
             </span>
         </div>
     </div>
 </div>
-<div class="no-profile" *ngIf="profileService.noProfile">
-    This profile does not exist
+<div class="no-profile" *ngIf="(profileService.noUser)">
+    <div class="np-top">
+        There is no user by the name of {{userPath}}.
+    </div>
+    <div class="np-bottom">
+        The user may have changed thier name. Or perhaps they never existed. Maybe your spelling is wrong. 
+    </div>
 </div>

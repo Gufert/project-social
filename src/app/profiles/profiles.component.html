@@ -1,40 +1,43 @@
-<div class="profile" *ngIf="profileService.userData as user">
-    <div class="profile-banner" *ngIf="profile.bannerURL">
-        <img src={{profile.bannerURL}}>
+<div class="profile" *ngIf="profileService.user.uid != null">
+    <div class="profile-banner" *ngIf="profileService.user.bannerURL">
+        <img src={{profileService.user.bannerURL}}>
     </div>
     <div class="profile-user">
         <div class="profile-picture">
-            <img src={{profile.photoURL}} alt="">
+            <img src={{profileService.user.photoURL}} alt="">
         </div>
         <div class="profile-name">
             <div class="name">
                 <div class="display-name">
-                    {{profile.profileName}}
+                    {{profileService.user.profileName}}
                 </div>
                 <div class="user-name">
-                    @{{profile.displayName}}
+                    @{{profileService.user.displayName}}
                 </div>
             </div>
             <div class="join-date">
-                📅Joined {{profile.joinDate}}
+                📅Joined {{profileService.user.joinDate}}
             </div>
         </div>
-        <div class="follow">
+        <div class="follow" *ngIf="authService.userData == null || authService.userData.uid != profileService.user.uid" (click)="authService.userData != null ? interactionsService.follow() : modalService.open('alert')">
             <span>Follow</span>
         </div>
+        <div class="profile-edit" (click)="modalService.open('edit')" *ngIf="authService.userData != null && authService.userData.uid == profileService.user.uid">
+            <span>Edit</span>
+        </div>
     </div>
-    <div class="profile-bio" *ngIf="profile.bio">
-        {{profile.bio}}
+    <div class="profile-bio" *ngIf="profileService.user.bio">
+        {{profileService.user.bio}}
     </div>
     <div class="profile-info">
-        <div class="location" *ngIf="profile.location">
-            📍{{profile.location}}
+        <div class="location" *ngIf="profileService.user.location">
+            <img src="assets/icons/location.png" alt="location icon" class="profiles-icons">{{profileService.user.location}}
         </div>
-        <div class="link" *ngIf="profile.link">
-            🔗<a href="https://{{profile.link}}" target="_blank">{{profile.link}}</a> 
+        <div class="link" *ngIf="profileService.user.link">
+            <img src="assets/icons/link.png" alt="link icon" class="profiles-icons"><a href="https://{{profileService.user.link}}" target="_blank">{{profileService.user.link}}</a> 
         </div>
     </div>
     <div class="profile-relations">
-        <b>{{profile.following}}</b> Following <b>{{profile.followers}}</b> Followers
+        <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers}}</b> Followers</a>
     </div>
 </div>

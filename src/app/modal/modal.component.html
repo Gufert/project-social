@@ -7,9 +7,12 @@
         <ng-container  [ngSwitch]="(modalService.comp)">
             <app-login *ngSwitchCase="'login'"></app-login>
             <app-signup *ngSwitchCase="'signup'"></app-signup>
-            <app-update *ngSwitchCase="'update'"></app-update>
             <app-post *ngSwitchCase="'post'"></app-post>
             <app-edit *ngSwitchCase="'edit'"></app-edit>
+            <app-alert *ngSwitchCase="'alert'"></app-alert>
+            <app-update *ngSwitchCase="'update-email'" updateSender="email"></app-update>
+            <app-update *ngSwitchCase="'update-password'" updateSender="password"></app-update>
+            <app-update *ngSwitchCase="'update-username'" updateSender="username"></app-update>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>

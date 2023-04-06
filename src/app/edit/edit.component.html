@@ -1,1 +1,34 @@
-<p>edit works!</p>
+<div class="edit-container">
+    <div class="edit-top">
+        <div class="edit-pfp">
+            <img src={{user.photoURL}} *ngIf="user.photoURL">
+        </div>
+        <div class="edit-banner">
+            <img src={{user.bannerURL}}>
+        </div>
+    </div>
+    <div class="edit-bottom">
+        <div class="edit-name">
+            <label>Name</label>
+            <input class="edit-input" [(ngModel)]="profileName">
+        </div>
+        <div class="edit-bio">
+            <label>Bio</label>
+            <input class="edit-input" [(ngModel)]="bio">
+        </div>
+        <div class="edit-location">
+            <label>Location</label>
+            <input class="edit-input" [(ngModel)]="location">
+        </div>
+        <div class="edit-link">
+            <label>Link</label>
+            <input class="edit-input" [(ngModel)]="link">
+        </div>
+    </div>
+    <div class="edit-footer">
+        <div class="edit-save" (click)="save()">
+            Save
+        </div>
+    </div>
+</div>
+

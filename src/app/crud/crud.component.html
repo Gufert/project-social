@@ -1,3 +1,16 @@
-<div class="update" (click)="modalService.open('update')" *ngIf="authService.userData as user">
-    Update Username
+<div class="crud-container">
+    <div class="crud-header">
+        Update Account
+    </div>
+    <div class="crud-update">
+        <div class="update-email" (click)="modalService.open('update-email')">
+            Update Email
+        </div>
+        <div class="update-password" (click)="modalService.open('update-password')">
+            Update Password
+        </div>
+        <div class="update-username" (click)="modalService.open('update-username')">
+            Update Username
+        </div>
+    </div>
 </div>
