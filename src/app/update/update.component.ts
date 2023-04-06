@@ -22,4 +22,14 @@ export class UpdateComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.updateSender);
   }
+
+  updateEmail(){
+    console.log("email");
+  }
+  updatePassword(){
+    console.log("password");
+  }
+  updateUsername(){
+    console.log("username")
+  }
 }

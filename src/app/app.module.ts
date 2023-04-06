@@ -107,7 +107,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: 'search', component: SearchComponent},
       {path: 'bookmarks', component: BookmarksComponent},
       {path: 'settings', component: SettingsComponent},
-      {path: ':user', component: ProfileComponent}
+      {path: ':user', component: ProfileComponent, children: [
+        {path: 'replies', component: ProfileComponent},
+        {path: 'top', component: ProfileComponent},
+        {path: 'likes', component: ProfileComponent}
+      ]}
     ]),
     BrowserAnimationsModule,
     ToastrModule.forRoot(
