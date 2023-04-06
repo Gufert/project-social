@@ -1,11 +1,10 @@
 <div class="profile-container" *ngIf="profileService.user.uid != null">
     <div class="profile-header">
         <div class="button" [routerLink]="['/',profileService.user.displayName]">
-            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == null ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
+            <span class="buttonText" [ngStyle]="!router.url.split('/')[2] ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Posts
             </span>
         </div>
-        <!-- [ngStyle]="isTrue ? {width: '50px', height: '20px'} : {}" -->
         <div class="button" [routerLink]="['replies']">
             <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'replies' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Replies

@@ -17,8 +17,10 @@ export class SearchComponent {
   res: any;
   user: UserData = {} as UserData
   noResults: boolean = false;
+  input: string = "";
 
   search(){
+    this.input = this.searchText;
     var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
     this.user = {} as UserData;

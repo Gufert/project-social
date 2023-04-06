@@ -1,1 +1,8 @@
-<p>thread works!</p>
+<div class="thread-container" *ngIf="!(noPost)">
+    <div class="thread-post">
+        {{user.displayName}}: {{post.content}}
+    </div>
+</div>
+<div class="no-post" *ngIf="(noPost)">
+    no post was found
+</div>

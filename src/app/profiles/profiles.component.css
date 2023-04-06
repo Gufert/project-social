@@ -55,9 +55,6 @@
 .follow span,.profile-edit span{
     padding: 0 15px;
 }
-.profile-relations{
-    cursor: pointer;
-}
 .profile-info{
     display: flex;
     align-items: center;
@@ -68,4 +65,9 @@
 .profiles-icons{
     height: 15px;
     padding-right: 2px;
+}
+.follow-nav{
+    color: inherit;
+    text-decoration: none;
+    margin-right: 10px;
 }
