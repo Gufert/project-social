@@ -25,6 +25,7 @@ export class ProfileService {
             this.profileData = doc.data();
             this.user = {...this.userData, ...this.profileData};
             this.user.joinDate = new Date(this.user.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
+            console.log(this.user);
           })
         }
         else{

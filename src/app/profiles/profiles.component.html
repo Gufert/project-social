@@ -38,6 +38,6 @@
         </div>
     </div>
     <div class="profile-relations">
-        <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers}}</b> Followers</a>
+        <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following.length}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers.length}}</b> Followers</a>
     </div>
 </div>

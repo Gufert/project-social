@@ -12,6 +12,6 @@ export interface UserData{
     location: string,
     link: string,
     posts: Array<any>;
-    followers: number,
-    following: number
+    followers: Array<any>,
+    following: Array<any>
 }

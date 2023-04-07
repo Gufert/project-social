@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserData } from '../shared/services/user-data';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { GetUserService } from '../shared/services/get-user.service';
 
 @Component({
   selector: 'app-posts',
@@ -7,13 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit{
-  
+  user: UserData = {} as UserData
   @Input() post?: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router, public afs: AngularFirestore, public getUserService: GetUserService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.post.date = new Date(this.post.date.seconds * 1000);
     //console.log("post from input", this.post);
+    this.user = await this.getUserService.UserFromUID(this.post.uid);
+    console.log(this.post, this.user);
   }
   
 

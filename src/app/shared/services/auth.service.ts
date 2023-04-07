@@ -187,8 +187,8 @@ export class AuthService {
       location: "",
       link: "",
       posts: [],
-      followers: 0,
-      following: 0
+      followers: [],
+      following: []
     }
     return userRef.set(profileData, {
       merge: true,
