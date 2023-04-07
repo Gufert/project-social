@@ -36,7 +36,7 @@
 .profile-info{
     display: flex;
 }
-.follow,.profile-edit{
+.follow,.following,.profile-edit{
     width: auto;
     height: 30px;
     float: right;
@@ -48,11 +48,11 @@
     border-radius: 9999px;
     font-size: 20px;
 }
-.follow:hover,.profile-edit:hover{
+.follow:hover,.following:hover,.profile-edit:hover{
     background-color: #272c30;
     cursor: pointer;
 }
-.follow span,.profile-edit span{
+.follow span,.following span,.profile-edit span{
     padding: 0 15px;
 }
 .profile-info{
