@@ -39,12 +39,14 @@ export class ProfileService {
   follow(){
     this.afs.collection("profiles").doc(this.userData.uid).update({followers: arrayUnion(this.authService.userData.uid)});
     this.afs.collection("profiles").doc(this.authService.userData.uid).update({following: arrayUnion(this.userData.uid)});
-    this.user.followers.push(""); //pushes empty string into array to update value stored on page
+    this.user.followers.push(this.authService.userData.uid); 
+    console.log(this.user.followers);
   }
 
   unfollow(){
     this.afs.collection("profiles").doc(this.userData.uid).update({followers: arrayRemove(this.authService.userData.uid)});
     this.afs.collection("profiles").doc(this.authService.userData.uid).update({following: arrayRemove(this.userData.uid)});
-    this.user.followers.pop();
+    this.user.followers.splice(this.user.followers.indexOf(this.authService.userData.uid), 1);
+    console.log(this.user.followers);
   }
 }
