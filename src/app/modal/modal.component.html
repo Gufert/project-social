@@ -13,6 +13,8 @@
             <app-update *ngSwitchCase="'update-email'" updateSender="email"></app-update>
             <app-update *ngSwitchCase="'update-password'" updateSender="password"></app-update>
             <app-update *ngSwitchCase="'update-username'" updateSender="username"></app-update>
+            <app-relations *ngSwitchCase="'following'" list="following"></app-relations>
+            <app-relations *ngSwitchCase="'followers'" list="followers"></app-relations>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>

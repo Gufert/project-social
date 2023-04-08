@@ -110,9 +110,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       {path: ':user', component: ProfileComponent, children: [
         {path: 'replies', component: ProfileComponent},
         {path: 'top', component: ProfileComponent},
-        {path: 'likes', component: ProfileComponent},
-        {path: 'following', component: ProfileComponent},
-        {path: 'followers', component: ProfileComponent}
+        {path: 'likes', component: ProfileComponent}
       ]},
       {path: 'post/:postid', component: ThreadComponent}
     ]),
