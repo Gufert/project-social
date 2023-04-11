@@ -1,4 +1,4 @@
-.login-container{
+.update-container{
     width: fit-content;
     margin: 0 auto;
 }
@@ -6,7 +6,7 @@
     width: fit-content;
     cursor: pointer;
 }
-.loginButton{
+.updateButton{
     width: 450px;
     height: 55px;
     background-color: black;
@@ -19,12 +19,12 @@
     font-size: 20px;
     margin-bottom: 15px;
 }
-.usernameInput, .passwordInput{
+.update-input{
     width: 450px;
     height: 45px;
     font-size: 17px;
     outline: none;
 }
-.username, .password{
+.input-container{
     padding-bottom: 15px;
 }

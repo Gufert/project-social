@@ -2,26 +2,44 @@
     <ng-container  [ngSwitch]="updateSender">
         <div *ngSwitchCase="'email'" class="update-form" id="email-form">
             <label>Update Email</label>
-            <input>
-            <div class="updateButton" (click)="updateEmail()">
+            <div class="input-container">
+                <input class="update-input" #email>
+            </div>
+            <label>Password</label>
+            <div class="input-container">
+                <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggle()">Show</div>
+            </div>
+            <div class="updateButton" (click)="placeholder(email.value, password.value)">
                 Save Email
             </div>
         </div>
         <div *ngSwitchCase="'password'" class="update-form" id="password-form">
             <label>Current Password</label>
-            <input>
+            <div class="input-container">
+                <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggle()">Show</div>
+            </div>
             <label>New Password</label>
-            <input>
-            <div class="updateButton" (click)="updatePassword()">
+            <div class="input-container">
+                <input class="update-input" #newpassword type="{{(showNewPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggleNew()">Show</div>
+            </div>
+            <div class="updateButton" (click)="placeholder(password.value, newpassword.value)">
                 Save Password
             </div>
         </div>
         <div *ngSwitchCase="'username'" class="update-form" id="username-form">
             <label>Update Username</label>
-            <input>
+            <div class="input-container">
+                <input class="update-input" #username>
+            </div>
             <label>Password</label>
-            <input>
-            <div class="updateButton" (click)="updateUsername()">
+            <div class="input-container">
+                <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggle()">Show</div>
+            </div>
+            <div class="updateButton" (click)="placeholder(username.value, password.value)">
                 Save Username
             </div>
         </div>

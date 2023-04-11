@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from "../shared/services/auth.service";
 
 
@@ -7,29 +7,25 @@ import { AuthService } from "../shared/services/auth.service";
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.css']
 })
-export class UpdateComponent implements OnInit{
+export class UpdateComponent{
   showPassword = false;
+  showNewPassword = false;
 
   @Input() updateSender: string = "";
 
-  toggle(){//now this is something else
+  constructor(
+      public authService: AuthService
+  ) { }
+
+  toggle(){
     this.showPassword = !this.showPassword;
   }
-  constructor(
-    public authService: AuthService
-  ) { }
- 
-  ngOnInit(): void {
-    console.log(this.updateSender);
+
+  toggleNew(){
+    this.showNewPassword = !this.showNewPassword;
   }
 
-  updateEmail(){
-    console.log("email");
-  }
-  updatePassword(){
-    console.log("password");
-  }
-  updateUsername(){
-    console.log("username")
+  placeholder(value1: string, value2: string){
+
   }
 }
