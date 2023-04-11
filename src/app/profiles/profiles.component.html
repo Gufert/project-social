@@ -22,7 +22,7 @@
         <div class="follow" *ngIf="authService.userData == null || authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) == -1" (click)="authService.userData != null ? profileService.follow() : modalService.open('alert')">
             <span>Follow</span>
         </div>
-        <div class="following" *ngIf="authService.userData != null && authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) != -1" (click)="profileService.unfollow()">
+        <div class="following" *ngIf="authService.userData != null && authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) != -1" (click)="profileService.unfollow()" [ngStyle]="{'background': 'var(--psTeal)'}">
             <span>Following</span>
         </div>
         <div class="profile-edit" (click)="modalService.open('edit')" *ngIf="authService.userData != null && authService.userData.uid == profileService.user.uid">

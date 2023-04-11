@@ -12,6 +12,11 @@
     display: flex;
     align-items: center;
 }
+.logo{
+    width: 35px;
+    height: 35px;
+    padding-right: 3px;
+}
 .nav-ul{
     padding: 0;
     margin: 20px 0;

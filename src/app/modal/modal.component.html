@@ -15,6 +15,7 @@
             <app-update *ngSwitchCase="'update-username'" updateSender="username"></app-update>
             <app-relations *ngSwitchCase="'following'" list="following"></app-relations>
             <app-relations *ngSwitchCase="'followers'" list="followers"></app-relations>
+            <app-reply *ngSwitchCase="'reply'"></app-reply>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>
