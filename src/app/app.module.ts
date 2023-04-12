@@ -104,11 +104,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AppRoutingModule,
     RouterModule.forRoot([
-      {path: '', component: SearchComponent},
-      {path: 'feed', component: FeedComponent},
-      {path: 'search', component: SearchComponent},
-      {path: 'bookmarks', component: BookmarksComponent},
-      {path: 'settings', component: SettingsComponent},
+      {path: '', component: SearchComponent, title: 'Project Social | Search'},
+      {path: 'feed', component: FeedComponent, title: 'Project Social | Home'},
+      {path: 'search', component: SearchComponent, title: 'Project Social | Search'},
+      {path: 'bookmarks', component: BookmarksComponent, title: 'Project Social | Bookmarks'},
+      {path: 'settings', component: SettingsComponent, title: 'Project Social | Settings'},
       {path: ':user', component: ProfileComponent, children: [
         {path: 'replies', component: ProfileComponent},
         {path: 'top', component: ProfileComponent},

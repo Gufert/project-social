@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GetUserService } from '../shared/services/get-user.service';
 import { UserData } from '../shared/services/user-data';
+import { Title } from '@angular/platform-browser';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-thread',
@@ -15,15 +17,16 @@ export class ThreadComponent implements OnInit{
   user: UserData = {} as UserData;
   noPost: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService){}
+  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, public title: Title, public modalService: ModalService){}
 
   ngOnInit(): void {
+    this.title.setTitle("Project Social | Post")
     this.activatedRoute.params.subscribe(params => {
       this.afs.collection("posts").doc(params['postid']).ref.get().then(async (doc) => {
         this.post = doc.data();
         if(this.post){
           this.user = await this.getUserService.UserFromUID(this.post.uid);
-          console.log(this.post, this.user);
+          this.post.date = new Date(this.post.date * 1000);
         }
         else{
           this.noPost = true;

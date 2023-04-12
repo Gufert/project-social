@@ -1,8 +1,59 @@
 <div class="thread-container" *ngIf="!(noPost)">
     <div class="thread-post">
-        {{user.displayName}}: {{post.content}}
+        <div class="thread-user">
+            <div class="user-pfp">
+                <img src={{user.photoURL}}>
+            </div>
+            <div class="user-name">
+                <div class="user-profileName">
+                    {{user.profileName}}
+                </div>
+                <div class="user-displayName">
+                    @{{user.displayName}}
+                </div>
+            </div>
+        </div>
+        <div class="thread-content">
+            {{post.content}}
+        </div>
+        <div class="thread-date">
+            {{post.date}}
+        </div>
+        <div class="thread-interactions">
+            <div class="interactions-stats">
+                <div class="post-replies">
+                    0 Replies
+                </div>
+                <div class="post-likes">
+                    0 Likes
+                </div>
+                <div class="post-dislikes">
+                    0 Dislikes
+                </div>
+            </div>
+            <div class="interactions-buttons">
+                <div class="reply-button">
+                    <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons" (click)="modalService.open('reply')">
+                </div>
+                <div class="like-button">
+                    <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
+                </div>
+                <div class="dislike-button">
+                    <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
+                </div>
+                <div class="bookmark-button">
+                    <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
+                </div>
+                <div class="share-button">
+                    <img src="assets/icons/share.svg" alt="share icon" class="interaction-icons">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="thread-replies">
+        insert replies here
     </div>
 </div>
 <div class="no-post" *ngIf="(noPost)">
-    no post was found
+    This post does not exist. It may have been deleted.
 </div>

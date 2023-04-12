@@ -11,6 +11,8 @@ import { arrayUnion } from 'firebase/firestore';
 export class ReplyComponent {
   remaining: Number = 255;
 
+  @Input() postId: string = "";
+
   constructor(public authService: AuthService) {}
 
   charCount(){
