@@ -32,6 +32,8 @@
 .join-date{
     margin-top: auto;
     margin-bottom: auto;
+    display: flex;
+    align-items: center;
 }
 .profile-info{
     display: flex;
@@ -57,10 +59,11 @@
 }
 .profile-info{
     display: flex;
-    align-items: center;
 }
 .profile-info div{
     margin-right: 7px;
+    display: flex;
+    align-items: center;
 }
 .profiles-icons{
     height: 15px;

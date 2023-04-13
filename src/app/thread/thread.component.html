@@ -5,10 +5,10 @@
                 <img src={{user.photoURL}}>
             </div>
             <div class="user-name">
-                <div class="user-profileName">
-                    {{user.profileName}}
+                <div class="user-profileName" [routerLink]="['/', user.displayName]">
+                    <b>{{user.profileName}}</b>
                 </div>
-                <div class="user-displayName">
+                <div class="user-displayName" [routerLink]="['/', user.displayName]">
                     @{{user.displayName}}
                 </div>
             </div>
@@ -24,27 +24,27 @@
                 <div class="post-replies">
                     0 Replies
                 </div>
-                <div class="post-likes">
+                <div class="post-likes" (click)="modalService.open('likes')">
                     0 Likes
                 </div>
-                <div class="post-dislikes">
+                <div class="post-dislikes" (click)="modalService.open('dislikes')">
                     0 Dislikes
                 </div>
             </div>
             <div class="interactions-buttons">
-                <div class="reply-button">
-                    <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons" (click)="modalService.open('reply')">
+                <div class="reply-button" (click)="modalService.open('reply')">
+                    <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
                 </div>
-                <div class="like-button">
+                <div class="like-button" (click)="interactions.like()">
                     <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
                 </div>
-                <div class="dislike-button">
+                <div class="dislike-button" (click)="interactions.dislike()">
                     <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
                 </div>
-                <div class="bookmark-button">
+                <div class="bookmark-button" (click)="interactions.bookmark()">
                     <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
                 </div>
-                <div class="share-button">
+                <div class="share-button" (click)="interactions.share()">
                     <img src="assets/icons/share.svg" alt="share icon" class="interaction-icons">
                 </div>
             </div>

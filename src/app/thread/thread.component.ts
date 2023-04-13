@@ -5,6 +5,7 @@ import { GetUserService } from '../shared/services/get-user.service';
 import { UserData } from '../shared/services/user-data';
 import { Title } from '@angular/platform-browser';
 import { ModalService } from '../shared/services/modal.service';
+import { InteractionsService } from '../shared/services/interactions.service';
 
 @Component({
   selector: 'app-thread',
@@ -19,7 +20,8 @@ export class ThreadComponent implements OnInit{
   content: string = "";
   date: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, public title: Title, public modalService: ModalService){}
+  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, 
+    public title: Title, public modalService: ModalService, public interactions: InteractionsService){}
 
   ngOnInit(): void {
     this.title.setTitle("Project Social | Post")
@@ -28,8 +30,9 @@ export class ThreadComponent implements OnInit{
         this.post = doc.data();
         if(this.post){
           this.user = await this.getUserService.UserFromUID(this.post.uid);
-          this.date = new Date(this.post.date * 1000);
+          this.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
           this.content = this.post.content;
+          this.title.setTitle("Project Social | Post by @" + this.user.displayName);
         }
         else{
           this.noPost = true;

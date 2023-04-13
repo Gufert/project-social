@@ -7,7 +7,19 @@ export class InteractionsService {
 
   constructor() { }
 
-  follow(){
-    
+  like(){
+
+  }
+
+  dislike(){
+
+  }
+
+  bookmark(){
+
+  }
+
+  share(){
+    navigator.clipboard.writeText(window.location.toString());
   }
 }

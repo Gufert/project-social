@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="join-date">
-                📅Joined {{profileService.user.joinDate}}
+                <img src="assets/icons/calendar.svg" alt="calendar icon" class="profiles-icons">Joined {{profileService.user.joinDate}}
             </div>
         </div>
         <div class="follow" *ngIf="authService.userData == null || authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) == -1" (click)="authService.userData != null ? profileService.follow() : modalService.open('alert')">

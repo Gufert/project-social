@@ -46,6 +46,7 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ImageComponent } from './image/image.component';
 import { AlertComponent } from './alert/alert.component';
 import { ReplyComponent } from './reply/reply.component';
+import { InteractionsComponent } from './interactions/interactions.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -88,7 +89,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     BookmarksComponent,
     ImageComponent,
     AlertComponent,
-    ReplyComponent
+    ReplyComponent,
+    InteractionsComponent
   ],
   imports: [
     BrowserModule,

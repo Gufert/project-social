@@ -1,4 +1,4 @@
-<div class="modal-backdrop"></div>
+<div class="modal-backdrop" (click)="close()"></div>
 <div class="modal">
     <div class="modal-header">
         <div class="close" (click)="close()"></div>
@@ -15,6 +15,8 @@
             <app-update *ngSwitchCase="'update-username'" updateSender="username"></app-update>
             <app-relations *ngSwitchCase="'following'" list="following"></app-relations>
             <app-relations *ngSwitchCase="'followers'" list="followers"></app-relations>
+            <app-interactions *ngSwitchCase="'likes'" interation="likes"></app-interactions>
+            <app-interactions *ngSwitchCase="'dislikes'" interation="dislikes"></app-interactions>
             <app-reply *ngSwitchCase="'reply'"></app-reply>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
