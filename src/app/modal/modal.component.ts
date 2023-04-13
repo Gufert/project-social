@@ -12,15 +12,6 @@ export class ModalComponent {
 
     close() {
         this.modalService.comp = "";
-        
-        var modal = document.querySelector<HTMLElement>(".modal");
-        var backdrop = document.querySelector<HTMLElement>(".modal-backdrop");
-        var main = document.querySelector<HTMLElement>(".main");
-
-        if(modal && backdrop && main){
-            modal.style.display = "";
-            backdrop.style.display = "";
-            main.style.pointerEvents = "auto";
-        }
+        this.modalService.show = false;
     }
 }

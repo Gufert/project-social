@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProfileService } from '../shared/services/profile.service';
 import { UserData } from '../shared/services/user-data';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../shared/services/auth.service';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-edit',
@@ -14,7 +17,7 @@ export class EditComponent implements OnInit, OnDestroy{
   location: string = "";
   link: string = "";
 
-  constructor(public profileService: ProfileService) {}
+  constructor(public profileService: ProfileService, public afs: AngularFirestore, public authService: AuthService, public modalService: ModalService) {}
 
   async ngOnInit(): Promise<void> {
     this.user = this.profileService.user;
@@ -33,6 +36,14 @@ export class EditComponent implements OnInit, OnDestroy{
   }
 
   save(){
-    console.log(this.profileName, this.bio, this.location, this.link);
+    this.afs.collection("profiles").doc(this.authService.userData.uid).update({
+      profileName: this.profileName,
+      bio: this.bio,
+      location: this.location,
+      link: this.link.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "")
+    }).then(() => {
+      window.location.reload();
+    })
+    this.modalService.close()
   }
 }

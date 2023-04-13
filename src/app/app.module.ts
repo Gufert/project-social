@@ -45,6 +45,8 @@ import { ProfileService } from './shared/services/profile.service';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { ImageComponent } from './image/image.component';
 import { AlertComponent } from './alert/alert.component';
+import { ReplyComponent } from './reply/reply.component';
+import { InteractionsComponent } from './interactions/interactions.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -86,7 +88,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     CrudComponent,
     BookmarksComponent,
     ImageComponent,
-    AlertComponent
+    AlertComponent,
+    ReplyComponent,
+    InteractionsComponent
   ],
   imports: [
     BrowserModule,
@@ -102,17 +106,15 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AppRoutingModule,
     RouterModule.forRoot([
-      {path: '', component: SearchComponent},
-      {path: 'feed', component: FeedComponent},
-      {path: 'search', component: SearchComponent},
-      {path: 'bookmarks', component: BookmarksComponent},
-      {path: 'settings', component: SettingsComponent},
+      {path: '', component: SearchComponent, title: 'Project Social | Search'},
+      {path: 'feed', component: FeedComponent, title: 'Project Social | Home'},
+      {path: 'search', component: SearchComponent, title: 'Project Social | Search'},
+      {path: 'bookmarks', component: BookmarksComponent, title: 'Project Social | Bookmarks'},
+      {path: 'settings', component: SettingsComponent, title: 'Project Social | Settings'},
       {path: ':user', component: ProfileComponent, children: [
         {path: 'replies', component: ProfileComponent},
         {path: 'top', component: ProfileComponent},
-        {path: 'likes', component: ProfileComponent},
-        {path: 'following', component: ProfileComponent},
-        {path: 'followers', component: ProfileComponent}
+        {path: 'likes', component: ProfileComponent}
       ]},
       {path: 'post/:postid', component: ThreadComponent}
     ]),
@@ -127,7 +129,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     AuthService,
     ModalService,
-    ModalComponent,
     ProfileService
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,59 @@
+.thread-post{
+    margin: 10px 10px 0 10px;
+}
+.thread-user{
+    display: flex;
+}
+.user-pfp img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.user-profileName,.user-displayName{
+    cursor: pointer;
+    width: fit-content;
+}
+.thread-content{
+    margin: 3px 0;
+}
+.thread-date{
+    margin-bottom: 3px;
+}
+.interactions-stats{
+    display: flex;
+    height: 35px;
+    border-top: solid 1px var(--psBorderColor);
+    border-bottom: solid 1px var(--psBorderColor);
+    align-items: center;
+}
+.interactions-stats div{
+    margin-right: 15px;
+    width: fit-content;
+}
+.post-likes,.post-dislikes{
+    cursor: pointer;
+}
+.interactions-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+.interaction-icons{
+    width: 20px;
+}
+.interactions-buttons div{
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    border-radius: 50%;
+    margin: 1px 0;
+}
+.interactions-buttons div:hover{
+    background-color: var(--psGrey);
+    cursor: pointer;
+}
+.thread-replies{
+    border-top: solid 1px var(--psBorderColor);
+}

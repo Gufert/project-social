@@ -3,7 +3,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { Post }  from '../shared/services/post'
 import { PostService } from '../shared/services/post.service';
 import { User } from '../shared/services/user';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalService } from '../shared/services/modal.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class PostComponent implements OnInit {
   constructor(
-    public modal: ModalComponent,
+    public modalService: ModalService,
     public authService: AuthService,
     public postService: PostService
     ) {
@@ -62,7 +62,7 @@ export class PostComponent implements OnInit {
       console.log(this.post.content)
       console.log('Created new post successfully!');
       this.submitted = true;
-      this.modal.close();
+      this.modalService.close();
     });
   }
 

@@ -16,11 +16,14 @@
                 </div>
             </div>
             <div class="join-date">
-                📅Joined {{profileService.user.joinDate}}
+                <img src="assets/icons/calendar.svg" alt="calendar icon" class="profiles-icons">Joined {{profileService.user.joinDate}}
             </div>
         </div>
-        <div class="follow" *ngIf="authService.userData == null || authService.userData.uid != profileService.user.uid" (click)="authService.userData != null ? interactionsService.follow() : modalService.open('alert')">
+        <div class="follow" *ngIf="authService.userData == null || authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) == -1" (click)="authService.userData != null ? profileService.follow() : modalService.open('alert')">
             <span>Follow</span>
+        </div>
+        <div class="following" *ngIf="authService.userData != null && authService.userData.uid != profileService.user.uid && profileService.user.followers.indexOf(authService.userData.uid) != -1" (click)="profileService.unfollow()" [ngStyle]="{'background': 'var(--psTeal)'}">
+            <span>Following</span>
         </div>
         <div class="profile-edit" (click)="modalService.open('edit')" *ngIf="authService.userData != null && authService.userData.uid == profileService.user.uid">
             <span>Edit</span>
@@ -38,6 +41,8 @@
         </div>
     </div>
     <div class="profile-relations">
-        <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following.length}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers.length}}</b> Followers</a>
+        <!-- <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following.length}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers.length}}</b> Followers</a> -->
+        <div class="relations" (click)="modalService.open('following')"><b>{{profileService.user.following.length}}</b> Following</div> 
+        <div class="relations" (click)="modalService.open('followers')"><b>{{profileService.user.followers.length}}</b> Followers</div>
     </div>
 </div>

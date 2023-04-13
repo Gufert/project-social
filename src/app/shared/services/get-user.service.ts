@@ -21,24 +21,4 @@ export class GetUserService {
     ])
     return {...this.userData, ...this.profileData};
   }
-
-  async UserFromLDN(lowerDN: String){
-    // await Promise.all([
-    //   this.afs
-    //   .collection("users",ref=>ref.where("lowerDN","==",lowerDN.toLocaleLowerCase()))
-    //   .get()
-    //   .subscribe(data => {
-    //     data.forEach(el => this.userData = el.data());
-    //     if(this.userData != null){
-    //       this.afs.collection("profiles").doc(this.userData.uid).ref.get().then((doc) => {
-    //         this.profileData = doc.data();
-    //         console.log({...this.userData, ...this.profileData});
-    //       })
-    //     }
-    //   })
-    // ])
-    
-    // console.log({...this.userData, ...this.profileData});
-    // return {...this.userData, ...this.profileData};
-  }
 }

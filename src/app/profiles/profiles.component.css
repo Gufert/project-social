@@ -32,11 +32,13 @@
 .join-date{
     margin-top: auto;
     margin-bottom: auto;
+    display: flex;
+    align-items: center;
 }
 .profile-info{
     display: flex;
 }
-.follow,.profile-edit{
+.follow,.following,.profile-edit{
     width: auto;
     height: 30px;
     float: right;
@@ -48,26 +50,35 @@
     border-radius: 9999px;
     font-size: 20px;
 }
-.follow:hover,.profile-edit:hover{
+.follow:hover,.following:hover,.profile-edit:hover{
     background-color: #272c30;
     cursor: pointer;
 }
-.follow span,.profile-edit span{
+.follow span,.following span,.profile-edit span{
     padding: 0 15px;
 }
 .profile-info{
     display: flex;
-    align-items: center;
 }
 .profile-info div{
     margin-right: 7px;
+    display: flex;
+    align-items: center;
 }
 .profiles-icons{
     height: 15px;
     padding-right: 2px;
 }
-.follow-nav{
+.relations{
+    display: inline-flex;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.relations b{
+    padding-right: 2px;
+}
+/* .follow-nav{
     color: inherit;
     text-decoration: none;
     margin-right: 10px;
-}
+} */
