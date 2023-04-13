@@ -16,6 +16,8 @@ export class ThreadComponent implements OnInit{
   post: any;
   user: UserData = {} as UserData;
   noPost: boolean = false;
+  content: string = "";
+  date: any;
 
   constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, public title: Title, public modalService: ModalService){}
 
@@ -26,7 +28,8 @@ export class ThreadComponent implements OnInit{
         this.post = doc.data();
         if(this.post){
           this.user = await this.getUserService.UserFromUID(this.post.uid);
-          this.post.date = new Date(this.post.date * 1000);
+          this.date = new Date(this.post.date * 1000);
+          this.content = this.post.content;
         }
         else{
           this.noPost = true;

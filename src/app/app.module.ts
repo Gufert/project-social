@@ -127,7 +127,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     AuthService,
     ModalService,
-    ModalComponent,
     ProfileService
   ],
   bootstrap: [AppComponent]

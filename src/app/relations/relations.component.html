@@ -1,5 +1,5 @@
 <div class="relations-container">
-    <div class="relations-user" *ngFor="let user of userList" [routerLink]="['/', user.displayName]" (click)="modal.close()">
+    <div class="relations-user" *ngFor="let user of userList" [routerLink]="['/', user.displayName]" (click)="modalService.close()">
         <div class="user-side">
             <div class="user-pfp">
                 <img src="{{user.photoURL}}">

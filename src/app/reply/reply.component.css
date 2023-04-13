@@ -13,7 +13,7 @@
     width: 480px;
     overflow: hidden;
     resize: none;
-    min-height: 100px;
+    min-height: 75px;
     line-height: 20px;
     outline: none;
     max-height: 400px;
@@ -23,7 +23,7 @@
     padding-bottom: 5px;
 }
 .content[contenteditable]:empty::before {
-    content: "Write something...";
+    content: "Write a reply...";
     color: gray;
 }
 input[type=text] {
@@ -31,7 +31,7 @@ input[type=text] {
     word-break: break-all;
     height: 80px;
 }
-.postButton{
+.replyButton{
     height: 35px;
     cursor: pointer;
     width: 55px;

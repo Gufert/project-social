@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from '../shared/services/profile.service';
 import { GetUserService } from '../shared/services/get-user.service';
 import { UserData } from '../shared/services/user-data';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-relations',
@@ -14,7 +14,7 @@ export class RelationsComponent implements OnInit{
 
   @Input() list: string = "";
 
-  constructor(public profileService: ProfileService, public getUserService: GetUserService, public modal: ModalComponent) {}
+  constructor(public profileService: ProfileService, public getUserService: GetUserService, public modalService: ModalService) {}
 
   ngOnInit() {
     if(this.list == "followers"){

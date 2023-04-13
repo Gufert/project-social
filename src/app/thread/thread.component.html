@@ -1,4 +1,4 @@
-<div class="thread-container" *ngIf="!(noPost)">
+<div class="thread-container" *ngIf="user.uid != null">
     <div class="thread-post">
         <div class="thread-user">
             <div class="user-pfp">
@@ -14,10 +14,10 @@
             </div>
         </div>
         <div class="thread-content">
-            {{post.content}}
+            {{content}}
         </div>
         <div class="thread-date">
-            {{post.date}}
+            {{date}}
         </div>
         <div class="thread-interactions">
             <div class="interactions-stats">
