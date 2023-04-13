@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GetUserService } from '../shared/services/get-user.service';
 import { LikeDislike } from '../shared/services/like-dislike';
 import { LikeDislikeService } from '../shared/services/like-dislike.service';
+import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/services/user';
 
 @Component({
@@ -17,16 +18,16 @@ export class PostsComponent implements OnInit{
   @Input() post?: any;
 
   constructor(
+    public as: AuthService,
     public router: Router,
     public afs: AngularFirestore,
     public getUserService: GetUserService,
     public likeDislikeService: LikeDislikeService
     ) {
-    this.currentUser = JSON.parse(localStorage.getItem('user')!);
+
   }
 
   ld: LikeDislike = new LikeDislike();
-  currentUser: User;
 
   async ngOnInit() {
     this.post.date = new Date(this.post.date.seconds * 1000);
@@ -45,7 +46,7 @@ export class PostsComponent implements OnInit{
     event.stopPropagation();
     if(click == 'like'){
       this.ld = {
-        uid: this.currentUser.uid,
+        uid: this.as.userData.uid,
         pid: '',
         date: new Date()
       }
@@ -53,7 +54,7 @@ export class PostsComponent implements OnInit{
     }
     if(click == 'dislike'){
       this.ld = {
-        uid: this.currentUser.uid,
+        uid: this.as.userData.uid,
         pid: '',
         date: new Date()
       }
