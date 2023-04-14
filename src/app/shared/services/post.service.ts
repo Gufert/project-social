@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../services/post'
 import { getDatabase} from "firebase/database";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
 
 @Injectable({
@@ -35,8 +36,16 @@ export class PostService {
   }
 
   submitPost(post: Post): any{
-    return this.afs.collection(this.dbPath).add({
+    return this.afs.collection<Post>(this.dbPath).add({
       ...post
+    }).then((docRef) =>{
+      let newDocID = docRef.id
+      docRef.set({
+        pid: newDocID},
+        {merge: true});
+      console.log("documanet id: ", docRef.id);
+    }).catch((error) =>{
+      console.error("Error", error)
     })
   }
 }
