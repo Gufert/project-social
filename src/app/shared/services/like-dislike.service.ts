@@ -7,8 +7,8 @@ import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/comp
   providedIn: 'root'
 })
 export class LikeDislikeService {
-  public dbLikePath = '/like';
-  public dbDislikePate = '/dislike';
+  public dbLikePath = '/likes';
+  public dbDislikePate = '/dislikes';
   postsLikeRef: AngularFirestoreCollection<LikeDislike>;
   postDislikeRef: AngularFirestoreCollection<LikeDislike>;
 
