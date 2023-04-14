@@ -3,10 +3,12 @@
         <img src="{{user.photoURL}}">
     </div>
     <div class="accountName">
-        <div class="displayName">{{user.displayName}}</div>
+        <div class="profileName">{{userData.profileName}}</div>
         <div class="username">@{{user.displayName}}</div>
     </div>
     <div class="logout" (click)="authService.SignOut()">
-        <img src="assets/icons/logout.svg" alt="logout icon" class="logout-icon">
+        <div class="icon-container">
+            <img src="assets/icons/logout.svg" alt="logout icon" class="logout-icon">
+        </div>
     </div>
 </div>

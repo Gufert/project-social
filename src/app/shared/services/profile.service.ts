@@ -4,6 +4,7 @@ import { GetUserService } from './get-user.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './auth.service';
 import { arrayUnion, arrayRemove } from "firebase/firestore";
+import { Post } from './post';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class ProfileService {
   userData: any;
   profileData: any;
   user: UserData = {} as UserData;
+  posts: Array<Post> = [];
 
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
@@ -28,6 +30,13 @@ export class ProfileService {
             this.profileData = doc.data();
             this.user = {...this.userData, ...this.profileData};
             this.user.joinDate = new Date(this.user.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
+            this.profileData.posts.forEach(async (element: any) => {
+              await this.afs.collection("posts", ref=>ref.orderBy("date","desc")).doc(element).ref.get().then(async (doc) => {
+                var post = <Post>doc.data();
+                this.posts.push(post);
+              })
+              console.log(this.posts);
+            })
           })
         }
         else{

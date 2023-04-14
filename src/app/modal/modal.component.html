@@ -10,14 +10,10 @@
             <app-post *ngSwitchCase="'post'"></app-post>
             <app-edit *ngSwitchCase="'edit'"></app-edit>
             <app-alert *ngSwitchCase="'alert'"></app-alert>
-            <app-update *ngSwitchCase="'update-email'" updateSender="email"></app-update>
-            <app-update *ngSwitchCase="'update-password'" updateSender="password"></app-update>
-            <app-update *ngSwitchCase="'update-username'" updateSender="username"></app-update>
-            <app-relations *ngSwitchCase="'following'" list="following"></app-relations>
-            <app-relations *ngSwitchCase="'followers'" list="followers"></app-relations>
-            <app-interactions *ngSwitchCase="'likes'" interation="likes"></app-interactions>
-            <app-interactions *ngSwitchCase="'dislikes'" interation="dislikes"></app-interactions>
-            <app-reply *ngSwitchCase="'reply'"></app-reply>
+            <app-update *ngSwitchCase="'update'" updateSender={{modalService.param}}></app-update>
+            <app-relations *ngSwitchCase="'follow'" list={{modalService.param}}></app-relations>
+            <app-interactions *ngSwitchCase="'interactions'" interation={{modalService.param}}></app-interactions>
+            <app-reply *ngSwitchCase="'reply'" pid={{modalService.param}}></app-reply>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>

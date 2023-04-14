@@ -6,13 +6,13 @@
         <span class="content" role="textbox" contenteditable="true" #content (input)="charCount(content.innerHTML)"></span>
     </div>
     <div class="bottom">
-        <div class="progress">
+        <div class="progress" [ngStyle]="remaining < 0 ? {'color': 'red'} : {}">
             <div class="barOverflow">
-                <div class="bar"></div>
+                <div class="bar" [ngStyle]="{'transform': 'rotate(' + (degree) + 'deg)'}"></div>
             </div>
             <span>{{(remaining)}}</span>
         </div>
-        <div class="postButton" (click)="postService.makePost(content.innerHTML)">
+        <div class="postButton" [ngStyle]="remaining < 0 || count == 0 ? {'opacity': '0.5', 'cursor': 'default'} : {}" (click)="remaining < 0 || count == 0 ? null : postService.makePost(content.innerHTML)">
             Post
         </div>
     </div>

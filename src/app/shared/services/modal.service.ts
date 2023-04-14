@@ -3,10 +3,13 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class ModalService {
     comp: String = '';
+    param: String = '';
     show: Boolean = false;
 
     open(id: string) {
-        this.comp = id;
+        var split = id.split(":");
+        this.comp = split[0];
+        this.param = split[1];
         this.show = true;
     }
 

@@ -1,5 +1,7 @@
 export interface Reply{
-    postId: string;
+    rid: string;
+    pid: string;
     uid: string;
     content: string;
+    date: Date;
 }

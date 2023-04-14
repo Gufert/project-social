@@ -35,7 +35,7 @@ export class PostService {
     });
   }
 
-  async makePost(content: String){
+  async makePost(content: string){
     this.post = {
       pid: "",
       uid: this.authService.userData.uid,

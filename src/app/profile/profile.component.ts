@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       if(this.userPath != params['user']){
         this.userPath = params['user']
         this.title.setTitle("Project Social | @" + this.userPath);
+        this.profileService.posts = [];
         this.profileService.getProfile(this.userPath);
       }
     })
@@ -27,5 +28,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.profileService.noUser = false;
     this.profileService.user = {} as UserData;
+    this.profileService.posts = [];
   }
 }

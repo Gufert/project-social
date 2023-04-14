@@ -22,17 +22,17 @@
         <div class="thread-interactions">
             <div class="interactions-stats">
                 <div class="post-replies">
-                    0 Replies
+                    {{post.replies.length}} Replies
                 </div>
-                <div class="post-likes" (click)="modalService.open('likes')">
-                    0 Likes
+                <div class="post-likes" (click)="modalService.open('interactions:likes')">
+                    {{post.likes.length}} Likes
                 </div>
-                <div class="post-dislikes" (click)="modalService.open('dislikes')">
-                    0 Dislikes
+                <div class="post-dislikes" (click)="modalService.open('interactions:dislikes')">
+                    {{post.dislikes.length}} Dislikes
                 </div>
             </div>
             <div class="interactions-buttons">
-                <div class="reply-button" (click)="modalService.open('reply')">
+                <div class="reply-button" (click)="modalService.open('reply:' + post.pid)">
                     <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
                 </div>
                 <div class="like-button" (click)="interactions.like()">
@@ -51,7 +51,12 @@
         </div>
     </div>
     <div class="thread-replies">
-        insert replies here
+        <div class="replies-container" *ngFor="let reply of replies">
+            {{reply.displayName}}: {{reply.content}}
+        </div>
+    </div>
+    <div class="no-replies" *ngIf="post.replies.length == 0">
+        There are no replies to this post
     </div>
 </div>
 <div class="no-post" *ngIf="(noPost)">
