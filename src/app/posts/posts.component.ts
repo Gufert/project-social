@@ -47,7 +47,7 @@ export class PostsComponent implements OnInit{
     if(click == 'like'){
       this.ld = {
         uid: this.as.userData.uid,
-        pid: '',
+        pid: this.post.pid,
         date: new Date()
       }
       this.likeDislikeService.likePost(this.ld)
@@ -55,7 +55,7 @@ export class PostsComponent implements OnInit{
     if(click == 'dislike'){
       this.ld = {
         uid: this.as.userData.uid,
-        pid: '',
+        pid: this.post.pid,
         date: new Date()
       }
       this.likeDislikeService.dislikePost(this.ld)

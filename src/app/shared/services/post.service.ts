@@ -41,8 +41,8 @@ export class PostService {
     }).then((docRef) =>{
       let newDocID = docRef.id
       docRef.set({
-        pid: newDocID}
-        , {merge: true});
+        pid: newDocID},
+        {merge: true});
       console.log("documanet id: ", docRef.id);
     }).catch((error) =>{
       console.error("Error", error)
