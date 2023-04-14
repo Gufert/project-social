@@ -21,6 +21,7 @@ export class ThreadComponent implements OnInit{
   content: string = "";
   date: any;
   reply: Reply = {} as Reply;
+  replyData: Array<Reply> = [];
   replyUser: UserData = {} as UserData;
   replies: any[] = [];
 
@@ -38,25 +39,17 @@ export class ThreadComponent implements OnInit{
           this.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
           this.content = this.post.content;
           this.title.setTitle("Project Social | Post by @" + this.user.displayName);
-          this.fetchReplies()
+          this.post.replies.forEach((element: any) => {
+            this.afs.collection("replies").doc(element).ref.get().then(async (doc) => {
+              var reply = <Reply>doc.data();
+              this.replies.push({...reply, ...await this.getUserService.UserFromUID(reply.uid)})
+            })
+          })
         }
         else{
           this.noPost = true;
         }
       })
     })
-  }
-
-  fetchReplies(){
-    this.post.replies.forEach(async (element: any) => {
-      await this.afs.collection("replies").doc(element).ref.get().then(async (doc) => {
-        this.reply = <Reply>doc.data();
-        await Promise.all([
-          this.replyUser = await this.getUserService.UserFromUID(this.reply.uid)
-        ]).then(() => {
-          this.replies.push({...this.reply, ...this.replyUser});
-        })
-      })
-    });
   }
 }
