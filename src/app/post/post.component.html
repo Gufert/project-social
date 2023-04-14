@@ -3,7 +3,7 @@
         <div class="profilePicture">
             <img *ngIf="authService.userData as user" src="{{user.photoURL}}">
         </div>
-        <span class="content" role="textbox" contenteditable="true" (input)="charCount()"></span>
+        <span class="content" role="textbox" contenteditable="true" #content (input)="charCount(content.innerHTML)"></span>
     </div>
     <div class="bottom">
         <div class="progress">
@@ -12,7 +12,7 @@
             </div>
             <span>{{(remaining)}}</span>
         </div>
-        <div class="postButton" (click)="makePost()">
+        <div class="postButton" (click)="postService.makePost(content.innerHTML)">
             Post
         </div>
     </div>

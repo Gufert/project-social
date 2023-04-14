@@ -31,9 +31,7 @@ export class PostsComponent implements OnInit{
 
   async ngOnInit() {
     this.post.date = new Date(this.post.date.seconds * 1000);
-    //console.log("post from input", this.post);
     this.user = await this.getUserService.UserFromUID(this.post.uid);
-    console.log(this.post, this.user);
   }
   
 
@@ -63,6 +61,5 @@ export class PostsComponent implements OnInit{
     if(click == 'reply'){
 
     }
-    console.log(click);
   }
 }

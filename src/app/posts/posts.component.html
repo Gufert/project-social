@@ -11,13 +11,13 @@
         </div>
         <div class="post-interactions">
             <div class="post-button" (click)="postClick($event, 'like')">
-                <img src="assets/icons/like.png" alt="like icon" class="post-icons">{{post.likes}}
+                <img src="assets/icons/like.svg" alt="like icon" class="post-icons">{{post.likes.length}}
             </div>
             <div class="post-button" (click)="postClick($event, 'dislike')">
-                <img src="assets/icons/dislike.png" alt="dislike icon" class="post-icons">{{post.dislikes}}
+                <img src="assets/icons/dislike.svg" alt="dislike icon" class="post-icons">{{post.dislikes.length}}
             </div>
             <div class="post-button" (click)="postClick($event, 'reply')">
-                <img src="assets/icons/reply.png" alt="reply icon" class="post-icons">
+                <img src="assets/icons/reply.svg" alt="reply icon" class="post-icons">{{post.replies.length}}
             </div>
         </div>
     </div>
