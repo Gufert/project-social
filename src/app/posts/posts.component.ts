@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { UserData } from '../shared/services/user-data';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GetUserService } from '../shared/services/get-user.service';
-import { LikeDislike } from '../shared/services/like-dislike';
+import { Like } from '../shared/services/like';
+import { Dislike } from '../shared/services/dislike';
 import { LikeDislikeService } from '../shared/services/like-dislike.service';
 import { AuthService } from '../shared/services/auth.service';
-import { User } from '../shared/services/user';
 
 @Component({
   selector: 'app-posts',
@@ -27,7 +27,8 @@ export class PostsComponent implements OnInit{
 
   }
 
-  ld: LikeDislike = new LikeDislike();
+  like: Like = new Like();
+  dislike: Dislike = new Dislike();
 
   async ngOnInit() {
     this.post.date = new Date(this.post.date.seconds * 1000);
@@ -45,20 +46,20 @@ export class PostsComponent implements OnInit{
   postClick(event: any, click: String){
     event.stopPropagation();
     if(click == 'like'){
-      this.ld = {
+      this.like = {
         uid: this.as.userData.uid,
         pid: this.post.pid,
         date: new Date()
       }
-      this.likeDislikeService.likePost(this.ld)
+      this.likeDislikeService.likePost(this.like)
     }
     if(click == 'dislike'){
-      this.ld = {
+      this.dislike = {
         uid: this.as.userData.uid,
         pid: this.post.pid,
         date: new Date()
       }
-      this.likeDislikeService.dislikePost(this.ld)
+      this.likeDislikeService.dislikePost(this.dislike)
     }
     if(click == 'reply'){
 
