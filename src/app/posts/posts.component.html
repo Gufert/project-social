@@ -1,4 +1,4 @@
-<div class="post-container" (click)="openThread()">
+<div class="post-container" [routerLink]="['/post',post.pid]">
     <div class="post-pfp">
         <img src={{user.photoURL}}>
     </div>
