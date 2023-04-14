@@ -20,12 +20,28 @@ export class LikeDislikeService {
   likePost(ld: LikeDislike): any{
     return this.afs.collection(this.dbLikePath).add({
       ...ld
+    }).then((docRef) =>{
+      let newDocID = docRef.id
+      docRef.set({
+        lid: newDocID},
+        {merge: true});
+      console.log("documanet id: ", docRef.id);
+    }).catch((error) =>{
+      console.error("Error", error)
     })
   }
 
   dislikePost(ld: LikeDislike): any{
     return this.afs.collection(this.dbDislikePate).add({
       ...ld
+    }).then((docRef) =>{
+      let newDocID = docRef.id
+      docRef.set({
+        did: newDocID},
+        {merge: true});
+      console.log("documanet id: ", docRef.id);
+    }).catch((error) =>{
+      console.error("Error", error)
     })
   }
 }
