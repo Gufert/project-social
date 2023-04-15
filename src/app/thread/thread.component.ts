@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { ModalService } from '../shared/services/modal.service';
 import { InteractionsService } from '../shared/services/interactions.service';
 import { Reply } from '../shared/services/reply';
+import { Post } from '../shared/services/post';
 
 @Component({
   selector: 'app-thread',
@@ -18,9 +19,7 @@ export class ThreadComponent implements OnInit{
   post: any;
   user: UserData = {} as UserData;
   noPost: boolean = false;
-  content: string = "";
-  date: any;
-  reply: Reply = {} as Reply;
+  reply: any;
   replyData: Array<Reply> = [];
   replyUser: UserData = {} as UserData;
   replies: any[] = [];
@@ -36,13 +35,13 @@ export class ThreadComponent implements OnInit{
         this.post = doc.data();
         if(this.post){
           this.user = await this.getUserService.UserFromUID(this.post.uid);
-          this.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
-          this.content = this.post.content;
+          this.post.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
           this.title.setTitle("Project Social | Post by @" + this.user.displayName);
           this.post.replies.forEach((element: any) => {
             this.afs.collection("replies").doc(element).ref.get().then(async (doc) => {
-              var reply = <Reply>doc.data();
-              this.replies.push({...reply, ...await this.getUserService.UserFromUID(reply.uid)})
+              this.reply = doc.data();
+              this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
+              this.replies.push({...this.reply, ...await this.getUserService.UserFromUID(this.reply.uid)})
             })
           })
         }

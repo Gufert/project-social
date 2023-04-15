@@ -33,7 +33,7 @@ export class PostsComponent implements OnInit{
   dislike: Dislike = new Dislike();
 
   async ngOnInit() {
-    this.post.date = new Date(this.post.date.seconds * 1000);
+    this.post.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
     this.user = await this.getUserService.UserFromUID(this.post.uid);
   }
   

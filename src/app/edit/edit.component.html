@@ -1,10 +1,10 @@
 <div class="edit-container">
     <div class="edit-top">
         <div class="edit-pfp">
-            <img src={{user.photoURL}} *ngIf="user.photoURL">
+            <img src={{user.photoURL}} *ngIf="user.photoURL" (click)="modalService.open('media:pfp')">
         </div>
         <div class="edit-banner">
-            <img src={{user.bannerURL}}>
+            <img src={{user.bannerURL}} (click)="modalService.open('media:banner')">
         </div>
     </div>
     <div class="edit-bottom">

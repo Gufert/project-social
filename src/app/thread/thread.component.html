@@ -14,10 +14,10 @@
             </div>
         </div>
         <div class="thread-content">
-            {{content}}
+            {{post.content}}
         </div>
         <div class="thread-date">
-            {{date}}
+            {{post.date}}
         </div>
         <div class="thread-interactions">
             <div class="interactions-stats">
@@ -52,7 +52,22 @@
     </div>
     <div class="thread-replies">
         <div class="replies-container" *ngFor="let reply of replies">
-            {{reply.displayName}}: {{reply.content}}
+            <div class="reply-pfp">
+                <img src={{reply.photoURL}}>
+            </div>
+            <div>
+                <div class="reply-top">
+                    <div class="reply-user" [routerLink]="['/',reply.displayName]">
+                        <b>{{reply.profileName}}</b> @{{reply.displayName}}
+                    </div>
+                    <div class="reply-date">
+                        &nbsp;• {{reply.date}}  
+                    </div>
+                </div>
+                <div class="reply-content">
+                    {{reply.content}}
+                </div>
+            <div>
         </div>
     </div>
     <div class="no-replies" *ngIf="post.replies.length == 0">

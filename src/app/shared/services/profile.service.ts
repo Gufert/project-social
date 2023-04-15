@@ -35,7 +35,6 @@ export class ProfileService {
                 var post = <Post>doc.data();
                 this.posts.push(post);
               })
-              console.log(this.posts);
             })
           })
         }

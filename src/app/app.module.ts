@@ -48,6 +48,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ReplyComponent } from './reply/reply.component';
 import { InteractionsComponent } from './interactions/interactions.component';
 import { AdminComponent } from './admin/admin.component';
+import { MediaComponent } from './media/media.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -92,7 +93,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AlertComponent,
     ReplyComponent,
     InteractionsComponent,
-    AdminComponent
+    AdminComponent,
+    MediaComponent
   ],
   imports: [
     BrowserModule,
