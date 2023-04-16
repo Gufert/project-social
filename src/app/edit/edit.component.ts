@@ -35,6 +35,12 @@ export class EditComponent implements OnInit, OnDestroy{
     this.link = "";
   }
 
+  upload(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    console.log(files[0]);
+  }
+
   save(){
     this.afs.collection("profiles").doc(this.authService.userData.uid).update({
       profileName: this.profileName,

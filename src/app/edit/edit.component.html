@@ -1,10 +1,22 @@
 <div class="edit-container">
     <div class="edit-top">
         <div class="edit-pfp">
-            <img src={{user.photoURL}} *ngIf="user.photoURL" (click)="modalService.open('media:pfp')">
+            <img class="edit-pfp-img" src={{user.photoURL}} *ngIf="user.photoURL">
+            <div class="edit-media">
+                <label for="fileInput">
+                    <img class="media-icon" src="assets/icons/media.svg" alt="media icon">
+                </label>
+                <input id="fileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event)">
+            </div>
         </div>
         <div class="edit-banner">
-            <img src={{user.bannerURL}} (click)="modalService.open('media:banner')">
+            <img class="edit-banner-img" src={{user.bannerURL}}>
+            <div class="edit-media">
+                <label for="fileInput">
+                    <img class="media-icon" src="assets/icons/media.svg" alt="media icon">
+                </label>
+                <input id="fileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event)">
+            </div>
         </div>
     </div>
     <div class="edit-bottom">
