@@ -24,6 +24,7 @@
 }
 .media-input{
     display: none;
+    cursor: pointer;
 }
 .edit-banner{
     width: 425px;

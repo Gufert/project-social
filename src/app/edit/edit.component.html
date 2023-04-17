@@ -1,21 +1,21 @@
 <div class="edit-container">
     <div class="edit-top">
         <div class="edit-pfp">
-            <img class="edit-pfp-img" src={{user.photoURL}} *ngIf="user.photoURL">
+            <img class="edit-pfp-img" src={{(pfp)}} *ngIf="user.photoURL">
             <div class="edit-media">
-                <label for="fileInput">
+                <label for="pfpFileInput">
                     <img class="media-icon" src="assets/icons/media.svg" alt="media icon">
                 </label>
-                <input id="fileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event)">
+                <input id="pfpFileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event,'pfp')">
             </div>
         </div>
         <div class="edit-banner">
-            <img class="edit-banner-img" src={{user.bannerURL}}>
+            <img class="edit-banner-img" src={{banner}}>
             <div class="edit-media">
-                <label for="fileInput">
+                <label for="bannerFileInput">
                     <img class="media-icon" src="assets/icons/media.svg" alt="media icon">
                 </label>
-                <input id="fileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event)">
+                <input id="bannerFileInput" accept="image/jpeg,image/png,image/webp" tabindex="-1" type="file" class="media-input" (change)="upload($event,'banner')">
             </div>
         </div>
     </div>
