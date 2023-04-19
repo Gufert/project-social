@@ -42,8 +42,23 @@ export class PostsComponent implements OnInit{
     //this.router.navigate(['']);
   }
 
-  postClick(event: any, click: String){
+  async postClick(event: any, click: String){
     event.stopPropagation();
+    this.afs.collection("likes",ref=>ref.where('likes', '==', this.as.userData.uid)
+    .where('likes', '==', this.post.pid))
+    .get()
+    .subscribe((data) => {
+      if(data.size > 0){
+        data.forEach(async (el) => {
+          this.res = el.data();
+          this.user = await this.getUserService.UserFromUID(this.res.uid);
+          this.results.push(this.user);
+        })
+      }
+      else{
+        this.noResults = true;
+      }
+    });
     if(click == 'like'){
       this.ld = {
         uid: this.as.userData.uid,
