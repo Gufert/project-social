@@ -1,5 +1,6 @@
 .relations-container{
     height: 500px;
+    overflow: scroll;
 }
 .relations-user{
     display: flex;

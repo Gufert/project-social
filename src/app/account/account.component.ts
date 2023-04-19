@@ -11,14 +11,10 @@ import { User } from 'firebase/auth';
 })
 export class AccountComponent implements OnInit{
   userData: UserData = {} as UserData;
-  user: User = {} as User;
 
   constructor(public authService: AuthService, public getUserService: GetUserService) {}
 
   async ngOnInit() {
-    var user = JSON.parse(localStorage.getItem('user')!);
-    if(user){
-      this.userData = await this.getUserService.UserFromUID(user.uid);
-    }
+    this.userData = await this.getUserService.UserFromUID(this.authService.userData.uid);
   }
 }

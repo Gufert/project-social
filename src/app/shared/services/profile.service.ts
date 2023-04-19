@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './auth.service';
 import { arrayUnion, arrayRemove } from "firebase/firestore";
 import { Post } from './post';
+import { Reply } from './reply';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class ProfileService {
   profileData: any;
   user: UserData = {} as UserData;
   posts: Array<Post> = [];
+  replies: Array<Reply> = [];
 
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
@@ -30,18 +32,43 @@ export class ProfileService {
             this.profileData = doc.data();
             this.user = {...this.userData, ...this.profileData};
             this.user.joinDate = new Date(this.user.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
-            this.profileData.posts.forEach(async (element: any) => {
-              await this.afs.collection("posts", ref=>ref.orderBy("date","desc")).doc(element).ref.get().then(async (doc) => {
-                var post = <Post>doc.data();
-                this.posts.push(post);
-              })
-            })
+            this.getPosts();
           })
         }
         else{
           this.noUser = true;
         }
     })
+  }
+
+  async getPosts(){
+    if(this.user.uid != null){
+      this.posts = [];
+      this.replies = [];
+
+      switch (window.location.pathname.split('/')[2]){
+        case undefined:
+          this.afs.collection("posts",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+            .subscribe((data) => {
+              data.forEach((el) => {
+                this.posts.push(<Post>el.data());
+              })
+          });
+          break;
+        case "replies":
+          this.afs.collection("replies",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+            .subscribe((data) => {
+              data.forEach((el) => {
+                this.replies.push(<Reply>el.data());
+              })
+          });
+          break;
+        case "likes":
+          break;
+        case "dislikes":
+          break;
+      }
+    }
   }
 
   follow(){
@@ -56,3 +83,12 @@ export class ProfileService {
     this.user.followers.splice(this.user.followers.indexOf(this.authService.userData.uid), 1);
   }
 }
+
+//var posts: Post[] = [];
+// await this.profileData.posts.forEach(async (element: any) => {
+//   await this.afs.collection("posts").doc(element).ref.get().then((doc) => {
+//     var post = <Post>doc.data();
+//     posts.push(post);
+//     posts.sort((a,b) => b.date.valueOf() - a.date.valueOf());
+//   })
+// })

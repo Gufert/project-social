@@ -40,3 +40,7 @@
     text-decoration: none;
     color: inherit;
 }
+.profile-posts,.profile-replies{
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
+}

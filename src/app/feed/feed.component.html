@@ -1,3 +1,18 @@
-<div class="feed-container">
+<div class="feed-container" *ngIf="authService.userData && authService.userData.uid">
     <app-posts *ngFor="let post of posts" [post]="post"></app-posts>
+    <div class="feed-none" *ngIf="postService.noFollowing || postService.noFeed">
+        <div class="fn-header">
+            There's nothing to show here.
+        </div>
+        <div class="fn-message">
+            <div *ngIf="postService.noFollowing">
+                This page shows posts from people you are following. You are following exactly 0 people. 
+                Meaning there are no posts to show. Try following someone and then come back here.
+            </div>
+            <div *ngIf="postService.noFeed">
+                You are following at least 1 person. However none of the people you follow have posted 
+                anything. So there are no posts to show. Try following someone who has posted something.
+            </div>
+        </div>
+    </div>
 </div>

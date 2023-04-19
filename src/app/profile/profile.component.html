@@ -21,9 +21,12 @@
             </span>
         </div>
     </div>
-    <div class="profile-posts">
-        <div class="post-container" *ngFor="let post of profileService.posts" [routerLink]="['/post',post.pid]">
-            {{post.content}}
+    <div class="profile-posts" *ngIf="router.url.split('/')[2] != 'replies'">
+        <app-posts *ngFor="let post of profileService.posts" [post]="post"></app-posts>
+    </div>
+    <div class="profile-replies" *ngIf="router.url.split('/')[2] == 'replies'">
+        <div class="profile-reply" *ngFor="let reply of profileService.replies">
+            {{reply.content}}
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ProfileService } from '../shared/services/profile.service';
 import { UserData } from '../shared/services/user-data';
 import { Router } from '@angular/router';
@@ -13,7 +13,13 @@ import { Title } from '@angular/platform-browser';
 export class ProfileComponent implements OnInit, OnDestroy {
   userPath: String = '';
 
-  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){} 
+  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd){
+        profileService.getPosts();
+      }
+    })
+  } 
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -25,9 +31,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     })
   }
+
   ngOnDestroy(): void {
     this.profileService.noUser = false;
     this.profileService.user = {} as UserData;
     this.profileService.posts = [];
+  }
+
+  navigate(path: String){
+    this.router.navigate(["/", path]).then(()=>{
+      this.profileService.getPosts();
+    });
   }
 }

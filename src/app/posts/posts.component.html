@@ -3,7 +3,7 @@
         <img src={{user.photoURL}}>
     </div>
     <div>
-        <div class="post-user">
+        <div class="post-user" [routerLink]="['/',user.displayName]">
             <b>{{user.profileName}}</b> @{{user.displayName}} • {{post.date}}
         </div>
         <div class="post-content">
