@@ -6,14 +6,17 @@ import { GetUserService } from '../shared/services/get-user.service';
 import { LikeDislike } from '../shared/services/like-dislike';
 import { LikeDislikeService } from '../shared/services/like-dislike.service';
 import { AuthService } from '../shared/services/auth.service';
+import { Observable } from 'rxjs';
 import { User } from '../shared/services/user';
+import { QuerySnapshot } from 'firebase/firestore';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit{
+export class PostsComponent implements OnInit {
   user: UserData = {} as UserData
   @Input() post?: any;
 
@@ -23,11 +26,12 @@ export class PostsComponent implements OnInit{
     public afs: AngularFirestore,
     public getUserService: GetUserService,
     public likeDislikeService: LikeDislikeService
-    ) {
+  ) {
 
   }
 
   ld: LikeDislike = new LikeDislike();
+  res: any;
 
   async ngOnInit() {
     this.post.date = new Date(this.post.date.seconds * 1000);
@@ -35,47 +39,83 @@ export class PostsComponent implements OnInit{
     this.user = await this.getUserService.UserFromUID(this.post.uid);
     console.log(this.post, this.user);
   }
-  
 
+  checkIfLDExists(path: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.afs.collection(path, ref => 
+        ref.where('uid', '==', this.as.userData.uid)
+           .where('pid', '==', this.post.pid))
+        .get()
+        .subscribe((querySnapshot) => {
+          resolve(!querySnapshot.empty);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
 
-  openThread(){
+  openThread() {
     //this.router.navigate(['']);
   }
 
-  async postClick(event: any, click: String){
+  async postClick(event: any, click: String) {
     event.stopPropagation();
-    this.afs.collection("likes",ref=>ref.where('likes', '==', this.as.userData.uid)
-    .where('likes', '==', this.post.pid))
-    .get()
-    .subscribe((data) => {
-      if(data.size > 0){
-        data.forEach(async (el) => {
-          this.res = el.data();
-          this.user = await this.getUserService.UserFromUID(this.res.uid);
-          this.results.push(this.user);
-        })
-      }
-      else{
-        this.noResults = true;
-      }
-    });
-    if(click == 'like'){
-      this.ld = {
-        uid: this.as.userData.uid,
-        pid: this.post.pid,
-        date: new Date()
-      }
-      this.likeDislikeService.likePost(this.ld)
+
+    if (click == 'like') {
+      this.checkIfLDExists("likes").then((exists) => {
+        if (exists) {
+            console.log("delete like")
+            this.afs.collection("likes").ref.where('uid', '==', this.as.userData.uid)
+              .where('pid', '==', this.post.pid)
+              .get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  const docID = doc.id
+                  this.afs.collection("likes").doc(docID).delete();
+                });
+              })
+              .catch((error) => {
+                console.log('Error getting documents: ', error);
+              });
+          }
+          else {
+            console.log("new like")
+            this.ld = {
+              uid: this.as.userData.uid,
+              pid: this.post.pid,
+              date: new Date()
+            }
+            this.likeDislikeService.likePost(this.ld)
+          }
+      })
     }
-    if(click == 'dislike'){
-      this.ld = {
-        uid: this.as.userData.uid,
-        pid: this.post.pid,
-        date: new Date()
-      }
-      this.likeDislikeService.dislikePost(this.ld)
+    if (click == 'dislike') {
+      this.checkIfLDExists("dislikes").then((exists) => {
+        if (exists) {
+            console.log("delete dislike")
+            this.afs.collection("dislikes").ref.where('uid', '==', this.as.userData.uid)
+              .where('pid', '==', this.post.pid)
+              .get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  const docID = doc.id
+                  this.afs.collection("dislikes").doc(docID).delete();
+                });
+              })
+              .catch((error) => {
+                console.log('Error getting documents: ', error);
+              });
+          }
+          else {
+            console.log("new dislike")
+            this.ld = {
+              uid: this.as.userData.uid,
+              pid: this.post.pid,
+              date: new Date()
+            }
+            this.likeDislikeService.dislikePost(this.ld)
+          }
+      })
     }
-    if(click == 'reply'){
+    if (click == 'reply') {
 
     }
     console.log(click);

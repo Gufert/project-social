@@ -7,8 +7,8 @@ import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/comp
   providedIn: 'root'
 })
 export class LikeDislikeService {
-  public dbLikePath = '/like';
-  public dbDislikePate = '/dislike';
+  public dbLikePath = '/likes';
+  public dbDislikePate = '/dislikes';
   postsLikeRef: AngularFirestoreCollection<LikeDislike>;
   postDislikeRef: AngularFirestoreCollection<LikeDislike>;
 
@@ -20,12 +20,28 @@ export class LikeDislikeService {
   likePost(ld: LikeDislike): any{
     return this.afs.collection(this.dbLikePath).add({
       ...ld
+    }).then((docRef) =>{
+      let newDocID = docRef.id
+      docRef.set({
+        ldid: newDocID},
+        {merge: true});
+      console.log("documanet id: ", docRef.id);
+    }).catch((error) =>{
+      console.error("Error", error)
     })
   }
 
   dislikePost(ld: LikeDislike): any{
     return this.afs.collection(this.dbDislikePate).add({
       ...ld
+    }).then((docRef) =>{
+      let newDocID = docRef.id
+      docRef.set({
+        ldid: newDocID},
+        {merge: true});
+      console.log("documanet id: ", docRef.id);
+    }).catch((error) =>{
+      console.error("Error", error)
     })
   }
 }
