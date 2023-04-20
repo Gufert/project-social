@@ -8,10 +8,11 @@
     </div>
     <div class="right">
       <app-profiles></app-profiles>
-      <app-prompt *ngIf="authService.userData == null"></app-prompt>
+      <app-prompt *ngIf="!authService.userData"></app-prompt>
     </div>
   </div>
 </div>
 <div class="modal-container" *ngIf="(modalService.show)">
   <app-modal></app-modal>
 </div>
+<!-- <app-media></app-media> -->

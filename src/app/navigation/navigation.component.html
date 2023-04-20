@@ -5,7 +5,7 @@
     </div>
     <nav class="site-nav">
         <ul class="nav-ul">
-            <div class="li-container" *ngIf="authService.userData as user">
+            <div class="li-container" *ngIf="authService.userData">
                 <li class="nav-li" [routerLink]="['feed']">
                     <img src="assets/icons/home.svg" alt="home icon" class="nav-icons"><a class="nav-a" [routerLink]="['feed']">Home</a>
                 </li>
@@ -15,7 +15,7 @@
                     <img src="assets/icons/search.svg" alt="search icon" class="nav-icons"><a class="nav-a" [routerLink]="['search']">Search</a>
                 </li>
             </div>
-            <div class="li-container" *ngIf="authService.userData as user">
+            <div class="li-container" *ngIf="authService.userData">
                 <li class="nav-li" [routerLink]="['bookmarks']">
                     <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="nav-icons"><a class="nav-a" [routerLink]="['bookmarks']">Bookmarks</a>
                 </li>
@@ -32,10 +32,10 @@
             </div>
         </ul>
     </nav>
-    <div class="post-button" (click)="modalService.open('post')" *ngIf="authService.userData as user">
+    <div class="post-button" (click)="modalService.open('post')" *ngIf="authService.userData">
         Post
     </div>
-    <div class="account">
+    <div class="account" *ngIf="authService.userData && authService.userData.uid">
         <app-account></app-account>
     </div>
 </div>

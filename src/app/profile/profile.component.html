@@ -10,15 +10,40 @@
                 Replies
             </span>
         </div>
-        <div class="button" [routerLink]="['top']" (click)="title.setTitle('Project Social | @' + profileService.user.displayName + ' / Top')">
-            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'top' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
-                Top
-            </span>
-        </div>
         <div class="button" [routerLink]="['likes']" (click)="title.setTitle('Project Social | @' + profileService.user.displayName + ' / Likes')">
             <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'likes' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
                 Likes
             </span>
+        </div>
+        <div class="button" [routerLink]="['dislikes']" (click)="title.setTitle('Project Social | @' + profileService.user.displayName + ' / Dislikes')">
+            <span class="buttonText" [ngStyle]="router.url.split('/')[2] == 'dislikes' ? {'border-bottom': 'solid 4px var(--psTeal)', 'margin-top': '4px'} : {}">
+                Dislikes
+            </span>
+        </div>
+    </div>
+    <div class="profile-posts" *ngIf="router.url.split('/')[2] != 'replies'">
+        <app-posts *ngFor="let post of profileService.posts" [post]="post"></app-posts>
+    </div>
+    <div class="profile-replies" *ngIf="router.url.split('/')[2] == 'replies'">
+        <div class="profile-reply" *ngFor="let reply of profileService.repliesData">
+            <div class="reply-container" [routerLink]="['/post',reply.reply.pid]">
+                <div class="reply">
+                    <div class="reply-pfp">
+                        <img src={{profileService.user.photoURL}}>
+                    </div>
+                    <div>
+                        <div class="reply-user">
+                            <b>{{profileService.user.profileName}}</b> @{{profileService.user.displayName}} • {{reply.reply.date}}
+                        </div>
+                        <div class="reply-to">
+                            Replying to @{{reply.displayName}}
+                        </div>
+                        <div class="reply-content">
+                            {{reply.reply.content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

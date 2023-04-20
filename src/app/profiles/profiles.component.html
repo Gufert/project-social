@@ -42,7 +42,7 @@
     </div>
     <div class="profile-relations">
         <!-- <a class="follow-nav" [routerLink]="[profileService.user.displayName,'following']"><b>{{profileService.user.following.length}}</b> Following</a> <a class="follow-nav" [routerLink]="[profileService.user.displayName,'followers']"><b>{{profileService.user.followers.length}}</b> Followers</a> -->
-        <div class="relations" (click)="modalService.open('following')"><b>{{profileService.user.following.length}}</b> Following</div> 
-        <div class="relations" (click)="modalService.open('followers')"><b>{{profileService.user.followers.length}}</b> Followers</div>
+        <div class="relations" (click)="modalService.open('follow:following')"><b>{{profileService.user.following.length}}</b> Following</div> 
+        <div class="relations" (click)="modalService.open('follow:followers')"><b>{{profileService.user.followers.length}}</b> Followers</div>
     </div>
 </div>

@@ -7,6 +7,7 @@ import { Like } from '../shared/services/like';
 import { Dislike } from '../shared/services/dislike';
 import { LikeDislikeService } from '../shared/services/like-dislike.service';
 import { AuthService } from '../shared/services/auth.service';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-posts',
@@ -22,7 +23,8 @@ export class PostsComponent implements OnInit{
     public router: Router,
     public afs: AngularFirestore,
     public getUserService: GetUserService,
-    public likeDislikeService: LikeDislikeService
+    public likeDislikeService: LikeDislikeService,
+    public modalService: ModalService
     ) {
 
   }
@@ -31,7 +33,7 @@ export class PostsComponent implements OnInit{
   dislike: Dislike = new Dislike();
 
   async ngOnInit() {
-    this.post.date = new Date(this.post.date.seconds * 1000);
+    this.post.date = new Date(this.post.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
     this.user = await this.getUserService.UserFromUID(this.post.uid);
   }
   
@@ -60,7 +62,7 @@ export class PostsComponent implements OnInit{
       this.likeDislikeService.dislikePost(this.dislike)
     }
     if(click == 'reply'){
-
+      this.modalService.open('reply:' + this.post.pid)
     }
   }
 }

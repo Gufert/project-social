@@ -57,3 +57,24 @@
 .thread-replies{
     border-top: solid 1px var(--psBorderColor);
 }
+.replies-container{
+    display: flex;
+    height: auto;
+    padding-top: 5px;
+    border-bottom: 1px solid var(--psBorderColor);
+}
+.reply-pfp img{
+    height: 50px;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+.reply-top{
+    display: flex;
+}
+.reply-user{
+    cursor: pointer;
+}
+.reply-content{
+    margin-right: 10px;
+    padding: 1px 0;
+}

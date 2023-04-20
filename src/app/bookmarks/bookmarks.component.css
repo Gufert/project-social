@@ -1,0 +1,9 @@
+.bookmarks-none{
+    width: 475px;
+    display: block;
+    margin: 20px auto 0px auto;
+}
+.nb-header{
+    font-size: 25px;
+    font-weight: bold;
+}

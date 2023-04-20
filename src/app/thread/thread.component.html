@@ -1,5 +1,5 @@
-<div class="thread-container" *ngIf="user.uid != null">
-    <div class="thread-post">
+<div class="thread-container">
+    <div class="thread-post" *ngIf="user.uid != null">
         <div class="thread-user">
             <div class="user-pfp">
                 <img src={{user.photoURL}}>
@@ -14,34 +14,34 @@
             </div>
         </div>
         <div class="thread-content">
-            {{content}}
+            {{post.content}}
         </div>
         <div class="thread-date">
-            {{date}}
+            {{post.date}}
         </div>
         <div class="thread-interactions">
             <div class="interactions-stats">
                 <div class="post-replies">
-                    0 Replies
+                    {{post.replies.length}} Replies
                 </div>
-                <div class="post-likes" (click)="modalService.open('likes')">
-                    0 Likes
+                <div class="post-likes" (click)="modalService.open('interactions:likes')">
+                    {{post.likes.length}} Likes
                 </div>
-                <div class="post-dislikes" (click)="modalService.open('dislikes')">
-                    0 Dislikes
+                <div class="post-dislikes" (click)="modalService.open('interactions:dislikes')">
+                    {{post.dislikes.length}} Dislikes
                 </div>
             </div>
             <div class="interactions-buttons">
-                <div class="reply-button" (click)="modalService.open('reply')">
+                <div class="reply-button" (click)="authService.userData != null ? modalService.open('reply:' + post.pid) : modalService.open('alert')">
                     <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
                 </div>
-                <div class="like-button" (click)="interactions.like()">
+                <div class="like-button" (click)="authService.userData != null ? interactions.like() : modalService.open('alert')">
                     <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
                 </div>
-                <div class="dislike-button" (click)="interactions.dislike()">
+                <div class="dislike-button" (click)="authService.userData != null ? interactions.dislike() : modalService.open('alert')">
                     <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
                 </div>
-                <div class="bookmark-button" (click)="interactions.bookmark()">
+                <div class="bookmark-button" (click)="authService.userData != null ? interactions.bookmark(post.pid) : modalService.open('alert')">
                     <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
                 </div>
                 <div class="share-button" (click)="interactions.share()">
@@ -51,7 +51,27 @@
         </div>
     </div>
     <div class="thread-replies">
-        insert replies here
+        <div class="replies-container" *ngFor="let reply of replies">
+            <div class="reply-pfp">
+                <img src={{reply.photoURL}}>
+            </div>
+            <div>
+                <div class="reply-top">
+                    <div class="reply-user" [routerLink]="['/',reply.displayName]">
+                        <b>{{reply.profileName}}</b> @{{reply.displayName}}
+                    </div>
+                    <div class="reply-date">
+                        &nbsp;• {{reply.date}}  
+                    </div>
+                </div>
+                <div class="reply-content">
+                    {{reply.content}}
+                </div>
+            <div>
+        </div>
+    </div>
+    <div class="no-replies" *ngIf="post.replies.length == 0">
+        There are no replies to this post
     </div>
 </div>
 <div class="no-post" *ngIf="(noPost)">
