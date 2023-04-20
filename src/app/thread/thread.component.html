@@ -41,7 +41,7 @@
                 <div class="dislike-button" (click)="interactions.dislike()">
                     <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
                 </div>
-                <div class="bookmark-button" (click)="interactions.bookmark()">
+                <div class="bookmark-button" (click)="interactions.bookmark(post.pid)">
                     <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
                 </div>
                 <div class="share-button" (click)="interactions.share()">

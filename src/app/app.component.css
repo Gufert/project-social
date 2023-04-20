@@ -1,10 +1,11 @@
 .main-container{
-    width: fit-content;
-    margin: 0 auto;
-    position: relative;
+    width: 100%;
 }
 .main{
     display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
 }
 .main div{
     width: 600px;
