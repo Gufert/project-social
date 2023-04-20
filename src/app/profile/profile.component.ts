@@ -4,6 +4,7 @@ import { ProfileService } from '../shared/services/profile.service';
 import { UserData } from '../shared/services/user-data';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,17 +13,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   userPath: String = '';
+  routerSubscribe: Subscription | undefined;
 
-  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){
-    router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd){
-        profileService.posts = [];
-        profileService.replies = [];
-        profileService.repliesData = [];
-        profileService.getPosts();
-      }
-    })
-  } 
+  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){} 
 
   ngOnInit(): void {
     this.profileService.posts = [];
@@ -36,6 +29,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.profileService.getProfile(this.userPath);
       }
     })
+    this.routerSubscribe = this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd && this.profileService.user.uid != null){
+        console.log(val);
+        this.profileService.getPosts();
+      }
+    })
   }
 
   ngOnDestroy(): void {
@@ -44,6 +43,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.profileService.posts = [];
     this.profileService.replies = [];
     this.profileService.repliesData = [];
+    this.routerSubscribe?.unsubscribe();
   }
 
   navigate(path: String){

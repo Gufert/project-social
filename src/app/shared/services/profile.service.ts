@@ -24,9 +24,6 @@ export class ProfileService {
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
   async getProfile(user: String){
-    this.posts = [];
-    this.replies = [];
-    this.repliesData = [];
     this.afs
       .collection("users",ref=>ref.where("lowerDN","==",user.toLocaleLowerCase()))
       .get()
