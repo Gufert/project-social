@@ -80,12 +80,12 @@ export class PostsComponent implements OnInit {
           }
           else {
             console.log("new like")
-            this.ld = {
+            this.like = {
               uid: this.as.userData.uid,
               pid: this.post.pid,
               date: new Date()
             }
-            this.likeDislikeService.likePost(this.ld)
+            this.likeDislikeService.likePost(this.like)
           }
       })
     }
@@ -107,12 +107,12 @@ export class PostsComponent implements OnInit {
           }
           else {
             console.log("new dislike")
-            this.ld = {
+            this.dislike = {
               uid: this.as.userData.uid,
               pid: this.post.pid,
               date: new Date()
             }
-            this.likeDislikeService.dislikePost(this.ld)
+            this.likeDislikeService.dislikePost(this.dislike)
           }
       })
     }
