@@ -1,3 +1,6 @@
+.media-container{
+    z-index: 200;
+}
 .media-backdrop{
     position:fixed;
     top:0;

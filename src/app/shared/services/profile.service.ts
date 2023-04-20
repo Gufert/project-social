@@ -17,11 +17,16 @@ export class ProfileService {
   profileData: any;
   user: UserData = {} as UserData;
   posts: Array<Post> = [];
+  reply: any;
   replies: Array<Reply> = [];
+  repliesData: any[] = [];
 
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
   async getProfile(user: String){
+    this.posts = [];
+    this.replies = [];
+    this.repliesData = [];
     this.afs
       .collection("users",ref=>ref.where("lowerDN","==",user.toLocaleLowerCase()))
       .get()
@@ -45,6 +50,7 @@ export class ProfileService {
     if(this.user.uid != null){
       this.posts = [];
       this.replies = [];
+      this.repliesData = [];
 
       switch (window.location.pathname.split('/')[2]){
         case undefined:
@@ -59,7 +65,15 @@ export class ProfileService {
           this.afs.collection("replies",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
             .subscribe((data) => {
               data.forEach((el) => {
-                this.replies.push(<Reply>el.data());
+                this.reply = el.data();
+                this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
+                this.replies.push(<Reply>this.reply);
+              })
+              this.replies.forEach((reply) => {
+                this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
+                  var post: any = doc.data();
+                  this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
+                })
               })
           });
           break;

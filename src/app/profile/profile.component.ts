@@ -16,12 +16,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd){
+        profileService.posts = [];
+        profileService.replies = [];
+        profileService.repliesData = [];
         profileService.getPosts();
       }
     })
   } 
 
   ngOnInit(): void {
+    this.profileService.posts = [];
+    this.profileService.replies = [];
+    this.profileService.repliesData = [];
     this.activatedRoute.params.subscribe(params => {
       if(this.userPath != params['user']){
         this.userPath = params['user']
@@ -36,6 +42,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.profileService.noUser = false;
     this.profileService.user = {} as UserData;
     this.profileService.posts = [];
+    this.profileService.replies = [];
+    this.profileService.repliesData = [];
   }
 
   navigate(path: String){

@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../shared/services/auth.service';
 import { ModalService } from '../shared/services/modal.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { MediaComponent } from '../media/media.component';
 
 @Component({
   selector: 'app-edit',
@@ -24,7 +25,7 @@ export class EditComponent implements OnInit, OnDestroy{
   bannerFile: any;
 
   constructor(public profileService: ProfileService, public afs: AngularFirestore, public authService: AuthService, 
-              public modalService: ModalService, public storage: AngularFireStorage) {}
+              public modalService: ModalService, public storage: AngularFireStorage, public media: MediaComponent) {}
 
   async ngOnInit(): Promise<void> {
     this.user = this.profileService.user;
@@ -49,7 +50,7 @@ export class EditComponent implements OnInit, OnDestroy{
     const files = target.files as FileList;
 
     if(files[0]){
-      console.log(type);
+      //this.media.open(files[0]);
       var reader = new FileReader();
 		  reader.readAsDataURL(files[0]);
 
@@ -106,7 +107,7 @@ export class EditComponent implements OnInit, OnDestroy{
       this.profileService.user.location = this.location;
       this.profileService.user.link = this.link;
     }
-
-    this.modalService.close()
+    
+    //this.modalService.close()
   }
 }

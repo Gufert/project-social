@@ -25,8 +25,25 @@
         <app-posts *ngFor="let post of profileService.posts" [post]="post"></app-posts>
     </div>
     <div class="profile-replies" *ngIf="router.url.split('/')[2] == 'replies'">
-        <div class="profile-reply" *ngFor="let reply of profileService.replies">
-            {{reply.content}}
+        <div class="profile-reply" *ngFor="let reply of profileService.repliesData">
+            <div class="reply-container" [routerLink]="['/post',reply.reply.pid]">
+                <div class="reply">
+                    <div class="reply-pfp">
+                        <img src={{profileService.user.photoURL}}>
+                    </div>
+                    <div>
+                        <div class="reply-user">
+                            <b>{{profileService.user.profileName}}</b> @{{profileService.user.displayName}} • {{reply.reply.date}}
+                        </div>
+                        <div class="reply-to">
+                            Replying to @{{reply.displayName}}
+                        </div>
+                        <div class="reply-content">
+                            {{reply.reply.content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

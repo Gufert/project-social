@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-media',
@@ -7,7 +6,20 @@ import { ModalService } from '../shared/services/modal.service';
   styleUrls: ['./media.component.css']
 })
 export class MediaComponent {
-  @Input() media: string = "";
+  show: boolean = false;
+  preview: any;
 
-  constructor(public modalService: ModalService){}
+  constructor(){}
+
+  open(media: File) {
+    console.log("called");
+    this.show = true;
+    console.log(media);
+    console.log(this.show);
+    this.preview = media;
+  }
+
+  close(){
+    this.show = false
+  }
 }
