@@ -24,11 +24,6 @@ export class PostService{
   constructor(public afs: AngularFirestore, public authService: AuthService, public modalService: ModalService, public getUserService: GetUserService){ 
     this.postsRef = afs.collection(this.dbPath);
   }
-
-  async getUser(){
-    
-    console.log(this.user);
-  }
   
   getAll(): AngularFirestoreCollection<Post> {
     return this.postsRef;

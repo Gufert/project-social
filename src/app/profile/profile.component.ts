@@ -31,7 +31,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     })
     this.routerSubscribe = this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd && this.profileService.user.uid != null){
-        console.log(val);
         this.profileService.getPosts();
       }
     })

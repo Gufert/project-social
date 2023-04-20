@@ -1,5 +1,5 @@
-<div class="thread-container" *ngIf="user.uid != null">
-    <div class="thread-post">
+<div class="thread-container">
+    <div class="thread-post" *ngIf="user.uid != null">
         <div class="thread-user">
             <div class="user-pfp">
                 <img src={{user.photoURL}}>
@@ -32,16 +32,16 @@
                 </div>
             </div>
             <div class="interactions-buttons">
-                <div class="reply-button" (click)="modalService.open('reply:' + post.pid)">
+                <div class="reply-button" (click)="authService.userData != null ? modalService.open('reply:' + post.pid) : modalService.open('alert')">
                     <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
                 </div>
-                <div class="like-button" (click)="interactions.like()">
+                <div class="like-button" (click)="authService.userData != null ? interactions.like() : modalService.open('alert')">
                     <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
                 </div>
-                <div class="dislike-button" (click)="interactions.dislike()">
+                <div class="dislike-button" (click)="authService.userData != null ? interactions.dislike() : modalService.open('alert')">
                     <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
                 </div>
-                <div class="bookmark-button" (click)="interactions.bookmark(post.pid)">
+                <div class="bookmark-button" (click)="authService.userData != null ? interactions.bookmark(post.pid) : modalService.open('alert')">
                     <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
                 </div>
                 <div class="share-button" (click)="interactions.share()">

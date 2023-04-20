@@ -12,10 +12,7 @@ export class MediaComponent {
   constructor(){}
 
   open(media: File) {
-    console.log("called");
     this.show = true;
-    console.log(media);
-    console.log(this.show);
     this.preview = media;
   }
 

@@ -8,6 +8,7 @@ import { ModalService } from '../shared/services/modal.service';
 import { InteractionsService } from '../shared/services/interactions.service';
 import { Reply } from '../shared/services/reply';
 import { Post } from '../shared/services/post';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-thread',
@@ -26,7 +27,7 @@ export class ThreadComponent implements OnInit{
 
 
   constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, 
-    public title: Title, public modalService: ModalService, public interactions: InteractionsService){}
+    public title: Title, public modalService: ModalService, public interactions: InteractionsService, public authService: AuthService){}
 
   ngOnInit(): void {
     this.title.setTitle("Project Social | Post")
