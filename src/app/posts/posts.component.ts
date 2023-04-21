@@ -119,5 +119,8 @@ export class PostsComponent implements OnInit {
     if (click == 'reply') {
       this.modalService.open('reply:' + this.post.pid)
     }
+    if (click == 'delete'){
+      this.modalService.open('delete:' + this.post.pid)
+    }
   }
 }
