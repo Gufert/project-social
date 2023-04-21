@@ -88,15 +88,16 @@ export class AuthService {
   //Update user's current username
   UpdateUserName(displayName: string) {
     return this.afAuth
-      .onAuthStateChanged(function (user) {
-        if (user) {
-          user.updateProfile({
+      .onAuthStateChanged(function (CurrentUser) {
+        if (CurrentUser) {
+          CurrentUser.updateProfile({
             displayName: displayName
           }).then(function () {
             //Profile Updated
             //new display name
             displayName = displayName
           }
+          
           ).catch((error) => {
             window.alert(error.message);
           });
@@ -138,8 +139,29 @@ export class AuthService {
    .update({
     email:email
    })
+   
 
   }
+ /* UpdateUserName(lowerDN:string){
+    return this.afs
+    .collection('users')
+    .doc(this.userData.uid)
+    .update({
+      lowerDN:lowerDN,
+      displayName:lowerDN
+    })
+ 
+
+  }*/
+  UpdatePassword(Password:string){
+    return this.afs
+    .collection('users')
+    .doc(this.userData.uid)
+    .update({
+      Password:Password
+    })
+    
+  } 
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
