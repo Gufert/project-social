@@ -8,10 +8,8 @@ import { Dislike } from '../shared/services/dislike';
 import { LikeDislikeService } from '../shared/services/like-dislike.service';
 import { AuthService } from '../shared/services/auth.service';
 import { ModalService } from '../shared/services/modal.service';
-import { Observable } from 'rxjs';
-import { User } from '../shared/services/user';
-import { QuerySnapshot } from 'firebase/firestore';
-import { map } from 'rxjs/operators';
+import { QuerySnapshot, arrayRemove } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-posts',
@@ -71,6 +69,7 @@ export class PostsComponent implements OnInit {
               .get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                   const docID = doc.id
+                  this.afs.collection("posts").doc(this.post.pid).update({likes: arrayRemove(docID)})
                   this.afs.collection("likes").doc(docID).delete();
                 });
               })
@@ -98,6 +97,7 @@ export class PostsComponent implements OnInit {
               .get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                   const docID = doc.id
+                  this.afs.collection("posts").doc(this.post.pid).update({dislikes: arrayRemove(docID)})
                   this.afs.collection("dislikes").doc(docID).delete();
                 });
               })

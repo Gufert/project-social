@@ -3,6 +3,7 @@ import { Like } from './like'
 import { Dislike } from './dislike';
 import { getDatabase} from "firebase/database";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
+import { arrayUnion } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class LikeDislikeService {
         lid: newDocID},
         {merge: true});
       console.log("documanet id: ", docRef.id);
+      this.afs.collection("posts").doc(ld.pid).update({likes: arrayUnion(newDocID)})
     }).catch((error) =>{
       console.error("Error", error)
     })
@@ -41,6 +43,7 @@ export class LikeDislikeService {
         did: newDocID},
         {merge: true});
       console.log("documanet id: ", docRef.id);
+      this.afs.collection("posts").doc(ld.pid).update({dislikes: arrayUnion(newDocID)})
     }).catch((error) =>{
       console.error("Error", error)
     })
