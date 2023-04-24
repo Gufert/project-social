@@ -12,8 +12,8 @@
             <label>Current Password</label>
             <input>
             <label>New Password</label>
-            <input #userPassword>
-            <button class="updateButton" (click)="authService.UpdatePassword(userPassword.value)">
+            <input #updateUserPassword>
+            <button class="updateButton" (click)="authService.UpdatePassword(updateUserPassword.value)">
                 Save Password
             </button>
         </div>

@@ -88,13 +88,15 @@ export class AuthService {
   //Update user's current username
   UpdateUserName(displayName: string) {
     return this.afAuth
-      .onAuthStateChanged(function (CurrentUser) {
+      .onAuthStateChanged( (CurrentUser) => {
         if (CurrentUser) {
           CurrentUser.updateProfile({
-            displayName: displayName
-          }).then(function () {
+            displayName: displayName,
+            lowerDN:displayName.toLocaleLowerCase()
+          }).then( () => {
             //Profile Updated
             //new display name
+            this.SetUserData(CurrentUser)
             displayName = displayName
           }
           
@@ -122,6 +124,13 @@ export class AuthService {
           });
         }
       });
+  }
+  updateUserPassword(password: string) {
+    this.userData.updatePassword(password).then(function() {
+      console.log('succcess!')
+    }).catch((error: { message: any; }) => {
+      window.alert(error.message)
+    });
   }
   // fetch email 
   GetUserEmail(){
