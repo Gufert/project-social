@@ -92,7 +92,7 @@ export class AuthService {
         if (CurrentUser) {
           CurrentUser.updateProfile({
             displayName: displayName,
-            lowerDN:displayName.toLocaleLowerCase()
+            
           }).then( () => {
             //Profile Updated
             //new display name
