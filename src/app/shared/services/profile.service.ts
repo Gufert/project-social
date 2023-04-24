@@ -18,6 +18,8 @@ export class ProfileService {
   user: UserData = {} as UserData;
   posts: Array<Post> = [];
   reply: any;
+  like: any;
+  dislike: any;
   replies: Array<Reply> = [];
   repliesData: any[] = [];
 
@@ -52,31 +54,49 @@ export class ProfileService {
       switch (window.location.pathname.split('/')[2]){
         case undefined:
           this.afs.collection("posts",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-            .subscribe((data) => {
-              data.forEach((el) => {
-                this.posts.push(<Post>el.data());
-              })
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.posts.push(<Post>el.data());
+            })
           });
           break;
         case "replies":
           this.afs.collection("replies",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-            .subscribe((data) => {
-              data.forEach((el) => {
-                this.reply = el.data();
-                this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
-                this.replies.push(<Reply>this.reply);
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.reply = el.data();
+              this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
+              this.replies.push(<Reply>this.reply);
+            })
+            this.replies.forEach((reply) => {
+              this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
+                var post: any = doc.data();
+                this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
               })
-              this.replies.forEach((reply) => {
-                this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
-                  var post: any = doc.data();
-                  this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
-                })
-              })
+            })
           });
           break;
         case "likes":
+          this.afs.collection("likes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.like = el.data();
+              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
+                this.posts.push(<Post>doc.data());
+              })
+            })
+          })
           break;
         case "dislikes":
+          this.afs.collection("dislikes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.like = el.data();
+              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
+                this.posts.push(<Post>doc.data());
+              })
+            })
+          })
           break;
       }
     }
@@ -94,12 +114,3 @@ export class ProfileService {
     this.user.followers.splice(this.user.followers.indexOf(this.authService.userData.uid), 1);
   }
 }
-
-//var posts: Post[] = [];
-// await this.profileData.posts.forEach(async (element: any) => {
-//   await this.afs.collection("posts").doc(element).ref.get().then((doc) => {
-//     var post = <Post>doc.data();
-//     posts.push(post);
-//     posts.sort((a,b) => b.date.valueOf() - a.date.valueOf());
-//   })
-// })
