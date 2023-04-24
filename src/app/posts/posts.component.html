@@ -10,7 +10,7 @@
             <div class="post-date">
                 &nbsp;• {{post.date}}
             </div>
-            <div class="post-delete" *ngIf="post.uid == authService.userData.uid" (click)="postClick($event, 'delete')">
+            <div class="post-delete" *ngIf="authService.userData && (post.uid == authService.userData.uid || adminService.admins.indexOf(authService.userData.uid) != -1)" (click)="postClick($event, 'delete')">
                 <img src="assets/icons/delete.svg" alt="delete icon" class="post-icons">
             </div>
         </div>

@@ -9,6 +9,7 @@ import { InteractionsService } from '../shared/services/interactions.service';
 import { Reply } from '../shared/services/reply';
 import { Post } from '../shared/services/post';
 import { AuthService } from '../shared/services/auth.service';
+import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-thread',
@@ -26,7 +27,7 @@ export class ThreadComponent implements OnInit{
   replies: any[] = [];
 
 
-  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, 
+  constructor(private activatedRoute: ActivatedRoute, private afs: AngularFirestore, public getUserService: GetUserService, public adminService: AdminService,
     public title: Title, public modalService: ModalService, public interactions: InteractionsService, public authService: AuthService){}
 
   ngOnInit(): void {

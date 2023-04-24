@@ -115,7 +115,7 @@ export class InteractionsService {
     });
   }
 
-  share(){
-    navigator.clipboard.writeText(window.location.toString());
+  share(pid: string){
+    navigator.clipboard.writeText(window.location.origin + "/post/" + pid);
   }
 }
