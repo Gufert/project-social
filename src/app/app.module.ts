@@ -134,8 +134,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     AuthService,
     ModalService,
-    ProfileService,
-    MediaComponent
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

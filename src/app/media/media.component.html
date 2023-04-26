@@ -1,10 +1,12 @@
-<div class="media-container" *ngIf="(show)">
+<div class="media-container">
     <div class="media">
         <div class="media-header">
-            <div class="close" (click)="close()"></div>
+            <div class="close" (click)="mediaService.close()"></div>
         </div>
         <div class="media-content">
-            <img src={{preview}}>
+            <div class="media-crop" [ngStyle]="mediaService.type == 'pfp' ? {'width': '240px', 'height': '240px', 'background': '#fff url(' + mediaService.pfp + ') no-repeat 0 0'} : {'width': '425px', 'height': '130px'}">
+                <!-- <img class="media-img" src={{(mediaService.pfp)}}> -->
+            </div>
         </div>
     </div>
 </div>

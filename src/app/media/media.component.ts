@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MediaService } from '../shared/services/media.service';
 
 @Component({
   selector: 'app-media',
@@ -6,17 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./media.component.css']
 })
 export class MediaComponent {
-  show: boolean = false;
-  preview: any;
-
-  constructor(){}
-
-  open(media: File) {
-    this.show = true;
-    this.preview = media;
-  }
-
-  close(){
-    this.show = false
-  }
+  constructor(public mediaService: MediaService){}
 }

@@ -1,7 +1,7 @@
 <div class="edit-container">
     <div class="edit-top">
         <div class="edit-pfp">
-            <img class="edit-pfp-img" src={{(pfp)}} *ngIf="user.photoURL">
+            <img class="edit-pfp-img" src={{(mediaService.pfp)}} *ngIf="user.photoURL">
             <div class="edit-media">
                 <label for="pfpFileInput">
                     <img class="media-icon" src="assets/icons/media.svg" alt="media icon">
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="edit-banner">
-            <img class="edit-banner-img" src={{banner}}>
+            <img class="edit-banner-img" src={{(mediaService.banner)}}>
             <div class="edit-media">
                 <label for="bannerFileInput">
                     <img class="media-icon" src="assets/icons/media.svg" alt="media icon">

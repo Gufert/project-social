@@ -23,6 +23,7 @@
     color: black;
 }
 .media{
+    border: 2px solid black;
     background: white;
     position: fixed;
     top: 35%;
@@ -30,8 +31,22 @@
     transform: translate(-50%, -50%);
     z-index: 99;
     border-radius: 5px;
+    height: 535px;
 }
 .media-content{
     width: 550px;
-    height: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.media-crop{
+    border: 1px solid blue;
+    background-size: cover;
+    background-position: center;
+}
+.media-img{
+    overflow-x: visible;
+    overflow-y: hidden;
+    z-index: -1;
 }

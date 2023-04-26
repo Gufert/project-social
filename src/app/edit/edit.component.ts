@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../shared/services/auth.service';
 import { ModalService } from '../shared/services/modal.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { MediaComponent } from '../media/media.component';
+import { MediaService } from '../shared/services/media.service';
 
 @Component({
   selector: 'app-edit',
@@ -18,14 +18,9 @@ export class EditComponent implements OnInit, OnDestroy{
   bio: string = "";
   location: string = "";
   link: string = "";
-  pfp: any;
-  banner: any;
-  
-  pfpFile: any;
-  bannerFile: any;
 
   constructor(public profileService: ProfileService, public afs: AngularFirestore, public authService: AuthService, 
-              public modalService: ModalService, public storage: AngularFireStorage, public media: MediaComponent) {}
+              public modalService: ModalService, public storage: AngularFireStorage, public mediaService: MediaService) {}
 
   async ngOnInit(): Promise<void> {
     this.user = this.profileService.user;
@@ -33,8 +28,8 @@ export class EditComponent implements OnInit, OnDestroy{
     this.bio = this.user.bio;
     this.location = this.user.location;
     this.link = this.user.link;
-    this.pfp = this.user.photoURL;
-    this.banner = this.user.bannerURL;
+    this.mediaService.pfp = this.user.photoURL;
+    this.mediaService.banner = this.user.bannerURL;
   }
 
   ngOnDestroy(): void {
@@ -50,28 +45,30 @@ export class EditComponent implements OnInit, OnDestroy{
     const files = target.files as FileList;
 
     if(files[0]){
-      //this.media.open(files[0]);
+      
       var reader = new FileReader();
 		  reader.readAsDataURL(files[0]);
 
       reader.onload = (_event) => {
         if (type == 'pfp') {
-          this.pfp = reader.result;
-          this.pfpFile = files[0];
+          this.mediaService.pfp = reader.result;
+          this.mediaService.pfpFile = files[0];
+          this.mediaService.open('pfp');
         }
         if (type == 'banner') {
-          this.banner = reader.result;
-          this.bannerFile = files[0];
+          this.mediaService.banner = reader.result;
+          this.mediaService.bannerFile = files[0];
+          this.mediaService.open('banner');
         }
       }
     }
   }
 
   save(){
-    if(this.pfp != this.user.photoURL && this.pfpFile){
+    if(this.mediaService.pfp != this.user.photoURL && this.mediaService.pfpFile){
       const path = 'profile-pictures/' + this.user.uid;
       const storageRef = this.storage.storage.ref(path);
-      this.storage.upload(path,this.pfpFile).then(() => {
+      this.storage.upload(path,this.mediaService.pfpFile).then(() => {
         storageRef.getDownloadURL().then((url) => {
           this.authService.UpdatePFP(url);
           this.afs.collection("users").doc(this.authService.userData.uid).update({
@@ -82,10 +79,10 @@ export class EditComponent implements OnInit, OnDestroy{
       });
     }
     
-    if(this.banner != this.user.bannerURL && this.bannerFile){
+    if(this.mediaService.banner != this.user.bannerURL && this.mediaService.bannerFile){
       const path = 'profile-banners/' + this.user.uid;
       const storageRef = this.storage.storage.ref(path);
-      this.storage.upload(path,this.bannerFile).then(() => {
+      this.storage.upload(path,this.mediaService.bannerFile).then(() => {
         storageRef.getDownloadURL().then((url) => {
           this.afs.collection("profiles").doc(this.authService.userData.uid).update({
             bannerURL: url
@@ -108,6 +105,6 @@ export class EditComponent implements OnInit, OnDestroy{
       this.profileService.user.link = this.link;
     }
     
-    //this.modalService.close()
+    this.modalService.close()
   }
 }

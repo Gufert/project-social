@@ -4,6 +4,7 @@ import { AuthService } from './shared/services/auth.service';
 import { ModalService } from './shared/services/modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from './shared/services/admin.service';
+import { MediaService } from './shared/services/media.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { AdminService } from './shared/services/admin.service';
 export class AppComponent implements OnInit{
   title = 'project-social';
 
-  constructor(public authService: AuthService, public modalService: ModalService, private toastr: ToastrService, public adminService: AdminService) {}
+  constructor(public authService: AuthService, public modalService: ModalService, private toastr: ToastrService, public adminService: AdminService, public mediaService: MediaService) {}
 
   ngOnInit() {}
   ShowSuccess(){
