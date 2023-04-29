@@ -1,37 +1,12 @@
 .media-container{
-    z-index: 200;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.media-backdrop{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background-color:rgba(0,0,0,0.5);
-}
-.media-header{
-    height: fit-content;
-}
-.close{
-    cursor: pointer;
-    width: fit-content;
-    padding-left: 10px;
-}
-.close:after{
-    content: "\d7";
-    font-size: 35px; 
-    color: black;
-}
-.media{
-    background: white;
-    position: fixed;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 99;
-    border-radius: 5px;
-}
-.media-content{
-    width: 550px;
-    height: fit-content;
+.media-img{
+    width: 100%;
+    max-width: 550px;
+    max-height: 240px;
+    object-fit: contain;
 }

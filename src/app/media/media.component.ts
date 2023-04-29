@@ -1,22 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-media',
   templateUrl: './media.component.html',
   styleUrls: ['./media.component.css']
 })
-export class MediaComponent {
+export class MediaComponent implements OnInit {
   show: boolean = false;
   preview: any;
 
+  @Input() media: any;
+
   constructor(){}
 
-  open(media: File) {
-    this.show = true;
-    this.preview = media;
-  }
-
-  close(){
-    this.show = false
+  ngOnInit(): void {
+    this.media = "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/" + this.media;
+    console.log(this.media);
   }
 }

@@ -108,6 +108,6 @@ export class EditComponent implements OnInit, OnDestroy{
       this.profileService.user.link = this.link;
     }
     
-    //this.modalService.close()
+    this.modalService.close()
   }
 }
