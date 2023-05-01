@@ -1,1 +1,11 @@
-<p>bookmarks works!</p>
+<div class="bookmarks-container">
+    <app-posts *ngFor="let post of posts" [post]="post"></app-posts>
+    <div class="bookmarks-none" *ngIf="noBookmarks">
+        <div class="nb-header">
+            There are no bookmarks to show.
+        </div>
+        <div class="nb-message">
+            You have not bookmarked any posts. Try bookmarking a post and coming back here.
+        </div>
+    </div>
+</div>

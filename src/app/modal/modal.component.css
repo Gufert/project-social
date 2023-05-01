@@ -1,5 +1,4 @@
 .modal-backdrop{
-    display: none;
     position:fixed;
     top:0;
     left:0;
@@ -21,7 +20,6 @@
     color: black;
 }
 .modal{
-    display: none;
     background: white;
     position: fixed;
     top: 35%;

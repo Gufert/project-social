@@ -1,0 +1,99 @@
+.thread-post{
+    margin: 10px 10px 0 10px;
+}
+.thread-top{
+    display: inline-flex;
+    width: 100%;
+}
+.thread-user{
+    display: flex;
+}
+.user-pfp img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.user-profileName,.user-displayName{
+    cursor: pointer;
+    width: fit-content;
+}
+.thread-delete{
+    display: flex;
+    margin-right: 0px;
+    margin-left: auto;
+    height: fit-content;
+    border-radius: 50%;
+    padding: 3px;
+}
+.thread-delete:hover{
+    background-color: var(--psGrey);
+    cursor: pointer;
+}
+.delete-icon{
+    width: 20px;
+}
+.thread-content{
+    margin: 3px 0;
+}
+.thread-date{
+    margin-bottom: 3px;
+}
+.interactions-stats{
+    display: flex;
+    height: 35px;
+    border-top: solid 1px var(--psBorderColor);
+    border-bottom: solid 1px var(--psBorderColor);
+    align-items: center;
+}
+.interactions-stats div{
+    margin-right: 15px;
+    width: fit-content;
+}
+.post-likes,.post-dislikes{
+    cursor: pointer;
+}
+.interactions-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+.interaction-icons{
+    width: 20px;
+}
+.interactions-buttons div{
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    border-radius: 50%;
+    margin: 1px 0;
+}
+.interactions-buttons div:hover{
+    background-color: var(--psGrey);
+    cursor: pointer;
+}
+.thread-replies{
+    border-top: solid 1px var(--psBorderColor);
+}
+.replies-container{
+    display: flex;
+    height: auto;
+    padding-top: 5px;
+    border-bottom: 1px solid var(--psBorderColor);
+}
+.reply-pfp img{
+    height: 50px;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+.reply-top{
+    display: flex;
+}
+.reply-user{
+    cursor: pointer;
+}
+.reply-content{
+    margin-right: 10px;
+    padding: 1px 0;
+}

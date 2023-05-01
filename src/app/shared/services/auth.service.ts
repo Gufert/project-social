@@ -8,7 +8,6 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { ModalComponent } from 'src/app/modal/modal.component';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
@@ -24,7 +23,6 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public modal: ModalComponent,
     private toastr: ToastrService,
     public modalService: ModalService,
     private db: AngularFireDatabase
@@ -50,7 +48,7 @@ export class AuthService {
           this.SetUserData(result.user);
         });
         this.SetUserData(result.user);
-        this.modal.close();
+        this.modalService.close();
         this.router.navigate(['feed']);
         this.toastr.success('Login Successful');
       })
@@ -74,7 +72,7 @@ export class AuthService {
           }).then(() => {
             this.SetUserProfile(result.user)
               .then(() => {
-                this.modal.close();
+                this.modalService.close();
                 this.SignIn(email, password);
                 this.toastr.success('Sign Up Successful');
               })
@@ -239,8 +237,8 @@ export class AuthService {
       location: "",
       link: "",
       posts: [],
-      followers: 0,
-      following: 0
+      followers: [],
+      following: []
     }
     return userRef.set(profileData, {
       merge: true,

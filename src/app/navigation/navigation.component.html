@@ -1,40 +1,46 @@
 <div class = nav-container>
     <div class="site-header">
+        <img src="assets/icons/logo.svg" alt="logo" class="logo">
         Project Social
     </div>
     <nav class="site-nav">
         <ul class="nav-ul">
-            <div class="li-container" *ngIf="authService.userData as user">
-                <li class="nav-li">
-                    <img src="assets/icons/home.png" alt="home icon" class="nav-icons"><a class="nav-a" [routerLink]="['feed']">Home</a>
+            <div class="li-container" *ngIf="authService.userData">
+                <li class="nav-li" [routerLink]="['feed']">
+                    <img src="assets/icons/home.svg" alt="home icon" class="nav-icons"><a class="nav-a" [routerLink]="['feed']">Home</a>
                 </li>
             </div>
             <div class="li-container">
-                <li class="nav-li">
-                    <img src="assets/icons/search.png" alt="search icon" class="nav-icons"><a class="nav-a" [routerLink]="['search']">Search</a>
+                <li class="nav-li" [routerLink]="['search']">
+                    <img src="assets/icons/search.svg" alt="search icon" class="nav-icons"><a class="nav-a" [routerLink]="['search']">Search</a>
+                </li>
+            </div>
+            <div class="li-container" *ngIf="authService.userData">
+                <li class="nav-li" [routerLink]="['bookmarks']">
+                    <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="nav-icons"><a class="nav-a" [routerLink]="['bookmarks']">Bookmarks</a>
                 </li>
             </div>
             <div class="li-container" *ngIf="authService.userData as user">
-                <li class="nav-li">
-                    <img src="assets/icons/bookmark.png" alt="bookmark icon" class="nav-icons"><a class="nav-a" [routerLink]="['bookmarks']">Bookmarks</a>
+                <li class="nav-li" [routerLink]="[user.displayName]">
+                    <img src="assets/icons/user.svg" alt="user icon" class="nav-icons"><a class="nav-a" [routerLink]="[user.displayName]">Profile</a>
                 </li>
             </div>
-            <div class="li-container" *ngIf="authService.userData as user">
-                <li class="nav-li">
-                    <img src="assets/icons/user.png" alt="user icon" class="nav-icons"><a class="nav-a" [routerLink]="[user.displayName]">Profile</a>
+            <div class="li-container" *ngIf="authService.userData && adminService.admins.indexOf(authService.userData.uid) != -1">
+                <li class="nav-li" [routerLink]="['admin']">
+                    <img src="assets/icons/admin.svg" alt="admin icon" class="nav-icons"><a class="nav-a" [routerLink]="['admin']">Admin</a>
                 </li>
             </div>
             <div class="li-container">
-                <li class="nav-li">
-                    <img src="assets/icons/gear.png" alt="gear icon" class="nav-icons"><a  class="nav-a" [routerLink]="['settings']">Settings</a>
+                <li class="nav-li" [routerLink]="['settings']">
+                    <img src="assets/icons/gear.svg" alt="gear icon" class="nav-icons"><a  class="nav-a" [routerLink]="['settings']">Settings</a>
                 </li>
             </div>
         </ul>
     </nav>
-    <div class="post-button" (click)="modalService.open('post')" *ngIf="authService.userData as user">
+    <div class="post-button" (click)="modalService.open('post')" *ngIf="authService.userData">
         Post
     </div>
-    <div class="account">
+    <div class="account" *ngIf="authService.userData && authService.userData.uid">
         <app-account></app-account>
     </div>
 </div>

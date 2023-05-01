@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { UserData } from './user-data';
 import { GetUserService } from './get-user.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from './auth.service';
+import { arrayUnion, arrayRemove } from "firebase/firestore";
+import { Post } from './post';
+import { Reply } from './reply';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +16,14 @@ export class ProfileService {
   userData: any;
   profileData: any;
   user: UserData = {} as UserData;
+  posts: Array<Post> = [];
+  reply: any;
+  like: any;
+  dislike: any;
+  replies: Array<Reply> = [];
+  repliesData: any[] = [];
 
-  constructor(public afs: AngularFirestore, public getUserService: GetUserService) { }
+  constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
   async getProfile(user: String){
     this.afs
@@ -25,11 +36,81 @@ export class ProfileService {
             this.profileData = doc.data();
             this.user = {...this.userData, ...this.profileData};
             this.user.joinDate = new Date(this.user.joinDate.toString()).toLocaleDateString("en-US", { year: 'numeric', month: 'long'}); //don't question this
+            this.getPosts();
           })
         }
         else{
           this.noUser = true;
         }
     })
+  }
+
+  async getPosts(){
+    if(this.user.uid != null){
+      this.posts = [];
+      this.replies = [];
+      this.repliesData = [];
+
+      switch (window.location.pathname.split('/')[2]){
+        case undefined:
+          this.afs.collection("posts",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.posts.push(<Post>el.data());
+            })
+          });
+          break;
+        case "replies":
+          this.afs.collection("replies",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.reply = el.data();
+              this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
+              this.replies.push(<Reply>this.reply);
+            })
+            this.replies.forEach((reply) => {
+              this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
+                var post: any = doc.data();
+                this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
+              })
+            })
+          });
+          break;
+        case "likes":
+          this.afs.collection("likes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.like = el.data();
+              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
+                this.posts.push(<Post>doc.data());
+              })
+            })
+          })
+          break;
+        case "dislikes":
+          this.afs.collection("dislikes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
+          .subscribe((data) => {
+            data.forEach((el) => {
+              this.like = el.data();
+              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
+                this.posts.push(<Post>doc.data());
+              })
+            })
+          })
+          break;
+      }
+    }
+  }
+
+  follow(){
+    this.afs.collection("profiles").doc(this.userData.uid).update({followers: arrayUnion(this.authService.userData.uid)});
+    this.afs.collection("profiles").doc(this.authService.userData.uid).update({following: arrayUnion(this.userData.uid)});
+    this.user.followers.push(this.authService.userData.uid); 
+  }
+
+  unfollow(){
+    this.afs.collection("profiles").doc(this.userData.uid).update({followers: arrayRemove(this.authService.userData.uid)});
+    this.afs.collection("profiles").doc(this.authService.userData.uid).update({following: arrayRemove(this.userData.uid)});
+    this.user.followers.splice(this.user.followers.indexOf(this.authService.userData.uid), 1);
   }
 }

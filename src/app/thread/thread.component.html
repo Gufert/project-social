@@ -1,8 +1,84 @@
-<div class="thread-container" *ngIf="!(noPost)">
-    <div class="thread-post">
-        {{user.displayName}}: {{post.content}}
+<div class="thread-container">
+    <div class="thread-post" *ngIf="user.uid != null">
+        <div class="thread-user">
+            <div class="user-pfp">
+                <img src={{user.photoURL}}>
+            </div>
+            <div class="thread-top">
+                <div class="user-name">
+                    <div class="user-profileName" [routerLink]="['/', user.displayName]">
+                        <b>{{user.profileName}}</b>
+                    </div>
+                    <div class="user-displayName" [routerLink]="['/', user.displayName]">
+                        @{{user.displayName}}
+                    </div>
+                </div>
+                <div class="thread-delete" *ngIf="authService.userData && (post.uid == authService.userData.uid || adminService.admins.indexOf(authService.userData.uid) != -1)" (click)="modalService.open('delete:' + post.pid)">
+                    <img src="assets/icons/delete.svg" alt="delete icon" class="delete-icon">
+                </div>
+            </div>
+        </div>
+        <div class="thread-content">
+            {{post.content}}
+        </div>
+        <div class="thread-date">
+            {{post.date}}
+        </div>
+        <div class="thread-interactions">
+            <div class="interactions-stats">
+                <div class="post-replies">
+                    {{post.replies.length}} Replies
+                </div>
+                <div class="post-likes" (click)="modalService.open('interactions:likes-' + post.pid)">
+                    {{post.likes.length}} Likes
+                </div>
+                <div class="post-dislikes" (click)="modalService.open('interactions:dislikes-' + post.pid)">
+                    {{post.dislikes.length}} Dislikes
+                </div>
+            </div>
+            <div class="interactions-buttons">
+                <div class="reply-button" (click)="authService.userData != null ? modalService.open('reply:' + post.pid) : modalService.open('alert')">
+                    <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
+                </div>
+                <div class="like-button" (click)="authService.userData != null ? interactions.like(post.pid) : modalService.open('alert')">
+                    <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
+                </div>
+                <div class="dislike-button" (click)="authService.userData != null ? interactions.dislike(post.pid) : modalService.open('alert')">
+                    <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
+                </div>
+                <div class="bookmark-button" (click)="authService.userData != null ? interactions.bookmark(post.pid) : modalService.open('alert')">
+                    <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="interaction-icons">
+                </div>
+                <div class="share-button" (click)="interactions.share(post.pid)">
+                    <img src="assets/icons/share.svg" alt="share icon" class="interaction-icons">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="thread-replies">
+        <div class="replies-container" *ngFor="let reply of replies">
+            <div class="reply-pfp">
+                <img src={{reply.photoURL}}>
+            </div>
+            <div>
+                <div class="reply-top">
+                    <div class="reply-user" [routerLink]="['/',reply.displayName]">
+                        <b>{{reply.profileName}}</b> @{{reply.displayName}}
+                    </div>
+                    <div class="reply-date">
+                        &nbsp;• {{reply.date}}  
+                    </div>
+                </div>
+                <div class="reply-content">
+                    {{reply.content}}
+                </div>
+            <div>
+        </div>
+    </div>
+    <div class="no-replies" *ngIf="post.replies.length == 0">
+        There are no replies to this post
     </div>
 </div>
 <div class="no-post" *ngIf="(noPost)">
-    no post was found
+    This post does not exist. It may have been deleted.
 </div>

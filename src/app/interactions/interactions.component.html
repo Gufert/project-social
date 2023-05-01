@@ -1,0 +1,17 @@
+<div class="interatcions-container">
+    <div class="interactions-user" *ngFor="let user of userList" [routerLink]="['/', user.displayName]" (click)="modalService.close()">
+        <div class="user-side">
+            <div class="user-pfp">
+                <img src="{{user.photoURL}}">
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="user-username">
+                <b>{{user.profileName}}</b> @{{user.displayName}}
+            </div>
+            <div class="user-bio">
+                {{user.bio}}
+            </div>
+        </div>
+    </div>
+</div>

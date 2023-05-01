@@ -1,0 +1,9 @@
+.not-admin{
+    width: 475px;
+    display: block;
+    margin: 20px auto 0px auto;
+}
+.na-header{
+    font-size: 25px;
+    font-weight: bold;
+}

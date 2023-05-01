@@ -6,11 +6,34 @@
     height: 130px;
     margin-bottom: 3px;
 }
+.edit-media{
+    z-index: 10;
+    position: absolute;
+    cursor: pointer;
+    opacity: .5;
+    border-radius: 50%;
+    padding: 3px;
+}
+.edit-media:hover{
+    opacity: 1;
+    background-color: rgb(100, 100, 100,.5);
+}
+.media-icon{
+    width: 35px;
+    cursor: pointer;
+}
+.media-input{
+    display: none;
+    cursor: pointer;
+}
 .edit-banner{
     width: 425px;
     background-color: var(--psGrey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.edit-banner img{
+.edit-banner-img{
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -21,7 +44,7 @@
     align-items: center;
     justify-content: center;
 }
-.edit-pfp img{
+.edit-pfp-img{
     width: 100px;
     height: 100px;
     object-fit: contain;

@@ -1,23 +1,37 @@
-<div class="post-container" (click)="openThread()">
+<div class="post-container" [routerLink]="['/post',post.pid]">
     <div class="post-pfp">
-        <img src={{post.photoURL}}>
+        <img src={{user.photoURL}}>
     </div>
-    <div>
-        <div class="post-user">
-            <b>{{post.displayName}}</b> @{{post.displayName}} • {{post.date}}
+    <div class="post">
+        <div class="post-top">
+            <div class="post-user" [routerLink]="['/',user.displayName]">
+                <b>{{user.profileName}}</b> @{{user.displayName}} 
+            </div>
+            <div class="post-date">
+                &nbsp;• {{post.date}}
+            </div>
+            <div class="post-delete" *ngIf="authService.userData && (post.uid == authService.userData.uid || adminService.admins.indexOf(authService.userData.uid) != -1)" (click)="postClick($event, 'delete')">
+                <img src="assets/icons/delete.svg" alt="delete icon" class="post-icons">
+            </div>
         </div>
         <div class="post-content">
             {{post.content}}
         </div>
         <div class="post-interactions">
+            <div class="post-button" (click)="postClick($event, 'reply')">
+                <img src="assets/icons/reply.svg" alt="reply icon" class="post-icons">{{post.replies.length}}
+            </div>
             <div class="post-button" (click)="postClick($event, 'like')">
-                <img src="assets/icons/like.png" alt="like icon" class="post-icons">{{post.likes}}
+                <img src="assets/icons/like.svg" alt="like icon" class="post-icons">{{post.likes.length}}
             </div>
             <div class="post-button" (click)="postClick($event, 'dislike')">
-                <img src="assets/icons/dislike.png" alt="dislike icon" class="post-icons">{{post.dislikes}}
+                <img src="assets/icons/dislike.svg" alt="dislike icon" class="post-icons">{{post.dislikes.length}}
             </div>
-            <div class="post-button" (click)="postClick($event, 'reply')">
-                <img src="assets/icons/reply.png" alt="reply icon" class="post-icons">
+            <div class="post-button" (click)="postClick($event, 'bookmark')">
+                <img src="assets/icons/bookmark.svg" alt="bookmark icon" class="post-icons">
+            </div>
+            <div class="post-button" (click)="postClick($event, 'share')">
+                <img src="assets/icons/share.svg" alt="share icon" class="post-icons">
             </div>
         </div>
     </div>
