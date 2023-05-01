@@ -1,0 +1,15 @@
+.deleteButton{
+    height: 35px;
+    cursor: pointer;
+    width: 55px;
+    border-radius: 9999px;
+    background-color: var(--psTeal);
+    color: white;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    float: right;
+    margin: 5px;
+}

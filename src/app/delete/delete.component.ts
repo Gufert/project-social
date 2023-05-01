@@ -4,6 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GetUserService } from '../shared/services/get-user.service';
+import { InteractionsService } from '../shared/services/interactions.service';
 
 @Component({
   selector: 'app-delete',
@@ -20,15 +21,12 @@ export class DeleteComponent implements OnInit {
     public router: Router,
     public afs: AngularFirestore,
     public getUserService: GetUserService,
+    public interactionsService: InteractionsService
   ) {
 
   }
   
   ngOnInit() {
-    
-  }
-
-  deletePost(){
     
   }
 }
