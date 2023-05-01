@@ -15,6 +15,7 @@ export class InteractionsService {
   likeObj: Like = new Like();
   dislikeObj: Dislike = new Dislike();
 
+
   constructor(public authService: AuthService, public afs: AngularFirestore, public likeDislikeService: LikeDislikeService) { }
 
   checkIfLDExists(path: string, pid: string): Promise<boolean> {
@@ -123,28 +124,57 @@ export class InteractionsService {
 
   deletePost(pid: string) {
 
-    this.afs.collection("posts").ref.where('pid', '==', pid)
-      .get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+    this.afs.collection<Post>("posts").doc(pid)
+      .get().subscribe((doc) => {
           const docID = doc.id
-          const docData = doc.data
+          if (doc.exists){
+          const uid = doc.data()!.uid
+
+          if (doc.data()?.likes){
+            const likes = doc.data()!.likes
+            for (let lid in likes) {
+              this.afs.collection("likes").doc(lid).delete()
+            }
+          }
+
+          if (doc.data()?.dislikes){
+            const dislikes = doc.data()!.dislikes
+            for (let did in dislikes) {
+              this.afs.collection("dislikes").doc(did).delete()
+            }
+          }
+          if (doc.data()?.dislikes){
+            const replies = doc.data()!.replies
+            for (let rid in replies) {
+              this.afs.collection("replies").doc(rid).delete()
+            }
+          }
+          
           this.afs.collection("posts").doc(docID).delete();
+          this.afs.collection("profiles").doc(uid).update({ posts: arrayRemove(docID) })
+          }
+
+          else{
+            console.log("error deleting post")
+          }
+
         });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-    this.afs.collection("profiles").ref.where('uid', '==', this.authService.userData.uid)
-      .where('pid', '==', pid)
-      .get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+  }
+
+  deleteProfile(uid: string) {
+    
+    this.afs.collection("profiles").doc(uid)
+      .get().subscribe((doc) => {
           const docID = doc.id
-          this.afs.collection("posts").doc(pid).update({ dislikes: arrayRemove(docID) })
+          if (doc.exists){
+            
+          }
+
+          this.afs.collection("posts").doc(uid).update({ dislikes: arrayRemove(docID) })
           this.afs.collection("dislikes").doc(docID).delete();
         });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
+      
+
+      this.afs.collection("users").doc(uid).delete();
   }
 }
