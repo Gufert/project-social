@@ -222,4 +222,11 @@ export class InteractionsService {
 
     this.afs.collection("users").doc(uid).delete();
   }
+
+  userDeleteProfile(uid: string){
+    this.deleteProfile(uid)
+  }
+  adminDeleteProfile(uid: string){
+    this.deleteProfile(uid)
+  }
 }
