@@ -14,7 +14,7 @@
             <app-relations *ngSwitchCase="'follow'" list={{modalService.param}}></app-relations>
             <app-interactions *ngSwitchCase="'interactions'" interation={{modalService.param}}></app-interactions>
             <app-reply *ngSwitchCase="'reply'" pid={{modalService.param}}></app-reply>
-            <app-delete *ngSwitchCase="'delete'" pid={{modalService.param}}></app-delete>
+            <app-delete *ngSwitchCase="'delete'" deletion={{modalService.param}}></app-delete>
             <div *ngSwitchDefault="">
                 Something should be here. But it broke
             </div>
