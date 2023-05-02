@@ -184,24 +184,32 @@ export class InteractionsService {
 
           if (doc.data()?.followers) {
             const followers = doc.data()!.followers;
-            for (let uid in followers) {
+            followers.forEach((uid) =>{
               this.afs.collection("profiles").doc(uid).update({ following: arrayRemove(docID) });
-            }
+            })
           }
 
           if (doc.data()?.following) {
             const following = doc.data()!.following;
-            for (let uid in following) {
+            following.forEach((uid) =>{
               this.afs.collection("profiles").doc(uid).update({ followers: arrayRemove(docID) });
-            }
+            })
           }
 
           if (doc.data()?.posts) {
             const posts = doc.data()!.posts;
-            for (let pid in posts) {
+            posts.forEach((pid) =>{
               this.deletePost(pid);
-            }
+            })
           }
+
+          this.afs.collection("bookmarks").ref.where('uid', '==', uid)
+          .get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const docID = doc.id
+              this.afs.collection("bookmarks").doc(docID).delete();
+            });
+          })
 
           this.afs.collection("users").doc(uid).delete()
           this.afs.collection("profiles").doc(uid).delete()
