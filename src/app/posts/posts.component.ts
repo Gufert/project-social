@@ -42,7 +42,7 @@ export class PostsComponent implements OnInit {
           this.interactionsService.like(this.post.pid);
           break;
         case 'dislike':
-          this.interactionsService.like(this.post.pid);
+          this.interactionsService.dislike(this.post.pid);
           break;
         case 'bookmark':
           this.interactionsService.bookmark(this.post.pid);
