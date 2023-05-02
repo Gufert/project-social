@@ -133,23 +133,35 @@ export class InteractionsService {
 
           if (doc.data()?.likes) {
             const likes = doc.data()!.likes;
-            for (let lid in likes) {
+            console.log(likes)
+            likes.forEach((lid) =>{
               this.afs.collection("likes").doc(lid).delete();
-            }
+            })
+          }
+          else{
+            console.log("error deleting likes")
           }
 
           if (doc.data()?.dislikes) {
             const dislikes = doc.data()!.dislikes;
-            for (let did in dislikes) {
+            console.log(dislikes)
+            dislikes.forEach((did) =>{
               this.afs.collection("dislikes").doc(did).delete();
-            }
+            })
+          }
+          else{
+            console.log("error deleting dislikes")
           }
 
-          if (doc.data()?.dislikes) {
+          if (doc.data()?.replies) {
             const replies = doc.data()!.replies;
-            for (let rid in replies) {
+            console.log(replies)
+            replies.forEach((rid) =>{
               this.afs.collection("replies").doc(rid).delete();
-            }
+            })
+          }
+          else{
+            console.log("error deleting replies")
           }
 
           this.afs.collection("posts").doc(docID).delete();
