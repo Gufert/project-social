@@ -7,6 +7,7 @@ import { arrayRemove } from 'firebase/firestore';
 import { Like } from './like';
 import { Dislike } from './dislike';
 import { Post } from './post';
+import { Profile } from './profile';
 
 @Injectable({
   providedIn: 'root'
@@ -126,55 +127,79 @@ export class InteractionsService {
 
     this.afs.collection<Post>("posts").doc(pid)
       .get().subscribe((doc) => {
-          const docID = doc.id
-          if (doc.exists){
-          const uid = doc.data()!.uid
+        const docID = doc.id;
+        if (doc.exists) {
+          const uid = doc.data()!.uid;
 
-          if (doc.data()?.likes){
-            const likes = doc.data()!.likes
+          if (doc.data()?.likes) {
+            const likes = doc.data()!.likes;
             for (let lid in likes) {
-              this.afs.collection("likes").doc(lid).delete()
+              this.afs.collection("likes").doc(lid).delete();
             }
           }
 
-          if (doc.data()?.dislikes){
-            const dislikes = doc.data()!.dislikes
+          if (doc.data()?.dislikes) {
+            const dislikes = doc.data()!.dislikes;
             for (let did in dislikes) {
-              this.afs.collection("dislikes").doc(did).delete()
+              this.afs.collection("dislikes").doc(did).delete();
             }
           }
-          if (doc.data()?.dislikes){
-            const replies = doc.data()!.replies
+
+          if (doc.data()?.dislikes) {
+            const replies = doc.data()!.replies;
             for (let rid in replies) {
-              this.afs.collection("replies").doc(rid).delete()
+              this.afs.collection("replies").doc(rid).delete();
             }
           }
-          
+
           this.afs.collection("posts").doc(docID).delete();
-          this.afs.collection("profiles").doc(uid).update({ posts: arrayRemove(docID) })
-          }
+          this.afs.collection("profiles").doc(uid).update({ posts: arrayRemove(docID) });
+        }
 
-          else{
-            console.log("error deleting post")
-          }
+        else {
+          console.log("error deleting post");
+        }
 
-        });
+      });
   }
 
   deleteProfile(uid: string) {
-    
-    this.afs.collection("profiles").doc(uid)
+
+    this.afs.collection<Profile>("profiles").doc(uid)
       .get().subscribe((doc) => {
-          const docID = doc.id
-          if (doc.exists){
-            
+        const docID = doc.id;
+        if (doc.exists) {
+
+          if (doc.data()?.followers) {
+            const followers = doc.data()!.followers;
+            for (let uid in followers) {
+              this.afs.collection("profiles").doc(uid).update({ following: arrayRemove(docID) });
+            }
           }
 
-          this.afs.collection("posts").doc(uid).update({ dislikes: arrayRemove(docID) })
-          this.afs.collection("dislikes").doc(docID).delete();
-        });
-      
+          if (doc.data()?.following) {
+            const following = doc.data()!.following;
+            for (let uid in following) {
+              this.afs.collection("profiles").doc(uid).update({ followers: arrayRemove(docID) });
+            }
+          }
 
-      this.afs.collection("users").doc(uid).delete();
+          if (doc.data()?.posts) {
+            const posts = doc.data()!.posts;
+            for (let pid in posts) {
+              this.deletePost(pid);
+            }
+          }
+
+          this.afs.collection("users").doc(uid).delete()
+          this.afs.collection("profiles").doc(uid).delete()
+        }
+        else {
+          console.log("error deleting account")
+        }
+      });
+
+
+    this.afs.collection("users").doc(uid).delete();
   }
 }
