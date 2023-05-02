@@ -9,6 +9,7 @@ import { Profile } from '../shared/services/profile';
 import { arrayRemove } from 'firebase/firestore';
 import { Post } from '../shared/services/post';
 import { Reply } from '../shared/services/reply';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-delete',
@@ -26,7 +27,8 @@ export class DeleteComponent implements OnInit {
     public router: Router,
     public afs: AngularFirestore,
     public getUserService: GetUserService,
-    public interactionsService: InteractionsService
+    public interactionsService: InteractionsService,
+    public modalService: ModalService
   ) {
 
   }
@@ -164,5 +166,6 @@ export class DeleteComponent implements OnInit {
         this.deleteReply(this.id)
         break;
     }
+    this.modalService.close();
   }
 }
