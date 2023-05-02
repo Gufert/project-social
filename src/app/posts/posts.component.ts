@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
           this.interactionsService.bookmark(this.post.pid);
           break;
         case 'delete':
-          this.modalService.open('delete:' + this.post.pid);
+          this.modalService.open('delete:' + 'post-' + this.post.pid);
           break;
       }
     }
