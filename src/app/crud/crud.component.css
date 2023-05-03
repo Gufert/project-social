@@ -16,3 +16,26 @@
 .update-email{
     border-top: solid 1px var(--psBorderColor);
 }
+.crud-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--psBorderColor);
+}
+.delete-account{
+    width: 450px;
+    height: 50px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    margin: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.delete-account:hover{
+    background-color: rgb(214, 0, 0);
+}
