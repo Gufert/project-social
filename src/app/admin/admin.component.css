@@ -7,3 +7,34 @@
     font-size: 25px;
     font-weight: bold;
 }
+.admin-header{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid var(--psBorderColor);
+}
+.filter{
+    display: flex;
+}
+.filter-input{
+    margin-left: 5px;
+    height: 25px;
+    outline: none;
+    width: 220px;
+}
+.filter-button, .reset-button{
+    cursor: pointer;
+    width: 85px;
+    height: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border-radius: 9999px;
+    margin: 0 5px;
+}
+.user-list{
+    height: calc(100vh - 41px);
+    overflow-y: scroll;
+}

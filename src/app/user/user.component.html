@@ -1,0 +1,52 @@
+<div class="user-container">
+    <div class="user-cover" (click)="show()">
+        <div class="user-name">
+            {{user.displayName}}
+        </div>
+        <div class="arrow" [ngStyle]="expand ? {'transform': 'rotate(' + (180) + 'deg)'} : {}">
+            <img class="arrow-svg" alt="arrow icon" src="assets/icons/arrow.svg">
+        </div>
+    </div>
+    <div class="expanded" *ngIf="expand">
+        <div class="user-info">
+            <div class="user-join">
+                <b class="user-label">Join Date:</b> {{userData.joinDate}}
+            </div>
+            <div class="user-uid">
+                <b class="user-label">UID:</b> {{userData.uid}}
+            </div>
+            <div class="user-email">
+                <b class="user-label">Email:</b> {{userData.email}}
+            </div>
+            <div class="user-profileName">
+                <b class="user-label">Profile Name:</b> {{userData.profileName}}
+            </div>
+            <div class="user-bio" *ngIf="userData.bio != ''">
+                <b class="user-label">Bio:</b> {{userData.bio}}
+            </div>
+            <div class="user-location" *ngIf="userData.location != ''">
+                <b class="user-label">Location:</b> {{userData.location}}
+            </div>
+            <div class="user-link" *ngIf="userData.link != ''">
+                <b class="user-label">Link:</b> {{userData.link}}
+            </div>
+            <div class="user-stats">
+                <b class="user-label">Stats:</b> Followers: {{userData.followers.length}} Following: {{userData.following.length}} Posts: {{userData.posts.length}}
+            </div>
+            <div class="user-media">
+                <b class="user-label">Media:</b> &nbsp;<a (click)="modalService.open('media:' + userData.photoURL.split('/')[7])">Profile Picture</a> &nbsp;<a *ngIf="userData.bannerURL != ''" (click)="modalService.open('media:' + userData.bannerURL.split('/')[7])">Banner</a>
+            </div>
+        </div>
+        <div class="manage-user">
+            <div class="view-profile" [routerLink]="['/',userData.displayName]">
+                View Profile
+            </div>
+            <div class="reset-user" (click)="reset()">
+                Reset User
+            </div>
+            <div class="delete-user">
+                Delete User
+            </div>
+        </div>
+    </div>
+</div>
