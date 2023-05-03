@@ -10,7 +10,7 @@
                 <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
                 <div class="show" (click)="toggle()">Show</div>
             </div>
-            <div class="updateButton" (click)="placeholder(email.value, password.value)">
+            <div class="updateButton" (click)="authService.UpdateEmail(email.value, password.value)">
                 Save Email
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <input class="update-input" #newpassword type="{{(showNewPassword === false)?'password':'text'}}">
                 <div class="show" (click)="toggleNew()">Show</div>
             </div>
-            <div class="updateButton" (click)="placeholder(password.value, newpassword.value)">
+            <div class="updateButton" (click)="authService.UpdatePassword(password.value, newpassword.value)">
                 Save Password
             </div>
         </div>

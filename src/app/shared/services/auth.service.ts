@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
-import {getAuth, updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
-const auth1 = getAuth();
+import { updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
+
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +57,7 @@ export class AuthService {
         this.toastr.success('Login Successful');
       })
       .catch((error) => {
-        this.toastr.error('Oops Incorrect password')
+        this.toastr.error('Incorrect password or email')
       });
   }
   // Sign up with email/password
@@ -136,28 +136,26 @@ export class AuthService {
   }
   
   //update email
- 
- 
-  UpdateEmail(email: string) {
+  UpdateEmail(email: string, password:string) {
           updateEmail(this.userData, email).then(() => {
+            this.modalService.close();
+            this.toastr.success('Email Updated Successfully');
 
           }).catch((error: {message:any;}) =>{
             window.alert(error.message)}
       );
     };
-
-  
-
-/*
-UpdatePassword(Password:string){
-    return this.afs
-    .collection('users')
-    .doc(this.userData.uid)
-    .update({
-      Password:Password
-    })
-    
-  } */
+// update password 
+UpdatePassword(password: string, newPassword:string){
+ updatePassword(this.userData, newPassword).then(() => {
+  this.modalService.close();
+  this.toastr.success('Password Updated Successfully');
+  // Update successful.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
+  } 
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
