@@ -2,9 +2,6 @@
     <ng-container  [ngSwitch]="updateSender">
         <div *ngSwitchCase="'email'" class="update-form" id="email-form">
             <label>Update Email</label>
-            <input #userEmail>
-            <button class="updateButton" (click)="authService.UpdateEmail(userEmail.value)">
-                
             <div class="input-container">
                 <input class="update-input" #email>
             </div>
@@ -15,7 +12,7 @@
             </div>
             <div class="updateButton" (click)="placeholder(email.value, password.value)">
                 Save Email
-            </button>
+            </div>
         </div>
         <div *ngSwitchCase="'password'" class="update-form" id="password-form">
             <label>Current Password</label>
@@ -24,19 +21,27 @@
                 <div class="show" (click)="toggle()">Show</div>
             </div>
             <label>New Password</label>
-            <input #updateUserPassword>
-            <button class="updateButton" (click)="authService.UpdatePassword(updateUserPassword.value)">
+            <div class="input-container">
+                <input class="update-input" #newpassword type="{{(showNewPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggleNew()">Show</div>
+            </div>
+            <div class="updateButton" (click)="placeholder(password.value, newpassword.value)">
                 Save Password
-            </button>
+            </div>
         </div>
         <div *ngSwitchCase="'username'" class="update-form" id="username-form">
             <label>Update Username</label>
-            <input #userName>
+            <div class="input-container">
+                <input class="update-input" #username>
+            </div>
             <label>Password</label>
-            <input >
-            <button class="updateButton" (click)="authService.UpdateUserName(userName.value)">
+            <div class="input-container">
+                <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
+                <div class="show" (click)="toggle()">Show</div>
+            </div>
+            <div class="updateButton" (click)="placeholder(username.value, password.value)">
                 Save Username
-            </button>
+            </div>
         </div>
     </ng-container>
 </div>

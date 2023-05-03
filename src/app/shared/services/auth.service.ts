@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
+import {getAuth, updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
+const auth1 = getAuth();
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,9 @@ export class AuthService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private toastr: ToastrService,
     public modalService: ModalService,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    
+    
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -130,37 +134,22 @@ export class AuthService {
       window.alert(error.message)
     });
   }
-  // fetch email 
-  GetUserEmail(){
-    return this.afs
-    .collection('users')
-    .doc(this.userData.uid)
-    .valueChanges
-    
-  }
+  
   //update email
-  UpdateEmail(email:string,){
-   return this.afs
-   .collection('users')
-   .doc(this.userData.uid)
-   .update({
-    email:email
-   })
-   
-
-  }
- /* UpdateUserName(lowerDN:string){
-    return this.afs
-    .collection('users')
-    .doc(this.userData.uid)
-    .update({
-      lowerDN:lowerDN,
-      displayName:lowerDN
-    })
  
+ 
+  UpdateEmail(email: string) {
+          updateEmail(this.userData, email).then(() => {
 
-  }*/
-  UpdatePassword(Password:string){
+          }).catch((error: {message:any;}) =>{
+            window.alert(error.message)}
+      );
+    };
+
+  
+
+/*
+UpdatePassword(Password:string){
     return this.afs
     .collection('users')
     .doc(this.userData.uid)
@@ -168,7 +157,7 @@ export class AuthService {
       Password:Password
     })
     
-  } 
+  } */
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
