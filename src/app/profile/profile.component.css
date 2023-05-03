@@ -55,6 +55,13 @@
 }
 .reply{
     display: flex;
+    width: 100%;
+}
+.reply-right{
+    width: 100%;
+}
+.reply-top{
+    display: flex;
 }
 .reply-pfp img{
     height: 50px;
@@ -68,4 +75,19 @@
 .reply-content{
     margin-right: 10px;
     padding: 1px 0;
+}
+.reply-delete{
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 3px;
+    border-radius: 50%;
+}
+.reply-delete:hover{
+    background-color: var(--psGrey);
+    cursor: pointer;
+}
+.reply-delete-icon{
+    width: 15px;
 }

@@ -1,2 +1,13 @@
-<div class="deleteButton" (click)="deleting()"></div>
-    {{type}}{{id}}
+<div class="delete-container">
+    <div class="delete-message">
+        Are you sure you want to delete this. This action is permanent and cannot be undone.
+    </div>
+    <div class="delete-buttons">
+        <div class="cancel-button" (click)="modalService.close()">
+            Cancel
+        </div>
+        <div class="delete-button" (click)="deleting()">
+            Delete
+        </div>
+    </div>
+</div>

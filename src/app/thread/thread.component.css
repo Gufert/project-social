@@ -75,12 +75,23 @@
 }
 .thread-replies{
     border-top: solid 1px var(--psBorderColor);
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .replies-container{
     display: flex;
     height: auto;
     padding-top: 5px;
     border-bottom: 1px solid var(--psBorderColor);
+    width: 100%;
+}
+.reply{
+    display: flex;
+    width: 100%;
+}
+.reply-right{
+    width: 100%;
 }
 .reply-pfp img{
     height: 50px;
@@ -89,6 +100,7 @@
 }
 .reply-top{
     display: flex;
+    width: 100%;
 }
 .reply-user{
     cursor: pointer;
@@ -96,4 +108,19 @@
 .reply-content{
     margin-right: 10px;
     padding: 1px 0;
+}
+.reply-delete{
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 3px;
+    border-radius: 50%;
+}
+.reply-delete:hover{
+    background-color: var(--psGrey);
+    cursor: pointer;
+}
+.reply-delete-icon{
+    width: 15px;
 }
