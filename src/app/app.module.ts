@@ -49,6 +49,7 @@ import { ReplyComponent } from './reply/reply.component';
 import { InteractionsComponent } from './interactions/interactions.component';
 import { AdminComponent } from './admin/admin.component';
 import { MediaComponent } from './media/media.component';
+import { UserComponent } from './user/user.component';
 import { DeleteComponent } from './delete/delete.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -96,6 +97,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     InteractionsComponent,
     AdminComponent,
     MediaComponent,
+    UserComponent,
     DeleteComponent
   ],
   imports: [
