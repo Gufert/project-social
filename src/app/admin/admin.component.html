@@ -14,7 +14,7 @@
                     Reset
                 </div>
             </div>
-            <div class="manage-admin">
+            <div class="manage-admin" *ngIf="adminService.owners.indexOf(authService.userData.uid) != -1">
                 <div class="manage-button" (click)="modalService.open('manage')">
                     Manage
                 </div>
