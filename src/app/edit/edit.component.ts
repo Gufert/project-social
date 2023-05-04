@@ -106,7 +106,7 @@ export class EditComponent implements OnInit, OnDestroy{
       this.profileService.user.profileName = this.profileName;
       this.profileService.user.bio = this.bio;
       this.profileService.user.location = this.location;
-      this.profileService.user.link = this.link;
+      this.profileService.user.link = this.link.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
     }
     
     this.modalService.close()

@@ -11,7 +11,7 @@ import { Profile } from './shared/services/profile';
 export class UnitTestService {
   unitUser = {displayName: "UnitTest", email: "unit@test.com", emailVerified: false, lowerDN: "unittest", photoURL: "", uid: "14"};
 
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {}
+  constructor(private afs: AngularFirestore) {}
 
   async makeProfile(user: any){
     const profileRef: AngularFirestoreDocument<any> = this.afs.doc(
@@ -44,13 +44,23 @@ export class UnitTestService {
   }
 
   async isAdmin(){
-    let docData: any
+    let docData: any;
 
     await this.afs.collection("roles").doc("admin").ref.get().then((doc) => {
        docData = doc.data();
     })
 
     return docData.admins.indexOf(this.unitUser.uid);
+  }
+
+  async isOwner(){
+    let docData: any;
+
+    await this.afs.collection("roles").doc("owner").ref.get().then((doc) => {
+      docData = doc.data();
+   })
+
+   return docData.owners.indexOf(this.unitUser.uid);
   }
 
   async makePost(content: string){

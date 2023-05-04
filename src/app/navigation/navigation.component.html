@@ -30,7 +30,7 @@
                     <img src="assets/icons/admin.svg" alt="admin icon" class="nav-icons"><a class="nav-a" [routerLink]="['admin']">Admin</a>
                 </li>
             </div>
-            <div class="li-container">
+            <div class="li-container" *ngIf="authService.userData as user">
                 <li class="nav-li" [routerLink]="['settings']">
                     <img src="assets/icons/gear.svg" alt="gear icon" class="nav-icons"><a  class="nav-a" [routerLink]="['settings']">Settings</a>
                 </li>

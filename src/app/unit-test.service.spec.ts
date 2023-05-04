@@ -76,6 +76,11 @@ describe('UnitTestService', () => {
     expect(await service.isAdmin()).toBe(-1);
   });
 
+  //ROLE UNIT TEST 2
+  it('should check if user is owner', async () => {
+    expect(await service.isOwner()).toBe(-1);
+  })
+
   //POST TEST 1
   it('should make a new post', async () => {
     const content = 'test post';
@@ -127,7 +132,6 @@ describe('UnitTestService', () => {
 
     vars.bid = await service.bookmark(vars.pid);
     await afs.collection('bookmarks').doc(vars.bid).ref.get().then((doc) => {
-      console.log(doc.data());
       bookmark = doc.data();
     })
 
