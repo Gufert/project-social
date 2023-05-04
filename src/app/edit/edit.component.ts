@@ -50,18 +50,19 @@ export class EditComponent implements OnInit, OnDestroy{
     const files = target.files as FileList;
 
     if(files[0]){
-      //this.media.open(files[0]);
       var reader = new FileReader();
 		  reader.readAsDataURL(files[0]);
 
-      reader.onload = (_event) => {
-        if (type == 'pfp') {
-          this.pfp = reader.result;
-          this.pfpFile = files[0];
-        }
-        if (type == 'banner') {
-          this.banner = reader.result;
-          this.bannerFile = files[0];
+      if(files[0].type.split("/")[0] == "image"){
+        reader.onload = (_event) => {
+          if (type == 'pfp') {
+            this.pfp = reader.result;
+            this.pfpFile = files[0];
+          }
+          if (type == 'banner') {
+            this.banner = reader.result;
+            this.bannerFile = files[0];
+          }
         }
       }
     }

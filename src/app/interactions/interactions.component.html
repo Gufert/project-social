@@ -1,4 +1,7 @@
 <div class="interatcions-container">
+    <div class="message" *ngIf="(message)">
+        {{message}}
+    </div>
     <div class="interactions-user" *ngFor="let user of userList" [routerLink]="['/', user.displayName]" (click)="modalService.close()">
         <div class="user-side">
             <div class="user-pfp">

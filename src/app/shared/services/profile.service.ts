@@ -17,11 +17,9 @@ export class ProfileService {
   profileData: any;
   user: UserData = {} as UserData;
   posts: Array<Post> = [];
-  reply: any;
-  like: any;
-  dislike: any;
   replies: Array<Reply> = [];
   repliesData: any[] = [];
+  message: string = "";
 
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public authService: AuthService) { }
 
@@ -50,56 +48,66 @@ export class ProfileService {
       this.posts = [];
       this.replies = [];
       this.repliesData = [];
+      this.message = "";
 
       switch (window.location.pathname.split('/')[2]){
         case undefined:
-          this.afs.collection("posts",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-          .subscribe((data) => {
-            data.forEach((el) => {
-              this.posts.push(<Post>el.data());
-            })
-          });
+          this.afs.collection("posts").ref.where("uid", "==", this.user.uid).orderBy("date","desc").get().then((docs) => {
+            if(docs.size > 0){
+              docs.forEach((doc) => {
+                this.posts.push(<Post>doc.data());
+              })
+            }
+            else{
+              this.message = this.user.displayName + " has not made any posts."
+            }
+          })
           break;
         case "replies":
-          this.afs.collection("replies",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-          .subscribe((data) => {
-            data.forEach((el) => {
-              this.reply = el.data();
-              this.reply.date = new Date(this.reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
-              this.replies.push(<Reply>this.reply);
-            })
-            this.replies.forEach((reply) => {
-              this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
-                var post: any = doc.data();
-                this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
+          this.afs.collection("replies").ref.where("uid", "==", this.userData.uid).orderBy("date","desc").get().then((docs) => {
+            if(docs.size > 0){
+              docs.forEach((doc) => {
+                let reply: any = doc.data()
+                reply.date = new Date(reply.date.seconds * 1000).toLocaleString("en-US", { hour: '2-digit', minute: "numeric", year: 'numeric', month: 'short', day: 'numeric'});
+                this.replies.push(<Reply>reply);
               })
-            })
-          });
+              this.replies.forEach((reply) => {
+                this.afs.collection("posts").doc(reply.pid).ref.get().then(async (doc) => {
+                  var post: any = doc.data();
+                  this.repliesData.push({reply, ...await this.getUserService.UserFromUID(post.uid)});
+                })
+              })
+            }
+            else{
+              this.message = this.user.displayName + " has not made any replies.";
+              console.log(this.message);
+            }
+          })
           break;
         case "likes":
-          this.afs.collection("likes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-          .subscribe((data) => {
-            data.forEach((el) => {
-              this.like = el.data();
-              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
-                this.posts.push(<Post>doc.data());
-              })
-            })
-          })
+          this.getLDPost("likes");
           break;
         case "dislikes":
-          this.afs.collection("dislikes",ref=>ref.where("uid", "==", this.user.uid).orderBy("date","desc")).get()
-          .subscribe((data) => {
-            data.forEach((el) => {
-              this.like = el.data();
-              this.afs.collection("posts").doc(this.like.pid).ref.get().then((doc) => {
-                this.posts.push(<Post>doc.data());
-              })
-            })
-          })
+          this.getLDPost("dislikes");
           break;
       }
     }
+  }
+
+  getLDPost(table: string){
+    this.afs.collection(table).ref.where("uid", "==", this.user.uid).orderBy("date","desc").get().then((docs) => {
+      if(docs.size > 0){
+        docs.forEach((doc) => {
+          let ld: any = doc.data();
+          this.afs.collection("posts").doc(ld.pid).ref.get().then((doc) => {
+            this.posts.push(<Post>doc.data());
+          })
+        })
+      }
+      else{
+        this.message = this.user.displayName + " has not " + table.replace(/.$/,"d") + " any posts." //magic :)
+      }
+    })
   }
 
   follow(){

@@ -21,6 +21,9 @@
             </span>
         </div>
     </div>
+    <div class="no-posts" *ngIf="(profileService.message)">
+        {{(profileService.message)}}
+    </div>
     <div class="profile-posts" *ngIf="router.url.split('/')[2] != 'replies'">
         <app-posts *ngFor="let post of profileService.posts" [post]="post"></app-posts>
     </div>

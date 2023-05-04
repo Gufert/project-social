@@ -11,37 +11,38 @@ import { UserData } from '../shared/services/user-data';
 })
 export class InteractionsComponent implements OnInit {
   userList: Array<UserData> = [];
+  message: string = "";
 
   @Input() interation: String = "";
 
   constructor(public afs: AngularFirestore, public getUserService: GetUserService, public modalService: ModalService){}
   
   ngOnInit(): void {
+    this.message = "";
     switch(this.interation.split('-')[0]){
       case 'likes':
-        this.afs.collection("posts").doc(this.interation.split('-')[1]).ref.get().then((doc) => {
-          var post: any = doc.data();
-          post.likes.forEach((element: any) => {
-            this.afs.collection("likes").doc(element).ref.get().then(async (doc) => {
-              var like: any = doc.data();
-              this.userList.push(await this.getUserService.UserFromUID(like.uid));
-            })
-          });
-          console.log(this.userList);
-        })
+        this.getLD();
         break;
       case 'dislikes':
-        this.afs.collection("posts").doc(this.interation.split('-')[1]).ref.get().then((doc) => {
-          var post: any = doc.data();
-          post.dislikes.forEach((element: any) => {
-            this.afs.collection("dislikes").doc(element).ref.get().then(async (doc) => {
-              var like: any = doc.data();
-              this.userList.push(await this.getUserService.UserFromUID(like.uid));
-            })
-          });
-          console.log(this.userList);
-        })
+        this.getLD();
         break;
     }
+  }
+
+  getLD(){
+    this.afs.collection("posts").doc(this.interation.split('-')[1]).ref.get().then((doc) => {
+      var post: any = doc.data();
+      if(post[this.interation.split('-')[0]].length > 0){
+        post[this.interation.split('-')[0]].forEach((element: any) => {
+          this.afs.collection(this.interation.split('-')[0]).doc(element).ref.get().then(async (doc) => {
+            var ld: any = doc.data();
+            this.userList.push(await this.getUserService.UserFromUID(ld.uid));
+          })
+        });
+      }
+      else{
+        this.message = "This post has no " + this.interation.split('-')[0] + ".";
+      }
+    })
   }
 }

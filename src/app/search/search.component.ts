@@ -14,8 +14,6 @@ export class SearchComponent {
 
   searchText: string = "";
   results: any[] = [];
-  res: any;
-  user: UserData = {} as UserData
   noResults: boolean = false;
   input: string = "";
 
@@ -23,39 +21,20 @@ export class SearchComponent {
     this.input = this.searchText;
     var query = this.searchText.replace(/\W/g, '').toLocaleLowerCase()
     this.results = [];
-    this.user = {} as UserData;
-    this.res = null;
     this.noResults = false;
 
     if(query){
-      this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
-      .where('lowerDN', '<=', query+ '~'))
-      .get()
-      .subscribe((data) => {
-        if(data.size > 0){
-          data.forEach(async (el) => {
-            this.res = el.data();
-            this.user = await this.getUserService.UserFromUID(this.res.uid);
-            this.results.push(this.user);
+      this.afs.collection("users").ref.where("lowerDN", ">=", query).where("lowerDN", "<=", query+ "~").get().then((docs) => {
+        if(docs.size > 0){
+          docs.forEach(async (doc) => {
+            let res: any = doc.data()
+            this.results.push(await this.getUserService.UserFromUID(res.uid));
           })
         }
         else{
           this.noResults = true;
         }
-      });
+      })
     }
   }
 }
-
-// if(query){
-//   this.afs.collection("users",ref=>ref.where('lowerDN', '>=', query)
-//   .where('lowerDN', '<=', query+ '~'))
-//   .get()
-//   .subscribe((data) => {
-//     data.forEach(async (el) => {
-//       this.res = el.data();
-//       this.user = await this.getUserService.UserFromUID(this.res.uid);
-//       this.results.push(this.user);
-//     })
-//   });
-// }

@@ -44,12 +44,13 @@ export class PostService{
     this.noFeed = false;
     this.noFollowing = false;
     this.user = await this.getUserService.UserFromUID(this.authService.userData.uid);
+
+    
     if (this.user.following.length > 0){
-      this.afs.collection("posts",ref=>ref.where("uid", "in", this.user.following.splice(0, 10)).orderBy("date","desc")).get()
-      .subscribe((data) => {
-        if (data.size > 0) {
-          data.forEach(async (el) => {
-            this.arrayOfPosts.push(el.data());
+      this.afs.collection("posts").ref.where("uid","in", this.user.following.splice(0, 10)).orderBy("date","desc").get().then((docs) => {
+        if(docs.size > 0){
+          docs.forEach(async (doc) => {
+            this.arrayOfPosts.push(doc.data());
           })
         }
         else{
@@ -60,10 +61,6 @@ export class PostService{
     else{
       this.noFollowing = true;
     }
-  }
-
-  async getUserPosts(){
-    
   }
 
   async makePost(content: string){
@@ -81,9 +78,7 @@ export class PostService{
     }).then((docRef) =>{
       let newDocID = docRef.id
       docRef.set({
-        pid: newDocID,
-        uid: this.authService.userData.uid,
-        content: content},
+        pid: newDocID},
         {merge: true});
       this.afs.collection("profiles").doc(this.authService.userData.uid).update({posts: arrayUnion(docRef.id)});
       this.modalService.close();

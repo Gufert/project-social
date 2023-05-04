@@ -21,11 +21,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSubscribe = this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.afs.collection("users", ref=>ref.orderBy("lowerDN","asc")).get()
-        .subscribe((snapShot) => {
-          snapShot.docs.forEach((doc) => {
+        this.afs.collection("users").ref.orderBy("lowerDN","asc").get().then((docs) => {
+          docs.forEach((doc) => {
             this.users.push(doc.data());
-          });
+          })
           this.allUsers = this.users;
         });
       }
