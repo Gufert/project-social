@@ -12,6 +12,8 @@ import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import { updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
+import { getAuth, deleteUser } from "firebase/auth";
+
 
 
 @Injectable({
@@ -43,6 +45,7 @@ export class AuthService {
       }
     });
   }
+
   // Sign in with email/password
   async SignIn(email: string, password: string) {
     return this.afAuth
@@ -275,6 +278,11 @@ UpdatePassword(password: string, newPassword:string){
   }
 
   deleteAuthentication(){
-    //this.userData.auth().currentUser.delete()
+    const user = this.userData
+    deleteUser(user).then(()=>{
+      console.log("User deleted: " + user)
+    }).catch((error) =>{
+      console.log(error)
+    }) 
   }
 }
