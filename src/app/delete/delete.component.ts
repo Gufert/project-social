@@ -10,6 +10,8 @@ import { arrayRemove } from 'firebase/firestore';
 import { Post } from '../shared/services/post';
 import { Reply } from '../shared/services/reply';
 import { ModalService } from '../shared/services/modal.service';
+import { getAuth } from 'firebase/auth';
+import { deleteUser } from 'firebase/auth';
 
 @Component({
   selector: 'app-delete',
@@ -135,7 +137,6 @@ export class DeleteComponent implements OnInit {
           }
           else {
             //admin
-            this.authService.adminDeleteProfile(uid)
           }
 
           console.log("deleting user with uid: " + uid)

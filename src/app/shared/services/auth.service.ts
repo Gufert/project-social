@@ -13,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import { updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
 import { getAuth, deleteUser } from "firebase/auth";
+import { UserData } from './user-data';
+import { doc } from 'firebase/firestore';
+import { initializeApp } from 'firebase-admin';
 
 
 
@@ -286,10 +289,6 @@ UpdatePassword(password: string, newPassword:string){
     }) 
   }
   adminDeleteProfile(uid: string){
-    // this.afs.collection("users").doc(uid)
-    //   .get().subscribe((doc) => {
-    //     const user = doc.data()
-    //     deleteUser(user)
-    // })
+
   }
 }
