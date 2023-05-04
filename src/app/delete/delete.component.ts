@@ -10,6 +10,8 @@ import { arrayRemove } from 'firebase/firestore';
 import { Post } from '../shared/services/post';
 import { Reply } from '../shared/services/reply';
 import { ModalService } from '../shared/services/modal.service';
+import { getAuth } from 'firebase/auth';
+import { deleteUser } from 'firebase/auth';
 
 @Component({
   selector: 'app-delete',
@@ -28,7 +30,7 @@ export class DeleteComponent implements OnInit {
     public afs: AngularFirestore,
     public getUserService: GetUserService,
     public interactionsService: InteractionsService,
-    public modalService: ModalService
+    public modalService: ModalService,
   ) {
 
   }
@@ -94,12 +96,12 @@ export class DeleteComponent implements OnInit {
 
     this.afs.collection<Profile>("profiles").doc(uid)
       .get().subscribe((doc) => {
-        const docID = doc.id;
         if (doc.exists) {
-
+          const docID = doc.id;
           if (doc.data()?.followers) {
             const followers = doc.data()!.followers;
             followers.forEach((uid) => {
+              console.log(uid)
               this.afs.collection("profiles").doc(uid).update({ following: arrayRemove(docID) });
             })
           }
@@ -107,6 +109,7 @@ export class DeleteComponent implements OnInit {
           if (doc.data()?.following) {
             const following = doc.data()!.following;
             following.forEach((uid) => {
+              console.log(uid)
               this.afs.collection("profiles").doc(uid).update({ followers: arrayRemove(docID) });
             })
           }
@@ -114,6 +117,7 @@ export class DeleteComponent implements OnInit {
           if (doc.data()?.posts) {
             const posts = doc.data()!.posts;
             posts.forEach((pid) => {
+              console.log(pid)
               this.deletePost(pid);
             })
           }
@@ -122,27 +126,25 @@ export class DeleteComponent implements OnInit {
             .get().then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 const docID = doc.id
+                console.log(docID)
                 this.afs.collection("bookmarks").doc(docID).delete();
               });
             })
 
-          this.afs.collection("users").doc(uid).delete()
-          this.afs.collection("profiles").doc(uid).delete()
-          
-          if (this.authService.userData.uid == uid){
+          if (this.authService.userData.uid == uid) {
             //user deletion
-            
+            this.authService.userDeleteProfile()
           }
-          else{
+          else {
             //admin
-
           }
-        }
-        else {
-          console.log("error deleting account")
+
+          console.log("deleting user with uid: " + uid)
+          this.afs.collection("profiles").doc(uid).delete()
+          this.afs.collection("users").doc(uid).delete()
+          
         }
       });
-    this.afs.collection("users").doc(uid).delete();
   }
 
   deleteReply(rid: string) {
@@ -152,17 +154,23 @@ export class DeleteComponent implements OnInit {
         const docID = doc.id;
         this.afs.collection("replies").doc(docID).delete()
       })
-    }
+  }
 
   deleting() {
     switch (this.type) {
       case "post":
+        console.log(this.type)
+        console.log("pid" + this.id)
         this.deletePost(this.id)
         break;
       case "profile":
+        console.log(this.type)
+        console.log("uid: " + this.id)
         this.deleteProfile(this.id)
         break;
       case "reply":
+        console.log(this.type)
+        console.log("rid: " + this.id)
         this.deleteReply(this.id)
         break;
     }

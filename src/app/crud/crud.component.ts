@@ -8,5 +8,7 @@ import { ModalService } from '../shared/services/modal.service';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent {
+
   constructor(public authService: AuthService, public modalService: ModalService) {}
+  uid = this.authService.userData.uid
 }
