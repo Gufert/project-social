@@ -39,7 +39,7 @@
                 <input class="update-input" #password type="{{(showPassword === false)?'password':'text'}}">
                 <div class="show" (click)="toggle()">Show</div>
             </div>
-            <div class="updateButton" (click)="placeholder(username.value, password.value)">
+            <div class="updateButton" (click)="authService.UpdateUserName(username.value, password.value)">
                 Save Username
             </div>
         </div>

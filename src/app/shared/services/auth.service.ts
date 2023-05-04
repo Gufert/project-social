@@ -88,18 +88,22 @@ export class AuthService {
       });
   }
   //Update user's current username
-  UpdateUserName(displayName: string) {
+  UpdateUserName(displayName: string, password:string) {
     return this.afAuth
       .onAuthStateChanged( (CurrentUser) => {
         if (CurrentUser) {
-          CurrentUser.updateProfile({
+          updateProfile(this.userData,{
             displayName: displayName,
             
           }).then( () => {
             //Profile Updated
             //new display name
-            this.SetUserData(CurrentUser)
+            this.toastr.success('User Name Updated Successfully')
+            this.modalService.close();
+            this.SetUserData(this.userData)
+            //this.userData.displayName= displayName
             displayName = displayName
+
           }
           
           ).catch((error) => {
@@ -137,24 +141,42 @@ export class AuthService {
   
   //update email
   UpdateEmail(email: string, password:string) {
-          updateEmail(this.userData, email).then(() => {
-            this.modalService.close();
-            this.toastr.success('Email Updated Successfully');
+    const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
 
-          }).catch((error: {message:any;}) =>{
-            window.alert(error.message)}
-      );
+    reauthenticateWithCredential(this.userData, credential).then(() => {
+      //code goes here
+      updateEmail(this.userData, email).then(() => {
+        this.modalService.close();
+        this.toastr.success('Email Updated Successfully');
+
+      }).catch((error: {message:any;}) =>{
+        window.alert(error.message)}
+  );
+    }).catch((error) => {
+      //toastr error goes here
+      this.toastr.error('Please Enter your Current password')
+    });
+       
     };
 // update password 
 UpdatePassword(password: string, newPassword:string){
- updatePassword(this.userData, newPassword).then(() => {
-  this.modalService.close();
-  this.toastr.success('Password Updated Successfully');
-  // Update successful.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});
+  const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
+
+    reauthenticateWithCredential(this.userData, credential).then(() => {
+      //code goes here
+      updatePassword(this.userData, newPassword).then(() => {
+        this.modalService.close();
+        this.toastr.success('Password Updated Successfully');
+        // Update successful.
+      }).catch((error) => {
+        // An error ocurred
+        // ...
+      });
+    }).catch((error) => {
+      //toastr error goes here
+      this.toastr.error('Please Enter your Current password')
+    });
+
   } 
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
