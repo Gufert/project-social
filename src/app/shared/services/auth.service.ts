@@ -92,23 +92,33 @@ export class AuthService {
     return this.afAuth
       .onAuthStateChanged( (CurrentUser) => {
         if (CurrentUser) {
-          updateProfile(this.userData,{
-            displayName: displayName,
-            
-          }).then( () => {
-            //Profile Updated
-            //new display name
-            this.toastr.success('User Name Updated Successfully')
-            this.modalService.close();
-            this.SetUserData(this.userData)
-            //this.userData.displayName= displayName
-            displayName = displayName
+          const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
 
-          }
+    reauthenticateWithCredential(this.userData, credential).then(() => {
+      //code goes here
+      updateProfile(this.userData,{
+        displayName: displayName,
+        
+      }).then( () => {
+        //Profile Updated
+        //new display name
+        this.toastr.success('User Name Updated Successfully')
+        this.modalService.close();
+        this.SetUserData(this.userData)
+        //this.userData.displayName= displayName
+        displayName = displayName
+
+      }
+      
+      ).catch((error) => {
+        window.alert(error.message);
+      });
+    }).catch((error) => {
+      //toastr error goes here
+      this.toastr.error('Please Enter your Current password')
+      
+    });
           
-          ).catch((error) => {
-            window.alert(error.message);
-          });
         }
       });
   }
@@ -164,14 +174,14 @@ UpdatePassword(password: string, newPassword:string){
 
     reauthenticateWithCredential(this.userData, credential).then(() => {
       //code goes here
-      updatePassword(this.userData, newPassword).then(() => {
-        this.modalService.close();
-        this.toastr.success('Password Updated Successfully');
-        // Update successful.
-      }).catch((error) => {
-        // An error ocurred
-        // ...
-      });
+       updatePassword(this.userData, newPassword).then(() => {
+  this.modalService.close();
+  this.toastr.success('Password Updated Successfully');
+  // Update successful.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
     }).catch((error) => {
       //toastr error goes here
       this.toastr.error('Please Enter your Current password')
