@@ -130,8 +130,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     BrowserAnimationsModule,
     ToastrModule.forRoot(
       {
-        progressBar:true
-        
+        positionClass: "toast-bottom-full-width",
+        preventDuplicates: true,
+        timeOut: 3000
       }
     )
   ],

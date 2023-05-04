@@ -31,9 +31,17 @@
                     <div class="reply-pfp">
                         <img src={{profileService.user.photoURL}}>
                     </div>
-                    <div>
-                        <div class="reply-user">
-                            <b>{{profileService.user.profileName}}</b> @{{profileService.user.displayName}} • {{reply.reply.date}}
+                    <div class="reply-right">
+                        <div class="reply-top">
+                            <div class="reply-user">
+                                <b>{{profileService.user.profileName}}</b> @{{profileService.user.displayName}}
+                            </div>
+                            <div class="reply-date">
+                                &nbsp;• {{reply.reply.date}}  
+                            </div>
+                            <div class="reply-delete" *ngIf="authService.userData && (reply.reply.uid == authService.userData.uid || adminService.admins.indexOf(authService.userData.uid) != -1)" (click)="$event.stopPropagation();modalService.open('delete:' + 'reply' + reply.reply.rid)">
+                                <img src="assets/icons/delete.svg" alt="delete icon" class="reply-delete-icon">
+                            </div>
                         </div>
                         <div class="reply-to">
                             Replying to @{{reply.displayName}}

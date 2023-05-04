@@ -13,4 +13,9 @@
             Update Username
         </div>
     </div>
+    <div class="crud-delete">
+        <div class="delete-account" (click)="modalService.open('delete:' + 'profile' + authService.userData)">
+            Delete Account
+        </div>
+    </div>
 </div>

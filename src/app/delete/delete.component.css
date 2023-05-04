@@ -1,15 +1,33 @@
-.deleteButton{
-    height: 35px;
-    cursor: pointer;
-    width: 55px;
-    border-radius: 9999px;
-    background-color: var(--psTeal);
-    color: white;
-    font-size: 15px;
+.delete-container{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+.delete-message{
+    display: flex;
+    width: 350px;
+    justify-content: center;
+    align-items: center;
+}
+.delete-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.delete-buttons div{
+    width: 100px;
+    height: 30px;
+    margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    float: right;
-    margin: 5px;
+    color: white;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+.cancel-button{
+    background-color: black;
+}
+.delete-button{
+    background-color: red;
 }
