@@ -5,6 +5,9 @@ import { UserData } from '../shared/services/user-data';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../shared/services/auth.service';
+import { AdminService } from '../shared/services/admin.service';
+import { ModalService } from '../shared/services/modal.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +18,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userPath: String = '';
   routerSubscribe: Subscription | undefined;
 
-  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title){} 
+  constructor(private activatedRoute: ActivatedRoute, public profileService: ProfileService, public router: Router, public title: Title, 
+              public authService: AuthService, public adminService: AdminService, public modalService: ModalService){} 
 
   ngOnInit(): void {
     this.profileService.posts = [];
