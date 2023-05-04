@@ -44,7 +44,7 @@
             <div class="reset-user" (click)="reset()">
                 Reset User
             </div>
-            <div class="delete-user">
+            <div class="delete-user" (click)="modalService.open('delete:' + 'profile-' + userData.uid)">
                 Delete User
             </div>
         </div>

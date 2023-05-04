@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
-import { updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
+import { updateProfile, updateEmail, updatePassword, reauthenticateWithCredential } from 'firebase/auth'
 import { getAuth, deleteUser } from "firebase/auth";
 import { UserData } from './user-data';
 import { doc } from 'firebase/firestore';
@@ -33,8 +33,8 @@ export class AuthService {
     private toastr: ToastrService,
     public modalService: ModalService,
     private db: AngularFireDatabase,
-    
-    
+
+
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -94,37 +94,37 @@ export class AuthService {
       });
   }
   //Update user's current username
-  UpdateUserName(displayName: string, password:string) {
+  UpdateUserName(displayName: string, password: string) {
     return this.afAuth
-      .onAuthStateChanged( (CurrentUser) => {
+      .onAuthStateChanged((CurrentUser) => {
         if (CurrentUser) {
           const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
 
-    reauthenticateWithCredential(this.userData, credential).then(() => {
-      //code goes here
-      updateProfile(this.userData,{
-        displayName: displayName,
-        
-      }).then( () => {
-        //Profile Updated
-        //new display name
-        this.toastr.success('User Name Updated Successfully')
-        this.modalService.close();
-        this.SetUserData(this.userData)
-        //this.userData.displayName= displayName
-        displayName = displayName
+          reauthenticateWithCredential(this.userData, credential).then(() => {
+            //code goes here
+            updateProfile(this.userData, {
+              displayName: displayName,
 
-      }
-      
-      ).catch((error) => {
-        window.alert(error.message);
-      });
-    }).catch((error) => {
-      //toastr error goes here
-      this.toastr.error('Please Enter your Current password')
-      
-    });
-          
+            }).then(() => {
+              //Profile Updated
+              //new display name
+              this.toastr.success('User Name Updated Successfully')
+              this.modalService.close();
+              this.SetUserData(this.userData)
+              //this.userData.displayName= displayName
+              displayName = displayName
+
+            }
+
+            ).catch((error) => {
+              window.alert(error.message);
+            });
+          }).catch((error) => {
+            //toastr error goes here
+            this.toastr.error('Please Enter your Current password')
+
+          });
+
         }
       });
   }
@@ -148,15 +148,15 @@ export class AuthService {
       });
   }
   updateUserPassword(password: string) {
-    this.userData.updatePassword(password).then(function() {
+    this.userData.updatePassword(password).then(function () {
       console.log('succcess!')
     }).catch((error: { message: any; }) => {
       window.alert(error.message)
     });
   }
-  
+
   //update email
-  UpdateEmail(email: string, password:string) {
+  UpdateEmail(email: string, password: string) {
     const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
 
     reauthenticateWithCredential(this.userData, credential).then(() => {
@@ -165,35 +165,36 @@ export class AuthService {
         this.modalService.close();
         this.toastr.success('Email Updated Successfully');
 
-      }).catch((error: {message:any;}) =>{
-        window.alert(error.message)}
-  );
+      }).catch((error: { message: any; }) => {
+        window.alert(error.message)
+      }
+      );
     }).catch((error) => {
       //toastr error goes here
       this.toastr.error('Please Enter your Current password')
     });
-       
-    };
-// update password 
-UpdatePassword(password: string, newPassword:string){
-  const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
+
+  };
+  // update password 
+  UpdatePassword(password: string, newPassword: string) {
+    const credential = auth.EmailAuthProvider.credential(this.userData.email, password);
 
     reauthenticateWithCredential(this.userData, credential).then(() => {
       //code goes here
-       updatePassword(this.userData, newPassword).then(() => {
-  this.modalService.close();
-  this.toastr.success('Password Updated Successfully');
-  // Update successful.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});
+      updatePassword(this.userData, newPassword).then(() => {
+        this.modalService.close();
+        this.toastr.success('Password Updated Successfully');
+        // Update successful.
+      }).catch((error) => {
+        // An error ocurred
+        // ...
+      });
     }).catch((error) => {
       //toastr error goes here
       this.toastr.error('Please Enter your Current password')
     });
 
-  } 
+  }
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
@@ -280,15 +281,15 @@ UpdatePassword(password: string, newPassword:string){
     });
   }
 
-  userDeleteProfile(){
+  userDeleteProfile() {
     const user = this.userData
-    deleteUser(user).then(()=>{
+    deleteUser(user).then(() => {
       console.log("User deleted: " + user)
-    }).catch((error) =>{
+    }).catch((error) => {
       console.log(error)
-    }) 
+    })
   }
-  adminDeleteProfile(uid: string){
+  adminDeleteProfile(uid: string) {
 
   }
 }
