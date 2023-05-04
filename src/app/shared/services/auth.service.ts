@@ -286,10 +286,10 @@ UpdatePassword(password: string, newPassword:string){
     }) 
   }
   adminDeleteProfile(uid: string){
-    this.afs.collection("users").doc(uid)
-      .get().subscribe((doc) => {
-        const user = doc.data()
-        deleteUser(user)
-    })
+    // this.afs.collection("users").doc(uid)
+    //   .get().subscribe((doc) => {
+    //     const user = doc.data()
+    //     deleteUser(user)
+    // })
   }
 }
