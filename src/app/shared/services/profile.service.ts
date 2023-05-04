@@ -50,7 +50,7 @@ export class ProfileService {
       this.repliesData = [];
       this.message = "";
 
-      switch (window.location.pathname.split('/')[2]){
+      switch (window.location.pathname.split('/')[3]){
         case undefined:
           this.afs.collection("posts").ref.where("uid", "==", this.user.uid).orderBy("date","desc").get().then((docs) => {
             if(docs.size > 0){
