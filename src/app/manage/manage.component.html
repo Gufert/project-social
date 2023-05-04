@@ -1,0 +1,20 @@
+<div class="manage-container">
+    <div class="manage-form">
+        <label>UID of user</label>
+        <div class="input-container">
+            <input class="manage-input" #uid>
+        </div>
+        <div class="manage-buttons">
+            <div class="remove">
+                <div class="remove-button" (click)="adminService.removeAdmin(uid.value)">
+                    Remove Admin
+                </div>
+            </div>
+            <div class="make">
+                <div class="make-button" (click)="adminService.addAdmin(uid.value)">
+                    Make Admin
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

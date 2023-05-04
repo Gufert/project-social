@@ -1,5 +1,5 @@
 <div class="admin-container">
-    <div class="admin" *ngIf="authService.userData && authService.userData.uid != null && adminService.admins.indexOf(authService.userData.uid) != -1">
+    <div class="admin" *ngIf="authService.userData && authService.userData.uid != null && (adminService.admins.indexOf(authService.userData.uid) != -1 || adminService.owners.indexOf(authService.userData.uid) != -1)">
         <div class="admin-header">
             <div class="filter">
                 <div class="filter-search">
@@ -14,12 +14,17 @@
                     Reset
                 </div>
             </div>
+            <div class="manage-admin">
+                <div class="manage-button" (click)="modalService.open('manage')">
+                    Manage
+                </div>
+            </div>
         </div>
         <div class="user-list">
             <app-user *ngFor="let user of users" [user]="user"></app-user>
         </div>
     </div>
-    <div class="not-admin" *ngIf="!authService.userData || adminService.admins.indexOf(authService.userData.uid) == -1">
+    <div class="not-admin" *ngIf="!authService.userData || (adminService.admins.indexOf(authService.userData.uid) == -1 || adminService.owners.indexOf(authService.userData.uid) != -1)">
         <div class="na-header">
             You found the secret admin page!
         </div>

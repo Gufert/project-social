@@ -11,7 +11,7 @@ export class SignupComponent {
   showPassword = false;
   userError = "";
 
-  toggle(){//now this is something else
+  toggle(){
     this.showPassword = !this.showPassword;
   }
   constructor(public authService: AuthService, public afs: AngularFirestore) { }
@@ -19,9 +19,9 @@ export class SignupComponent {
   async signUp(userEmail: string, userPassword: string, userName: string){
     this.userError = "";
 
-    if(/^[a-z0-9_]+$/.exec(userName) && userName.length >=3 && userName.length <= 15){
+    if(/^[A-Za-z0-9_]+$/.exec(userName) && userName.length >=3 && userName.length <= 15){
       await this.afs.collection("users").ref.where("lowerDN","==",userName.toLocaleLowerCase()).get().then((doc) => {
-        if(!doc){
+        if(doc.size == 0){
           this.authService.SignUp(userEmail, userPassword, userName);
         }
         else{
