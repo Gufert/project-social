@@ -273,4 +273,8 @@ UpdatePassword(password: string, newPassword:string){
         });
     });
   }
+
+  deleteAuthentication(){
+    //this.userData.auth().currentUser.delete()
+  }
 }
