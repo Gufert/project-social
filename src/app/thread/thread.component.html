@@ -40,10 +40,10 @@
                 <div class="reply-button" (click)="authService.userData != null ? modalService.open('reply:' + post.pid) : modalService.open('alert')">
                     <img src="assets/icons/reply.svg" alt="reply icon" class="interaction-icons">
                 </div>
-                <div class="like-button" (click)="authService.userData != null ? interactions.like(post.pid) : modalService.open('alert')">
+                <div class="like-button" (click)="authService.userData != null ? interact('like') : modalService.open('alert')">
                     <img src="assets/icons/like.svg" alt="like icon" class="interaction-icons">
                 </div>
-                <div class="dislike-button" (click)="authService.userData != null ? interactions.dislike(post.pid) : modalService.open('alert')">
+                <div class="dislike-button" (click)="authService.userData != null ? interact('dislike') : modalService.open('alert')">
                     <img src="assets/icons/dislike.svg" alt="dislike icon" class="interaction-icons">
                 </div>
                 <div class="bookmark-button" (click)="authService.userData != null ? interactions.bookmark(post.pid) : modalService.open('alert')">

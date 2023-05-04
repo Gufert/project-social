@@ -25,7 +25,7 @@
                     <img src="assets/icons/user.svg" alt="user icon" class="nav-icons"><a class="nav-a" [routerLink]="[user.displayName]">Profile</a>
                 </li>
             </div>
-            <div class="li-container" *ngIf="authService.userData && adminService.admins.indexOf(authService.userData.uid) != -1">
+            <div class="li-container" *ngIf="authService.userData && (adminService.admins.indexOf(authService.userData.uid) != -1 || adminService.owners.indexOf(authService.userData.uid) != -1)">
                 <li class="nav-li" [routerLink]="['admin']">
                     <img src="assets/icons/admin.svg" alt="admin icon" class="nav-icons"><a class="nav-a" [routerLink]="['admin']">Admin</a>
                 </li>

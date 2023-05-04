@@ -51,6 +51,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MediaComponent } from './media/media.component';
 import { UserComponent } from './user/user.component';
 import { DeleteComponent } from './delete/delete.component';
+import { ManageComponent } from './manage/manage.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -98,7 +99,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AdminComponent,
     MediaComponent,
     UserComponent,
-    DeleteComponent
+    DeleteComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,

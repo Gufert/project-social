@@ -1,0 +1,27 @@
+.manage-container{
+    width: fit-content;
+    margin: 0 auto;
+}
+.manage-input{
+    width: 450px;
+    height: 45px;
+    font-size: 17px;
+    outline: none;
+}
+.manage-buttons{
+    display: flex;
+    width: 450px;
+    justify-content: space-evenly;
+}
+.remove-button, .make-button{
+    width: 150px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    margin: 5px;
+    cursor: pointer;
+}

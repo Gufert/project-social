@@ -3,6 +3,7 @@ import { AdminService } from '../shared/services/admin.service';
 import { AuthService } from '../shared/services/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ModalService } from '../shared/services/modal.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,16 +17,15 @@ export class AdminComponent implements OnInit, OnDestroy {
   users: any[] = [];
   allUsers: any[] = [];
 
-  constructor(public adminService: AdminService, public authService: AuthService, public afAuth: AngularFireAuth, public afs: AngularFirestore) {}
+  constructor(public adminService: AdminService, public authService: AuthService, public afAuth: AngularFireAuth, public afs: AngularFirestore, public modalService: ModalService) {}
 
   ngOnInit(): void {
     this.userSubscribe = this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.afs.collection("users", ref=>ref.orderBy("lowerDN","asc")).get()
-        .subscribe((snapShot) => {
-          snapShot.docs.forEach((doc) => {
+        this.afs.collection("users").ref.orderBy("lowerDN","asc").get().then((docs) => {
+          docs.forEach((doc) => {
             this.users.push(doc.data());
-          });
+          })
           this.allUsers = this.users;
         });
       }

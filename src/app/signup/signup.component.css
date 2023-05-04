@@ -28,3 +28,7 @@
 .email, .password, .username{
     padding-bottom: 15px;
 }
+.username-error{
+    color: red;
+    width: 450px;
+}

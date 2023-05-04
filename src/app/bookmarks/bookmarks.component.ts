@@ -32,21 +32,18 @@ export class BookmarksComponent implements OnInit, OnDestroy {
   }
 
   getBookmarks(){
-    this.afs.collection("bookmarks",ref=>ref.where("uid", "==", this.authService.userData.uid).orderBy("date","desc")).get()
-    .subscribe((data) => {
-      if(data.size > 0){
-        data.forEach((el) => {
-          this.bookmarks.push(el.data());
-        })
-        this.bookmarks.forEach((bookmark) => {
-          this.afs.collection("posts").doc(bookmark.pid).ref.get().then((doc) => {
-            this.posts.push(<Post>doc.data());
+    this.afs.collection("bookmarks").ref.where("uid","==",this.authService.userData.uid).orderBy("date","desc").get().then((docs) => {
+      if(docs.size > 0){
+        docs.forEach((doc) => {
+          let bookmark: any = doc.data();
+          this.afs.collection("posts").doc(bookmark.pid).ref.get().then((post) => {
+            this.posts.push(<Post>post.data());
           })
         })
       }
       else{
         this.noBookmarks = true;
       }
-    });
+    })
   }
 }

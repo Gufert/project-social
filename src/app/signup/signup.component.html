@@ -16,9 +16,10 @@
         <label>Username</label>
         <div class="input">
             <input class="usernameInput" #userName>
+            <div class="username-error">{{userError}}</div>
         </div>
     </div>
-    <div class="signupButton" (click)="authService.SignUp(userEmail.value, userPassword.value, userName.value)">
+    <div class="signupButton" (click)="signUp(userEmail.value, userPassword.value, userName.value)">
        Create Account
     </div>
 </div>

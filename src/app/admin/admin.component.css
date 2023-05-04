@@ -22,9 +22,13 @@
     outline: none;
     width: 220px;
 }
-.filter-button, .reset-button{
+.manage-admin{
+    margin-left: auto;
+    margin-right: 0px;
+}
+.filter-button, .reset-button, .manage-button{
     cursor: pointer;
-    width: 85px;
+    width: 95px;
     height: 30px;
     color: white;
     display: flex;

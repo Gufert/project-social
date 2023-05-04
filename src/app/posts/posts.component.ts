@@ -39,10 +39,22 @@ export class PostsComponent implements OnInit {
           this.modalService.open('reply:' + this.post.pid);
           break;
         case 'like':
-          this.interactionsService.like(this.post.pid);
+          let likeVal = await this.interactionsService.like(this.post.pid);
+          if(likeVal == -1){
+            this.post.likes.pop();
+          }
+          else{
+            this.post.likes.push("1");
+          }
           break;
         case 'dislike':
-          this.interactionsService.dislike(this.post.pid);
+          let dislikeVal = await this.interactionsService.dislike(this.post.pid);
+          if(dislikeVal == -1){
+            this.post.dislikes.pop();
+          }
+          else{
+            this.post.dislikes.push("1");
+          }
           break;
         case 'bookmark':
           this.interactionsService.bookmark(this.post.pid);
