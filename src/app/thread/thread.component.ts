@@ -53,4 +53,27 @@ export class ThreadComponent implements OnInit{
       })
     })
   }
+
+  async interact(type: string){
+    switch (type){
+      case "like":
+        let likeVal = await this.interactions.like(this.post.pid);
+        if(likeVal == -1){
+          this.post.likes.pop();
+        }
+        else{
+          this.post.likes.push("1");
+        }
+        break;
+      case "dislike":
+        let dislikeVal = await this.interactions.dislike(this.post.pid);
+        if(dislikeVal == -1){
+          this.post.dislikes.pop();
+        }
+        else{
+          this.post.dislikes.push("1");
+        }
+        break;
+    }
+  }
 }

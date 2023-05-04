@@ -19,7 +19,7 @@ export class InteractionsService {
 
   constructor(public authService: AuthService, public afs: AngularFirestore, public likeDislikeService: LikeDislikeService) { }
 
-  checkIfLDExists(path: string, pid: string): Promise<boolean> {
+  async checkIfLDExists(path: string, pid: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.afs.collection(path, ref =>
         ref.where('uid', '==', this.authService.userData.uid)
@@ -33,8 +33,9 @@ export class InteractionsService {
     });
   }
 
-  like(pid: string) {
-    this.checkIfLDExists("likes", pid).then((exists) => {
+  async like(pid: string) {
+    let val = 0;
+    await this.checkIfLDExists("likes", pid).then(async (exists) => {
       if (exists) {
         console.log("delete like")
         this.afs.collection("likes").ref.where('uid', '==', this.authService.userData.uid)
@@ -49,6 +50,7 @@ export class InteractionsService {
           .catch((error) => {
             console.log('Error getting documents: ', error);
           });
+          val = -1;
       }
       else {
         console.log("new like")
@@ -57,16 +59,19 @@ export class InteractionsService {
           pid: pid,
           date: new Date()
         }
-        this.likeDislikeService.likePost(this.likeObj)
+        this.likeDislikeService.likePost(this.likeObj);
+        val = 1;
       }
     })
+    return val;
   }
 
-  dislike(pid: string) {
-    this.checkIfLDExists("dislikes", pid).then((exists) => {
+  async dislike(pid: string) {
+    let val = 0
+    await this.checkIfLDExists("dislikes", pid).then(async (exists) => {
       if (exists) {
         console.log("delete dislike")
-        this.afs.collection("dislikes").ref.where('uid', '==', this.authService.userData.uid)
+        await this.afs.collection("dislikes").ref.where('uid', '==', this.authService.userData.uid)
           .where('pid', '==', pid)
           .get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -78,6 +83,7 @@ export class InteractionsService {
           .catch((error) => {
             console.log('Error getting documents: ', error);
           });
+        val = -1;
       }
       else {
         console.log("new dislike")
@@ -87,8 +93,10 @@ export class InteractionsService {
           date: new Date()
         }
         this.likeDislikeService.dislikePost(this.dislikeObj)
+        val = 1;
       }
     })
+    return val;
   }
 
   async bookmark(pid: string) {
