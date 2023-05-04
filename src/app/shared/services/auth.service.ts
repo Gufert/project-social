@@ -277,12 +277,19 @@ UpdatePassword(password: string, newPassword:string){
     });
   }
 
-  deleteAuthentication(){
+  userDeleteProfile(){
     const user = this.userData
     deleteUser(user).then(()=>{
       console.log("User deleted: " + user)
     }).catch((error) =>{
       console.log(error)
     }) 
+  }
+  adminDeleteProfile(uid: string){
+    this.afs.collection("users").doc(uid)
+      .get().subscribe((doc) => {
+        const user = doc.data()
+        deleteUser(user)
+    })
   }
 }

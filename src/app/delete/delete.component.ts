@@ -131,11 +131,11 @@ export class DeleteComponent implements OnInit {
 
           if (this.authService.userData.uid == uid) {
             //user deletion
-            this.authService.deleteAuthentication()
+            this.authService.userDeleteProfile()
           }
           else {
             //admin
-
+            this.authService.adminDeleteProfile(uid)
           }
 
           console.log("deleting user with uid: " + uid)
