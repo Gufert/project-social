@@ -10,19 +10,26 @@ import {
 import { Router } from '@angular/router';
 import { ModalService } from './modal.service';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
+import { updateProfile, updateEmail, updatePassword,reauthenticateWithCredential} from 'firebase/auth'
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: any; // Save logged in user data
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private toastr: ToastrService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private db: AngularFireDatabase,
+    
+    
   ) {
     /* When logged in, localstorage is used to save user data, and when logged out, null is set up. */
     this.afAuth.authState.subscribe((user) => {
@@ -50,7 +57,7 @@ export class AuthService {
         this.toastr.success('Login Successful');
       })
       .catch((error) => {
-        this.toastr.error('Oops Incorrect password')
+        this.toastr.error('Incorrect password or email')
       });
   }
   // Sign up with email/password
@@ -83,15 +90,18 @@ export class AuthService {
   //Update user's current username
   UpdateUserName(displayName: string) {
     return this.afAuth
-      .onAuthStateChanged(function (user) {
-        if (user) {
-          user.updateProfile({
-            displayName: displayName
-          }).then(function () {
+      .onAuthStateChanged( (CurrentUser) => {
+        if (CurrentUser) {
+          CurrentUser.updateProfile({
+            displayName: displayName,
+            
+          }).then( () => {
             //Profile Updated
             //new display name
+            this.SetUserData(CurrentUser)
             displayName = displayName
           }
+          
           ).catch((error) => {
             window.alert(error.message);
           });
@@ -117,6 +127,35 @@ export class AuthService {
         }
       });
   }
+  updateUserPassword(password: string) {
+    this.userData.updatePassword(password).then(function() {
+      console.log('succcess!')
+    }).catch((error: { message: any; }) => {
+      window.alert(error.message)
+    });
+  }
+  
+  //update email
+  UpdateEmail(email: string, password:string) {
+          updateEmail(this.userData, email).then(() => {
+            this.modalService.close();
+            this.toastr.success('Email Updated Successfully');
+
+          }).catch((error: {message:any;}) =>{
+            window.alert(error.message)}
+      );
+    };
+// update password 
+UpdatePassword(password: string, newPassword:string){
+ updatePassword(this.userData, newPassword).then(() => {
+  this.modalService.close();
+  this.toastr.success('Password Updated Successfully');
+  // Update successful.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});
+  } 
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return this.afAuth.currentUser
