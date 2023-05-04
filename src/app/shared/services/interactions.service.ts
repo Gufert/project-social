@@ -37,7 +37,6 @@ export class InteractionsService {
     let val = 0;
     await this.checkIfLDExists("likes", pid).then(async (exists) => {
       if (exists) {
-        console.log("delete like")
         this.afs.collection("likes").ref.where('uid', '==', this.authService.userData.uid)
           .where('pid', '==', pid)
           .get().then((querySnapshot) => {
@@ -48,12 +47,10 @@ export class InteractionsService {
             });
           })
           .catch((error) => {
-            console.log('Error getting documents: ', error);
           });
           val = -1;
       }
       else {
-        console.log("new like")
         this.likeObj = {
           uid: this.authService.userData.uid,
           pid: pid,
@@ -70,7 +67,6 @@ export class InteractionsService {
     let val = 0
     await this.checkIfLDExists("dislikes", pid).then(async (exists) => {
       if (exists) {
-        console.log("delete dislike")
         await this.afs.collection("dislikes").ref.where('uid', '==', this.authService.userData.uid)
           .where('pid', '==', pid)
           .get().then((querySnapshot) => {
@@ -81,12 +77,11 @@ export class InteractionsService {
             });
           })
           .catch((error) => {
-            console.log('Error getting documents: ', error);
+            
           });
         val = -1;
       }
       else {
-        console.log("new dislike")
         this.dislikeObj = {
           uid: this.authService.userData.uid,
           pid: pid,

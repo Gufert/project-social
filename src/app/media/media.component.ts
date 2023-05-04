@@ -15,6 +15,5 @@ export class MediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.media = "https://firebasestorage.googleapis.com/v0/b/project-social-923a2.appspot.com/o/" + this.media;
-    console.log(this.media);
   }
 }

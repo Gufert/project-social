@@ -80,7 +80,6 @@ export class ProfileService {
             }
             else{
               this.message = this.user.displayName + " has not made any replies.";
-              console.log(this.message);
             }
           })
           break;
