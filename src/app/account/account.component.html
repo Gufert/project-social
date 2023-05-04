@@ -4,7 +4,7 @@
     </div>
     <div class="accountName">
         <div class="profileName">{{userData.profileName}}</div>
-        <div class="username">@{{userData.displayName}}</div>
+        <div class="username">@{{authService.userData.displayName}}</div>
     </div>
     <div class="logout" (click)="authService.SignOut()">
         <div class="icon-container">
